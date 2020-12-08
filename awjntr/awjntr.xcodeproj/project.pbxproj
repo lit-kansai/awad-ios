@@ -71,6 +71,7 @@
 			children = (
 				71C2860F257B8946000486A2 /* Assets.xcassets */,
 				71C28614257B8946000486A2 /* Info.plist */,
+				71C28611257B8946000486A2 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -99,7 +100,6 @@
 				71374C55257F09E1006105A2 /* View */,
 				71374C54257F09D6006105A2 /* Presenter */,
 				71374C57257F0A94006105A2 /* Supporting Files */,
-				71C28611257B8946000486A2 /* LaunchScreen.storyboard */,
 			);
 			path = awjntr;
 			sourceTree = "<group>";
