@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		716EEDC825810FCA0081EFF5 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDC725810FCA0081EFF5 /* location.json */; };
+		716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDCA25821C080081EFF5 /* Main.storyboard */; };
 		71C28607257B8943000486A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28606257B8943000486A2 /* AppDelegate.swift */; };
 		71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28608257B8943000486A2 /* SceneDelegate.swift */; };
 		71C2860B257B8943000486A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2860A257B8943000486A2 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		716EEDC725810FCA0081EFF5 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
+		716EEDCA25821C080081EFF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		71C28603257B8943000486A2 /* awjntr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awjntr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C28606257B8943000486A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C28608257B8943000486A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				71C2860F257B8946000486A2 /* Assets.xcassets */,
 				71C28614257B8946000486A2 /* Info.plist */,
 				716EEDC725810FCA0081EFF5 /* location.json */,
+				716EEDCA25821C080081EFF5 /* Main.storyboard */,
 				71C28611257B8946000486A2 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
@@ -168,6 +171,7 @@
 				71C28613257B8946000486A2 /* LaunchScreen.storyboard in Resources */,
 				716EEDC825810FCA0081EFF5 /* location.json in Resources */,
 				71C28610257B8946000486A2 /* Assets.xcassets in Resources */,
+				716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
