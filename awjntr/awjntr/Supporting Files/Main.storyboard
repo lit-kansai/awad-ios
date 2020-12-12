@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="Kkw-b3-uhL">
             <objects>
-                <viewController id="2wq-6Z-w9g" customClass="ViewController" customModule="awjntr" sceneMemberID="viewController">
+                <viewController id="2wq-6Z-w9g" customClass="MapViewController" customModule="awjntr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bj8-Ac-7rg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="ZY2-kA-FQz" id="MY3-82-3HZ"/>
+                        <outlet property="mapView" destination="ZY2-kA-FQz" id="WYG-01-DLI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sp5-Se-PrK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

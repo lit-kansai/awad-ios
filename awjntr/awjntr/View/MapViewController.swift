@@ -17,7 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     func fetchData() {
-        let fileName = Bundle.main.path(forResource: "", ofType: "json")
+        let fileName = Bundle.main.path(forResource: "location", ofType: "json")
         let filePath = URL(fileURLWithPath: fileName!)
         var data : Data?
         do {
@@ -27,19 +27,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             print("エラーがあります \(error.localizedDescription)")
         }
          
-//        if let jsonData = data {
-//            let json = JSON(data: jsonData)
-//            if let venueJSONs = json["response"]["venues"].array{
-//                for venueJSON in venueJSONs {
-//                    if let venue = Venue.from(json: venueJSON) {
-//                        self.venues.append(venue)
-//                    }
-//                }
-//            }
-//
-//
-//        }
-        
         
     }
     
@@ -75,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.delegate = self
         fetchData()
         
-        //(エラーあり)配列で存在しない添字にアクセスしてるかオブジェクトがnilになってるかだと睨んでる
+        //(エラーあり)配列で存在しない添字にアクセスしてるかオブジェクトがnilになってるかだと睨んでる。汚くなるけどviewdidloadに全部打ち込めば確実だが。
         mapView.addAnnotation(venues as! MKAnnotation)
     }
     
