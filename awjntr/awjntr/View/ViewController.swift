@@ -8,10 +8,11 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
  
     @IBOutlet var mapView:MKMapView!
- 
+    var locationManager: CLLocationManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,10 +30,31 @@ class ViewController: UIViewController, MKMapViewDelegate {
         region.span.longitudeDelta = 0.42
  
         mapView.setRegion(region,animated:true)
- 
-       
         mapView.mapType = MKMapType.standard
+        
+        // ロケーションマネージャーのセットアップ
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager!.requestWhenInUseAuthorization()
     }
+    
+    // 許可を求めるためのdelegateメソッド
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            switch status {
+            //許可されていない場合
+            case .notDetermined:
+                manager.requestWhenInUseAuthorization()
+            //許可されている場合
+            case .restricted, .denied:
+                break
+            case .authorizedAlways, .authorizedWhenInUse:
+            // 現在地の取得を開始
+                manager.startUpdatingLocation()
+                break
+            default:
+                break
+            }
+        }
  
 }
 
