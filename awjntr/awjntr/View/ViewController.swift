@@ -25,8 +25,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
         var region:MKCoordinateRegion = mapView.region
         region.center = location
-        region.span.latitudeDelta = 0.02
-        region.span.longitudeDelta = 0.02
+        region.span.latitudeDelta = 0.42
+        region.span.longitudeDelta = 0.42
  
         mapView.setRegion(region,animated:true)
  
