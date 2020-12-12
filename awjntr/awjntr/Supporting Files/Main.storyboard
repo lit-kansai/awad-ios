@@ -16,13 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-kA-FQz">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-kA-FQz">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TuP-tE-U1e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZY2-kA-FQz" secondAttribute="bottom" id="Kux-Oo-MXL"/>
+                            <constraint firstItem="ZY2-kA-FQz" firstAttribute="trailing" secondItem="TuP-tE-U1e" secondAttribute="trailing" id="ThF-sd-lr9"/>
+                            <constraint firstItem="ZY2-kA-FQz" firstAttribute="leading" secondItem="TuP-tE-U1e" secondAttribute="leading" id="kp1-M2-H4s"/>
+                            <constraint firstItem="ZY2-kA-FQz" firstAttribute="top" secondItem="Bj8-Ac-7rg" secondAttribute="top" id="u8Y-ej-fXp"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="ZY2-kA-FQz" id="MY3-82-3HZ"/>
