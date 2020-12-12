@@ -75,7 +75,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.delegate = self
         fetchData()
         
-        //ここのエラーがわからん‥配列で存在しない添字にアクセスしてるかオブジェクトがnilになってるかだと睨んでる
+        //(エラーあり)配列で存在しない添字にアクセスしてるかオブジェクトがnilになってるかだと睨んでる
         mapView.addAnnotation(venues as! MKAnnotation)
     }
     
