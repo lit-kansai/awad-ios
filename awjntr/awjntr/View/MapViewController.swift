@@ -7,11 +7,42 @@
 
 import UIKit
 import MapKit
+import SwiftyJSON
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
  
     @IBOutlet var mapView:MKMapView!
     var locationManager: CLLocationManager!
+    var venues = [Venue]()
+    
+    
+    func fetchData() {
+        let fileName = Bundle.main.path(forResource: "", ofType: "json")
+        let filePath = URL(fileURLWithPath: fileName!)
+        var data : Data?
+        do {
+            data = try Data(contentsOf: filePath, options: Data.ReadingOptions(rawValue: 0))
+        }catch let error {
+            data = nil
+            print("エラーがあります \(error.localizedDescription)")
+        }
+         
+//        if let jsonData = data {
+//            let json = JSON(data: jsonData)
+//            if let venueJSONs = json["response"]["venues"].array{
+//                for venueJSON in venueJSONs {
+//                    if let venue = Venue.from(json: venueJSON) {
+//                        self.venues.append(venue)
+//                    }
+//                }
+//            }
+//
+//
+//        }
+        
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +67,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager!.requestWhenInUseAuthorization()
+        
+        //ピンを配置
+//        let spot = Venue(name: "明石海峡大橋撮影スポット", category: "展望台", coordinate: CLLocationCoordinate2D(latitude: 34.58412, longitude: 135.01757))
+//        mapView.addAnnotation(spot)
+        
+        mapView.delegate = self
+        fetchData()
+        
+        //ここのエラーがわからん‥配列で存在しない添字にアクセスしてるかオブジェクトがnilになってるかだと睨んでる
+        mapView.addAnnotation(venues as! MKAnnotation)
     }
     
     // 許可を求めるためのdelegateメソッド
@@ -57,4 +98,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
  
 }
+
+
 
