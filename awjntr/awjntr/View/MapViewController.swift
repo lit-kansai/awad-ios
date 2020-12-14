@@ -4,14 +4,13 @@
 //
 //  Created by tomoya tanaka on 2020/12/05.
 //
-
 import UIKit
 import MapKit
 import SwiftyJSON
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
  
-    @IBOutlet var mapView:MKMapView!
+    @IBOutlet var mapView: MKMapView!
     var locationManager: CLLocationManager!
     var venues = [Venue]()
     
@@ -26,10 +25,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             data = nil
             print("エラーがあります \(error.localizedDescription)")
         }
-         
-        
+        //jsonファイルの1行目に"venues"を追加しました
+        if let jsonData = data {
+            let json = JSON(jsonData)
+            if let venueJSONs = json["venues"].array {
+                for venueJSON in venueJSONs {
+                    if let venue = Venue.from(json: venueJSON) {
+                        self.venues.append(venue)
+                    }
+                }
+            }
+        }
+
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +48,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             = CLLocationCoordinate2DMake(34.3257,134.8131)
  
         mapView.setCenter(location,animated:true)
- 
     
         var region:MKCoordinateRegion = mapView.region
         region.center = location
@@ -55,15 +62,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         locationManager.delegate = self
         locationManager!.requestWhenInUseAuthorization()
         
-        //ピンを配置
-//        let spot = Venue(name: "明石海峡大橋撮影スポット", category: "展望台", coordinate: CLLocationCoordinate2D(latitude: 34.58412, longitude: 135.01757))
-//        mapView.addAnnotation(spot)
-        
         mapView.delegate = self
         fetchData()
-        
-        //(エラーあり)配列で存在しない添字にアクセスしてるかオブジェクトがnilになってるかだと睨んでる。汚くなるけどviewdidloadに全部打ち込めば確実だが。
-        mapView.addAnnotation(venues as! MKAnnotation)
+        mapView.addAnnotations(venues)
     }
     
     // 許可を求めるためのdelegateメソッド

@@ -9,7 +9,7 @@ import MapKit
 import AddressBook
 import SwiftyJSON
 
-class Venue : NSObject, MKAnnotation {
+class Venue: NSObject, MKAnnotation {
     
     let name: String?
     let category: String?
@@ -27,6 +27,7 @@ class Venue : NSObject, MKAnnotation {
     var subtitle: String? {
         return category
     }
+    
     
 class func from(json: JSON) -> Venue? {
     
