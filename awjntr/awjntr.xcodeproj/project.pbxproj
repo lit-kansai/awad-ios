@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		005438BCE49A26920C0AC6EF /* Pods_awjntr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09187EB7B472E14C42FD1BC7 /* Pods_awjntr.framework */; };
 		66F0C7C3258523C100521EAF /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0C7C2258523C100521EAF /* Venue.swift */; };
-		66F0C7C7258529CA00521EAF /* MKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0C7C6258529CA00521EAF /* MKAnnotation.swift */; };
 		716EEDC825810FCA0081EFF5 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDC725810FCA0081EFF5 /* location.json */; };
 		716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDCA25821C080081EFF5 /* Main.storyboard */; };
 		71C28607257B8943000486A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28606257B8943000486A2 /* AppDelegate.swift */; };
@@ -23,7 +22,6 @@
 		09187EB7B472E14C42FD1BC7 /* Pods_awjntr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_awjntr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3264734B8F5CB406741390E5 /* Pods-awjntr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awjntr.debug.xcconfig"; path = "Target Support Files/Pods-awjntr/Pods-awjntr.debug.xcconfig"; sourceTree = "<group>"; };
 		66F0C7C2258523C100521EAF /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
-		66F0C7C6258529CA00521EAF /* MKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotation.swift; sourceTree = "<group>"; };
 		716EEDC725810FCA0081EFF5 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
 		716EEDCA25821C080081EFF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		71C28603257B8943000486A2 /* awjntr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awjntr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,7 +52,6 @@
 				3264734B8F5CB406741390E5 /* Pods-awjntr.debug.xcconfig */,
 				7D5CEDA7D93C6C0DB01EBAC0 /* Pods-awjntr.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,7 +76,6 @@
 			children = (
 				71C2860A257B8943000486A2 /* MapViewController.swift */,
 				66F0C7C2258523C100521EAF /* Venue.swift */,
-				66F0C7C6258529CA00521EAF /* MKAnnotation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,7 +274,6 @@
 				66F0C7C3258523C100521EAF /* Venue.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
 				71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */,
-				66F0C7C7258529CA00521EAF /* MKAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
