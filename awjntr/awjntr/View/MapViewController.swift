@@ -4,14 +4,40 @@
 //
 //  Created by tomoya tanaka on 2020/12/05.
 //
-
 import UIKit
 import MapKit
+import SwiftyJSON
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
  
-    @IBOutlet var mapView:MKMapView!
+    @IBOutlet var mapView: MKMapView!
     var locationManager: CLLocationManager!
+    var venues = [Venue]()
+    
+    
+    func fetchData() {
+        let fileName = Bundle.main.path(forResource: "location", ofType: "json")
+        let filePath = URL(fileURLWithPath: fileName!)
+        var data : Data?
+        do {
+            data = try Data(contentsOf: filePath, options: Data.ReadingOptions(rawValue: 0))
+        }catch let error {
+            data = nil
+            print("エラーがあります \(error.localizedDescription)")
+        }
+        //jsonファイルの1行目に"venues"を追加しました
+        if let jsonData = data {
+            let json = JSON(jsonData)
+            if let venueJSONs = json["venues"].array {
+                for venueJSON in venueJSONs {
+                    if let venue = Venue.from(json: venueJSON) {
+                        self.venues.append(venue)
+                    }
+                }
+            }
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +48,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             = CLLocationCoordinate2DMake(34.3257,134.8131)
  
         mapView.setCenter(location,animated:true)
- 
     
         var region:MKCoordinateRegion = mapView.region
         region.center = location
@@ -36,6 +61,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager!.requestWhenInUseAuthorization()
+        
+        mapView.delegate = self
+        fetchData()
+        mapView.addAnnotations(venues)
     }
     
     // 許可を求めるためのdelegateメソッド
@@ -57,4 +86,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
  
 }
+
+
 
