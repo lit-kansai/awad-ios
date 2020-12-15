@@ -12,25 +12,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
  
     @IBOutlet var mapView: MKMapView!
     var locationManager: CLLocationManager!
-    var venues = [Venue]()
-    
+	var venues: [Venue] = [Venue]()
     
     func fetchData() {
-        let fileName = Bundle.main.path(forResource: "location", ofType: "json")
-        let filePath = URL(fileURLWithPath: fileName!)
-        var data : Data?
+		let fileName: String? = Bundle.main.path(forResource: "location", ofType: "json")
+		let filePath: URL = URL(fileURLWithPath: fileName!)
+        var data: Data?
         do {
             data = try Data(contentsOf: filePath, options: Data.ReadingOptions(rawValue: 0))
-        }catch let error {
+        } catch let error {
             data = nil
             print("エラーがあります \(error.localizedDescription)")
         }
         //jsonファイルの1行目に"venues"を追加しました
-        if let jsonData = data {
-            let json = JSON(jsonData)
-            if let venueJSONs = json["venues"].array {
+		if let jsonData: Data = data {
+			let json: JSON = JSON(jsonData)
+			if let venueJSONs: [JSON] = json["venues"].array {
                 for venueJSON in venueJSONs {
-                    if let venue = Venue.from(json: venueJSON) {
+					if let venue: Venue = Venue.from(json: venueJSON) {
                         self.venues.append(venue)
                     }
                 }
@@ -46,9 +45,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
         let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.325_7, 134.813_1)
  
-        mapView.setCenter(location,animated:true)
+        mapView.setCenter(location, animated: true)
     
-        var region:MKCoordinateRegion = mapView.region
+        var region: MKCoordinateRegion = mapView.region
         region.center = location
         region.span.latitudeDelta = 0.42
         region.span.longitudeDelta = 0.42
@@ -64,6 +63,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.delegate = self
         fetchData()
         mapView.addAnnotations(venues)
+		
+		// ここから追加分
+		
+		// マップのズーム率を制限
+		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
+		mapView.setCameraZoomRange(zoomRange, animated: false)
+		
+		// マップの表示される範囲を制限
+		let coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 30_000)
+		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: coordinateRegion), animated: false)
+
     }
     
     // 許可を求めるためのdelegateメソッド
@@ -82,5 +92,4 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 break
             }
         }
- 
 }

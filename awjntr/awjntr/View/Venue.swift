@@ -10,44 +10,35 @@ import AddressBook
 import SwiftyJSON
 
 class Venue: NSObject, MKAnnotation {
-    
-    let name: String?
-    let category: String?
-    let coordinate: CLLocationCoordinate2D
-    
-    init(name: String, category: String?, coordinate: CLLocationCoordinate2D)
-    {
-        self.name = name
-        self.category = category
-        self.coordinate = coordinate
-        
-        super.init()
-    }
-    
-    var subtitle: String? {
-        return category
-    }
-    
-    
-class func from(json: JSON) -> Venue? {
-    
-    var name: String
-    
-    if let unWrappedTitle = json["name"].string {
-        name = unWrappedTitle
-    }else{
-        name = ""
-    }
-    
-    let category = json["category"].string
-    let lat = json["latitude"].doubleValue
-    let long = json["longitude"].doubleValue
-    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-    
-    return Venue(name: name, category: category, coordinate: coordinate)
-    }
-    
-    }
-    
-    
+	
+	let coordinate: CLLocationCoordinate2D
+	let title: String?
+	let subtitle: String?
 
+	
+	init(name: String, category: String?, coordinate: CLLocationCoordinate2D) {
+		self.coordinate = coordinate
+		self.title = name
+		self.subtitle = category
+		super.init()
+	}
+	
+	class func from(json: JSON) -> Venue? {
+		
+		var name: String
+		
+		if let unWrappedTitle: String = json["name"].string {
+			name = unWrappedTitle
+		} else {
+			name = ""
+		}
+		
+		let category: String? = json["category"].string
+		let lat: Double = json["latitude"].doubleValue
+		let long: Double = json["longitude"].doubleValue
+		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lat, longitude: long)
+		
+		return Venue(name: name, category: category, coordinate: coordinate)
+	}
+	
+}

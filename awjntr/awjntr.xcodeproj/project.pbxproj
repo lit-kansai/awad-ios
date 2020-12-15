@@ -81,7 +81,7 @@
 		71374C55257F09E1006105A2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				71C2860A257B8943000486A2 /* ViewController.swift */,
+				71C2860A257B8943000486A2 /* MapViewController.swift */,
 				71D2000C2585261E00015D27 /* CompassViewController.swift */,
 				71C2860A257B8943000486A2 /* MapViewController.swift */,
 				66F0C7C2258523C100521EAF /* Venue.swift */,
@@ -159,7 +159,7 @@
 				71C28600257B8943000486A2 /* Frameworks */,
 				71C28601257B8943000486A2 /* Resources */,
 				71374C4F257F04F6006105A2 /* ShellScript */,
-				378C6465A8CB88295DE1FCB5 /* [CP] Embed Pods Frameworks */,
+				27D29410113E7388051C5DD7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,7 +217,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		378C6465A8CB88295DE1FCB5 /* [CP] Embed Pods Frameworks */ = {
+		27D29410113E7388051C5DD7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,7 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71C2860B257B8943000486A2 /* ViewController.swift in Sources */,
+				71C2860B257B8943000486A2 /* MapViewController.swift in Sources */,
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71C2860B257B8943000486A2 /* MapViewController.swift in Sources */,
 				66F0C7C3258523C100521EAF /* Venue.swift in Sources */,
