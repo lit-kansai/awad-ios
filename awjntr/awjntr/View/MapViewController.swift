@@ -44,8 +44,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         view.backgroundColor = .white
     
-        let location:CLLocationCoordinate2D
-            = CLLocationCoordinate2DMake(34.3257,134.8131)
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.325_7, 134.813_1)
  
         mapView.setCenter(location,animated:true)
     
@@ -54,12 +53,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         region.span.latitudeDelta = 0.42
         region.span.longitudeDelta = 0.42
  
-        mapView.setRegion(region,animated:true)
+        mapView.setRegion(region, animated: true)
         mapView.mapType = MKMapType.standard
         
         // ロケーションマネージャーのセットアップ
         locationManager = CLLocationManager()
-        locationManager.delegate = self
+        locationManager?.delegate = self
         locationManager!.requestWhenInUseAuthorization()
         
         mapView.delegate = self
@@ -79,13 +78,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             case .authorizedAlways, .authorizedWhenInUse:
             // 現在地の取得を開始
                 manager.startUpdatingLocation()
-                break
             default:
                 break
             }
         }
  
 }
-
-
-

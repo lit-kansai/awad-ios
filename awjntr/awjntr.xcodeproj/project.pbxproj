@@ -15,6 +15,9 @@
 		71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28608257B8943000486A2 /* SceneDelegate.swift */; };
 		71C2860B257B8943000486A2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2860A257B8943000486A2 /* MapViewController.swift */; };
 		71C28610257B8946000486A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C2860F257B8946000486A2 /* Assets.xcassets */; };
+		71D2000D2585261E00015D27 /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2000C2585261E00015D27 /* CompassViewController.swift */; };
+		71D200102585266100015D27 /* CompassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2000F2585266100015D27 /* CompassModel.swift */; };
+		71D200132585267200015D27 /* CompassPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D200122585267200015D27 /* CompassPresenter.swift */; };
 		71D2FFB925833FD400015D27 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D2FFB825833FD400015D27 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +33,9 @@
 		71C2860A257B8943000486A2 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		71C2860F257B8946000486A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71C28614257B8946000486A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71D2000C2585261E00015D27 /* CompassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
+		71D2000F2585266100015D27 /* CompassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassModel.swift; sourceTree = "<group>"; };
+		71D200122585267200015D27 /* CompassPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassPresenter.swift; sourceTree = "<group>"; };
 		71D2FFB825833FD400015D27 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7D5CEDA7D93C6C0DB01EBAC0 /* Pods-awjntr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awjntr.release.xcconfig"; path = "Target Support Files/Pods-awjntr/Pods-awjntr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +73,7 @@
 		71374C54257F09D6006105A2 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				71D200122585267200015D27 /* CompassPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -74,6 +81,8 @@
 		71374C55257F09E1006105A2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				71C2860A257B8943000486A2 /* ViewController.swift */,
+				71D2000C2585261E00015D27 /* CompassViewController.swift */,
 				71C2860A257B8943000486A2 /* MapViewController.swift */,
 				66F0C7C2258523C100521EAF /* Venue.swift */,
 			);
@@ -83,6 +92,7 @@
 		71374C56257F09E6006105A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				71D2000F2585266100015D27 /* CompassModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -93,8 +103,8 @@
 				71C2860F257B8946000486A2 /* Assets.xcassets */,
 				71C28614257B8946000486A2 /* Info.plist */,
 				716EEDC725810FCA0081EFF5 /* location.json */,
-				716EEDCA25821C080081EFF5 /* Main.storyboard */,
 				71D2FFB825833FD400015D27 /* Launch Screen.storyboard */,
+				716EEDCA25821C080081EFF5 /* Main.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -270,10 +280,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C2860B257B8943000486A2 /* ViewController.swift in Sources */,
+				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71C2860B257B8943000486A2 /* MapViewController.swift in Sources */,
 				66F0C7C3258523C100521EAF /* Venue.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
 				71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */,
+				71D200102585266100015D27 /* CompassModel.swift in Sources */,
+				71D2000D2585261E00015D27 /* CompassViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +417,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8JGK7UYAY2;
+				DEVELOPMENT_TEAM = L4RQ287Q4R;
 				INFOPLIST_FILE = "awjntr/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -423,7 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8JGK7UYAY2;
+				DEVELOPMENT_TEAM = L4RQ287Q4R;
 				INFOPLIST_FILE = "awjntr/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
