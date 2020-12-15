@@ -15,7 +15,6 @@ class Venue: NSObject, MKAnnotation {
 	let title: String?
 	let subtitle: String?
 
-	
 	init(name: String, category: String?, coordinate: CLLocationCoordinate2D) {
 		self.coordinate = coordinate
 		self.title = name

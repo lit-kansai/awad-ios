@@ -29,9 +29,14 @@ class CompassViewController: UIViewController {
 //			locationManager.headingFilter = kCLHeadingFilterNone
 			locationManager.headingOrientation = .portrait
 			locationManager.startUpdatingHeading()
-			let latitude: Double = (locationManager.location?.coordinate.latitude)!
-			let longitude: Double = (locationManager.location?.coordinate.longitude)!
-			presenter?.viewDidLoad(latitude: latitude, longitude: longitude)
+			if let location = locationManager.location {
+				let latitude: Double = location.coordinate.latitude
+				let longitude: Double = location.coordinate.longitude
+				presenter?.viewDidLoad(latitude: latitude, longitude: longitude)
+			} else {
+				locationManager.requestWhenInUseAuthorization()
+			}
+
 		}
 		
 		let distance: Int = 1_000
@@ -87,7 +92,6 @@ extension CompassViewController: CLLocationManagerDelegate {
 
 extension CompassViewController: CompassPresenterOutput {
 	func changeNeedleDirection(radian: Double) {
-		print("changeNeedleDirection")
 		needleImageView.transform = CGAffineTransform(rotationAngle: CGFloat(radian))
 		
 	}

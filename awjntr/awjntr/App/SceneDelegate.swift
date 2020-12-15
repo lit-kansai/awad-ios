@@ -23,6 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //			window?.rootViewController = view
 //			window?.makeKeyAndVisible()
 //			window?.windowScene = windowScene
+			
+			window = UIWindow(frame: UIScreen.main.bounds)
+			let view: MapViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as MapViewController
+			let model: MapModel = MapModel()
+			let presenter: MapPresenter = MapPresenter(view: view, model: model)
+			view.inject(presenter: presenter)
+			window?.rootViewController = view
+			window?.makeKeyAndVisible()
+			window?.windowScene = windowScene
 		} else {
 			return
 		}
