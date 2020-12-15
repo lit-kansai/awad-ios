@@ -13,7 +13,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		
-		guard let _ = (scene as? UIWindowScene) else { return }
+		if scene as? UIWindowScene != nil {
+			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
+			window = UIWindow(frame: UIScreen.main.bounds)
+			let view: CompassViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CompassViewController") as CompassViewController
+			let model: CompassModel = CompassModel()
+			let presenter: CompassPresenter = CompassPresenter(view: view, model: model)
+			view.inject(presenter: presenter)
+			window?.rootViewController = view
+			window?.makeKeyAndVisible()
+			window?.windowScene = windowScene
+		} else {
+			return
+		}
 		
 	}
 
