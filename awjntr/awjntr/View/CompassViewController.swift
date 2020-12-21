@@ -26,7 +26,6 @@ class CompassViewController: UIViewController {
 		if CLLocationManager.locationServicesEnabled() {
 			locationManager = CLLocationManager()
 			locationManager.delegate = self
-//			locationManager.headingFilter = kCLHeadingFilterNone
 			locationManager.headingOrientation = .portrait
 			locationManager.startUpdatingHeading()
 			if let location = locationManager.location {

@@ -21,22 +21,19 @@ class MapViewController: UIViewController {
 		self.overrideUserInterfaceStyle = .light
 		
 		mapView.delegate = self
+		mapView.isRotateEnabled = false
 		mapView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
 		mapView.center = view.center
 		let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.325_7, 134.813_1)
-		var region: MKCoordinateRegion = MKCoordinateRegion()
-		region.center = location
-		region.span.latitudeDelta = 0.42
-		region.span.longitudeDelta = 0.42
+		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
 		mapView.setRegion(region, animated: false)
+		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
+		
 		// マップのズーム率を制限
 		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
 		mapView.setCameraZoomRange(zoomRange, animated: false)
 		// マップの表示される範囲を制限
-		let coordinateRegion: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 30_000)
-		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: coordinateRegion), animated: false)
 		view.addSubview(mapView)
-		
 		presenter?.viewDidLoad()
     }
 
@@ -61,34 +58,71 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController: MKMapViewDelegate {
+	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-		let identifier = "pin"
-		var annotationView: MKAnnotationView!
-		
-		if annotationView == nil {
-			annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			
-			let pinImage = UIImage(named: "slime")
-			let size = CGSize(width: 50, height: 50)
+		let identifier: String = "pin"
+		var annotationView: MKAnnotationView?
+
+		if let dequeuedAnnotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+			annotationView = dequeuedAnnotationView
+		} else {
+			let annotation: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+			let pinImage: UIImage? = #imageLiteral(resourceName: "slime")
+			let size: CGSize = CGSize(width: 50, height: 50)
 			UIGraphicsBeginImageContext(size)
 			pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-			let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-
-			annotationView?.image = resizedImage
-		
+			let resizedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+			annotation.image = resizedImage
+			annotation.displayPriority = .required
+			annotation.canShowCallout = true
+			annotationView = annotation
 		}
-		
-		annotationView.displayPriority = .required
-		annotationView.annotation = annotation
-		annotationView.canShowCallout = true
-		
 		return annotationView
 	}
+	
+	func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+		let region: MKCoordinateRegion = mapView.region
+		let annotations: [MKAnnotation] = mapView.annotations
+		let latitudeDelta: CLLocationDegrees = region.span.latitudeDelta
+		let longitudeDelta: CLLocationDegrees = region.span.longitudeDelta
+		if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
+			for annotation in annotations {
+				UIView.animate(withDuration: 0.5, animations: {
+					mapView.view(for: annotation)?.alpha = 0
+				})
+			}
+		} else {
+			for annotation in annotations {
+				UIView.animate(withDuration: 0.5, animations: {
+					mapView.view(for: annotation)?.alpha = 1
+				})
+			}
+		}
+		
+	}
+	
+	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+
+		// rendererを生成.
+		let myCircleView: MKCircleRenderer = MKCircleRenderer(overlay: overlay)
+
+		// 円の内部を赤色で塗りつぶす.
+		myCircleView.fillColor = UIColor(cgColor: CGColor(red: 27, green: 227, blue: 160, alpha: 0.9))
+
+		// 円を透過させる.
+		myCircleView.alpha = 0.8
+
+		// 円周の線の太さ.
+		myCircleView.lineWidth = 1.5
+
+		return myCircleView
+	}
+		
 }
 
 extension MapViewController: MapPresenterOutput {
-	func initAnnotations(_ annotations: [CheckpointAnnotation]) {
-		mapView.addAnnotations(annotations)
+	func initMapAddition(_ addition: MapAddition) {
+		mapView.addAnnotations(addition.annotations)
+		mapView.addOverlays(addition.circles)
 	}
 }
