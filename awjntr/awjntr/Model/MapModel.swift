@@ -9,12 +9,14 @@ import Foundation
 import MapKit
 
 protocol MapModelInput {
-	func generateAnnotations() -> [CheckpointAnnotation]
+	func generateAdditions() -> MapAddition
 }
 
 final class MapModel: MapModelInput {
-	func generateAnnotations() -> [CheckpointAnnotation] {
+	
+	func generateAdditions() -> MapAddition {
 		var annotations: [CheckpointAnnotation] = []
+		var overlays: [MKOverlay] = []
 		
 		guard let url = Bundle.main.url(forResource: "checkpoints", withExtension: "json") else {
 			fatalError("File not found")
@@ -27,14 +29,17 @@ final class MapModel: MapModelInput {
 		do {
 			let locations: [Checkpoint] = try JSONDecoder().decode([Checkpoint].self, from: data)
 			for location in locations {
-				let annotation: CheckpointAnnotation = CheckpointAnnotation(name: location.name, category: location.category, latitude: Double(location.latitude)!, longitude: Double(location.longitude)!)
-			
+				let annotation: CheckpointAnnotation = CheckpointAnnotation(latitude: Double(location.latitude)!, longitude: Double(location.longitude)!)
 				annotations.append(annotation)
+				
+				let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(location.latitude)!, Double(location.longitude)!)
+				let circle: MKCircle = MKCircle(center: location, radius: CLLocationDistance(500))
+				overlays.append(circle)
 			}
 		} catch let error {
 			print(error)
 		}
-		return annotations
+		return MapAddition(annotations: annotations, circles: overlays)
 	}
 }
 
@@ -43,11 +48,12 @@ final class CheckpointAnnotation: NSObject, MKAnnotation {
 	let title: String?
 	let subtitle: String?
 
-	init(name: String, category: String?, latitude: Double, longitude: Double) {
+	init(latitude: Double, longitude: Double) {
 		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 		self.coordinate = coordinate
-		self.title = name
-		self.subtitle = category
+		// NOTE: 書かないと、titleとsubtitleは絶対必要ですと怒られます。(MKAnnotationViewが必須としている)
+		self.title = ""
+		self.subtitle = ""
 		super.init()
 	}
 }
@@ -57,4 +63,9 @@ struct Checkpoint: Codable {
 	var category: String
 	var longitude: String
 	var latitude: String
+}
+
+struct MapAddition {
+	var annotations: [CheckpointAnnotation]
+	var circles: [MKOverlay]
 }
