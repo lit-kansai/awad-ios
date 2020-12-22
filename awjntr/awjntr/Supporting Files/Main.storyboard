@@ -8,35 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="Kkw-b3-uhL">
-            <objects>
-                <viewController id="2wq-6Z-w9g" customClass="ViewController" customModule="awjntr" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Bj8-Ac-7rg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-kA-FQz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </mapView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="TuP-tE-U1e"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ZY2-kA-FQz" secondAttribute="bottom" id="Kux-Oo-MXL"/>
-                            <constraint firstItem="ZY2-kA-FQz" firstAttribute="trailing" secondItem="TuP-tE-U1e" secondAttribute="trailing" id="ThF-sd-lr9"/>
-                            <constraint firstItem="ZY2-kA-FQz" firstAttribute="leading" secondItem="TuP-tE-U1e" secondAttribute="leading" id="kp1-M2-H4s"/>
-                            <constraint firstItem="ZY2-kA-FQz" firstAttribute="top" secondItem="Bj8-Ac-7rg" secondAttribute="top" id="u8Y-ej-fXp"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="mapView" destination="ZY2-kA-FQz" id="WYG-01-DLI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sp5-Se-PrK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-713.04347826086962" y="64.955357142857139"/>
-        </scene>
         <!--Compass View Controller-->
         <scene sceneID="zm2-or-SvF">
             <objects>
@@ -65,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sI6-gJ-nWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="65"/>
+            <point key="canvasLocation" x="-681" y="65"/>
         </scene>
     </scenes>
     <resources>

@@ -28,15 +28,36 @@ class MapViewController: UIViewController {
 		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
 		mapView.setRegion(region, animated: false)
 		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
-		
 		// マップのズーム率を制限
 		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
 		mapView.setCameraZoomRange(zoomRange, animated: false)
 		// マップの表示される範囲を制限
 		view.addSubview(mapView)
+		
+		let button: UIButton = UIButton()
+		button.frame.size = CGSize(width: 50, height: 50)
+		button.center = CGPoint(x: view.frame.maxX - 50, y: view.frame.maxY - 50)
+		button.setTitle("コンパス", for: .normal)
+		button.setTitleColor(.black, for: .normal)
+		button.backgroundColor = .white
+		button.addTarget(nil, action: #selector(openCompassViewController), for: .touchUpInside)
+		view.addSubview(button)
+		
 		presenter?.viewDidLoad()
     }
+	
+	@objc
+	func openCompassViewController() {
+		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+		let destinationViewController: CompassViewController = storyboard.instantiateViewController(withIdentifier: "CompassViewController") as! CompassViewController
+		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+		self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+		let model: CompassModel = CompassModel()
+		let presenter: CompassPresenter = CompassPresenter(view: destinationViewController, model: model)
+		destinationViewController.inject(presenter: presenter)
+		self.present(destinationViewController, animated: true, completion: nil)
 
+	}
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -107,8 +128,7 @@ extension MapViewController: MKMapViewDelegate {
 		let myCircleView: MKCircleRenderer = MKCircleRenderer(overlay: overlay)
 
 		// 円の内部を赤色で塗りつぶす.
-		myCircleView.fillColor = UIColor(cgColor: CGColor(red: 27, green: 227, blue: 160, alpha: 0.9))
-
+		myCircleView.fillColor = UIColor.systemGreen
 		// 円を透過させる.
 		myCircleView.alpha = 0.8
 
