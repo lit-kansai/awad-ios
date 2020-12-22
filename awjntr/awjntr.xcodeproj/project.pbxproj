@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		005438BCE49A26920C0AC6EF /* Pods_awjntr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09187EB7B472E14C42FD1BC7 /* Pods_awjntr.framework */; };
 		66F0C7C3258523C100521EAF /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0C7C2258523C100521EAF /* Venue.swift */; };
 		711308422588DA32003214A2 /* checkpoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 711308412588DA32003214A2 /* checkpoints.json */; };
 		716EEDC825810FCA0081EFF5 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDC725810FCA0081EFF5 /* location.json */; };
@@ -26,8 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09187EB7B472E14C42FD1BC7 /* Pods_awjntr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_awjntr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3264734B8F5CB406741390E5 /* Pods-awjntr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awjntr.debug.xcconfig"; path = "Target Support Files/Pods-awjntr/Pods-awjntr.debug.xcconfig"; sourceTree = "<group>"; };
 		66F0C7C2258523C100521EAF /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		711308412588DA32003214A2 /* checkpoints.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkpoints.json; sourceTree = "<group>"; };
 		716EEDC725810FCA0081EFF5 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
@@ -45,7 +42,6 @@
 		71D2000F2585266100015D27 /* CompassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassModel.swift; sourceTree = "<group>"; };
 		71D200122585267200015D27 /* CompassPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassPresenter.swift; sourceTree = "<group>"; };
 		71D2FFB825833FD400015D27 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		7D5CEDA7D93C6C0DB01EBAC0 /* Pods-awjntr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awjntr.release.xcconfig"; path = "Target Support Files/Pods-awjntr/Pods-awjntr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,22 +49,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005438BCE49A26920C0AC6EF /* Pods_awjntr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		194C07034B1E113595096654 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3264734B8F5CB406741390E5 /* Pods-awjntr.debug.xcconfig */,
-				7D5CEDA7D93C6C0DB01EBAC0 /* Pods-awjntr.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		71374C53257F09D2006105A2 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +111,6 @@
 			children = (
 				71C28605257B8943000486A2 /* awjntr */,
 				71C28604257B8943000486A2 /* Products */,
-				194C07034B1E113595096654 /* Pods */,
-				7A3A67810B7EFFF9C04B428E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,14 +134,6 @@
 			path = awjntr;
 			sourceTree = "<group>";
 		};
-		7A3A67810B7EFFF9C04B428E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				09187EB7B472E14C42FD1BC7 /* Pods_awjntr.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,12 +141,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71C28617257B8946000486A2 /* Build configuration list for PBXNativeTarget "awjntr" */;
 			buildPhases = (
-				C878ED330DA23D96431ECAC0 /* [CP] Check Pods Manifest.lock */,
 				71C285FF257B8943000486A2 /* Sources */,
 				71C28600257B8943000486A2 /* Frameworks */,
 				71C28601257B8943000486A2 /* Resources */,
 				71374C4F257F04F6006105A2 /* ShellScript */,
-				27D29410113E7388051C5DD7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,23 +203,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27D29410113E7388051C5DD7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-awjntr/Pods-awjntr-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-awjntr/Pods-awjntr-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-awjntr/Pods-awjntr-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		71374C4F257F04F6006105A2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,28 +219,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		C878ED330DA23D96431ECAC0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-awjntr-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -427,7 +362,6 @@
 		};
 		71C28618257B8946000486A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3264734B8F5CB406741390E5 /* Pods-awjntr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -447,7 +381,6 @@
 		};
 		71C28619257B8946000486A2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D5CEDA7D93C6C0DB01EBAC0 /* Pods-awjntr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
