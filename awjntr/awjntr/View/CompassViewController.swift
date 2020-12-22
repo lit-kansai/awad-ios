@@ -15,7 +15,6 @@ class CompassViewController: UIViewController {
 	}
 	
 	var locationManager: CLLocationManager!
-	
 	let needleImageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "needle"))
 	let distanceTextLabel: UILabel = UILabel()
 	
@@ -28,10 +27,9 @@ class CompassViewController: UIViewController {
 			locationManager.delegate = self
 			locationManager.headingOrientation = .portrait
 			locationManager.startUpdatingHeading()
-			if let location = locationManager.location {
-				let latitude: Double = location.coordinate.latitude
-				let longitude: Double = location.coordinate.longitude
-				presenter?.viewDidLoad(latitude: latitude, longitude: longitude)
+			if let location: CLLocation = locationManager.location {
+				let targetLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
+				presenter?.viewDidLoad(currentLocation: location.coordinate, targetLocation: targetLocation)
 			} else {
 				locationManager.requestWhenInUseAuthorization()
 			}
@@ -88,6 +86,7 @@ extension CompassViewController: CLLocationManagerDelegate {
 			break
 		case .authorizedAlways, .authorizedWhenInUse:
 			locationManager.startUpdatingHeading()
+			locationManager.startUpdatingLocation()
 		default:
 			fatalError("error")
 		}
@@ -100,10 +99,25 @@ extension CompassViewController: CLLocationManagerDelegate {
 	
 	// 座標が更新された時
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		if let location: CLLocation = locations.first {
+			presenter?.updateCheckpointDistance(coordinate: location.coordinate)
+		}
 	}
 }
 
 extension CompassViewController: CompassPresenterOutput {
+	func changeCheckpointDistance(distance: Double) {
+		let formattedDistance = String(format: "%.0f", distance)
+		
+		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(formattedDistance)m")
+		attrDistanceText.addAttributes([
+			.foregroundColor: UIColor.blue,
+			.font: UIFont(name: "HiraginoSans-W6", size: 36) as Any
+		], range: _NSRange(location: 2, length: String(formattedDistance).count))
+		distanceTextLabel.attributedText = attrDistanceText
+		print(distance)
+	}
+	
 	func changeNeedleDirection(radian: Double) {
 		needleImageView.transform = CGAffineTransform(rotationAngle: CGFloat(radian))
 	}
