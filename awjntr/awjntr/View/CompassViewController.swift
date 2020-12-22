@@ -55,6 +55,15 @@ class CompassViewController: UIViewController {
 		needleImageView.contentMode = .scaleAspectFit
 		needleImageView.center = view.center
 		view.addSubview(needleImageView)
+		
+		let button: UIButton = UIButton()
+		button.frame.size = CGSize(width: 200, height: 50)
+		button.center = CGPoint(x: view.center.x, y: view.frame.maxY - 100)
+		button.setTitle("閉じる", for: .normal)
+		button.setTitleColor(.black, for: .normal)
+		button.backgroundColor = .white
+		button.addTarget(nil, action: #selector(closeCompass), for: .touchUpInside)
+		view.addSubview(button)
 	}
 	
 	override func viewDidDisappear(_ animated: Bool) {
@@ -62,6 +71,11 @@ class CompassViewController: UIViewController {
 		if CLLocationManager.locationServicesEnabled() {
 			locationManager.stopUpdatingHeading()
 		}
+	}
+	
+	@objc
+	func closeCompass() {
+		self.dismiss(animated: true, completion: nil)
 	}
 }
 
@@ -92,6 +106,5 @@ extension CompassViewController: CLLocationManagerDelegate {
 extension CompassViewController: CompassPresenterOutput {
 	func changeNeedleDirection(radian: Double) {
 		needleImageView.transform = CGAffineTransform(rotationAngle: CGFloat(radian))
-		
 	}
 }
