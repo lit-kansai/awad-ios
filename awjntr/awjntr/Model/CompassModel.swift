@@ -9,11 +9,13 @@ import Foundation
 
 protocol CompassModelInput {
 	func distance(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) -> Double
-	func setupDirection(_ latitude: Double, _ longitude: Double)
+	func setupDirection(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double))
 	func calcCheckpointDirection(direction: Double) -> Double
+	func calcCheckpointDistance(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) -> Double
 }
 
 final class CompassModel: CompassModelInput {
+	
 	private(set) var originDegree: Double = 0
 	private(set) var currentDegree: Double = 0
 	
@@ -38,11 +40,11 @@ final class CompassModel: CompassModelInput {
 		return distance
 	}
 	
-	func setupDirection(_ latitude: Double, _ longitude: Double) {
-		let currentLatitude: Double = toRadian(latitude)
-		let currentLongitude: Double = toRadian(longitude)
-		let targetLatitude: Double = toRadian(34.840_158_262_603_68)
-		let targetLongitude: Double = toRadian(135.512_257_913_778_65)
+	func setupDirection(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) {
+		let currentLatitude: Double = toRadian(current.latitude)
+		let currentLongitude: Double = toRadian(current.longitude)
+		let targetLatitude: Double = toRadian(target.latitude)
+		let targetLongitude: Double = toRadian(target.longitude)
 		let difLongitude: Double = targetLongitude - currentLongitude
 		let y: Double = sin(difLongitude)
 		let x: Double = cos(currentLatitude) * tan(targetLatitude) - sin(currentLatitude) * cos(difLongitude)
@@ -58,5 +60,10 @@ final class CompassModel: CompassModelInput {
 		let radian: Double = toRadian((originDegree - Double(direction)) - currentDegree)
 		currentDegree = radian
 		return radian
+	}
+	
+	func calcCheckpointDistance(current currentLocation: (latitude: Double, longitude: Double), target targetLocation: (latitude: Double, longitude: Double)) -> Double {
+		let distance: Double = self.distance(current: currentLocation, target: targetLocation)
+		return distance
 	}
 }
