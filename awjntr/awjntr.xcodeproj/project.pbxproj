@@ -7,16 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66F0C7C3258523C100521EAF /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F0C7C2258523C100521EAF /* Venue.swift */; };
 		711308422588DA32003214A2 /* checkpoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 711308412588DA32003214A2 /* checkpoints.json */; };
-		716EEDC825810FCA0081EFF5 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDC725810FCA0081EFF5 /* location.json */; };
 		716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDCA25821C080081EFF5 /* Main.storyboard */; };
 		7174F1392588C05500D55D24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F1382588C05500D55D24 /* MapViewController.swift */; };
 		7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13B2588C05E00D55D24 /* MapModel.swift */; };
 		7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13E2588C06F00D55D24 /* MapPresenter.swift */; };
 		71C28607257B8943000486A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28606257B8943000486A2 /* AppDelegate.swift */; };
 		71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28608257B8943000486A2 /* SceneDelegate.swift */; };
-		71C2860B257B8943000486A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2860A257B8943000486A2 /* ViewController.swift */; };
 		71C28610257B8946000486A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C2860F257B8946000486A2 /* Assets.xcassets */; };
 		71D2000D2585261E00015D27 /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2000C2585261E00015D27 /* CompassViewController.swift */; };
 		71D200102585266100015D27 /* CompassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2000F2585266100015D27 /* CompassModel.swift */; };
@@ -25,9 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		66F0C7C2258523C100521EAF /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		711308412588DA32003214A2 /* checkpoints.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkpoints.json; sourceTree = "<group>"; };
-		716EEDC725810FCA0081EFF5 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
 		716EEDCA25821C080081EFF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7174F1382588C05500D55D24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7174F13B2588C05E00D55D24 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
@@ -35,7 +30,6 @@
 		71C28603257B8943000486A2 /* awjntr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awjntr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C28606257B8943000486A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C28608257B8943000486A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		71C2860A257B8943000486A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		71C2860F257B8946000486A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71C28614257B8946000486A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71D2000C2585261E00015D27 /* CompassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
@@ -77,8 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				71D2000C2585261E00015D27 /* CompassViewController.swift */,
-				71C2860A257B8943000486A2 /* ViewController.swift */,
-				66F0C7C2258523C100521EAF /* Venue.swift */,
 				7174F1382588C05500D55D24 /* MapViewController.swift */,
 			);
 			path = View;
@@ -99,7 +91,6 @@
 				71C2860F257B8946000486A2 /* Assets.xcassets */,
 				71C28614257B8946000486A2 /* Info.plist */,
 				711308412588DA32003214A2 /* checkpoints.json */,
-				716EEDC725810FCA0081EFF5 /* location.json */,
 				71D2FFB825833FD400015D27 /* Launch Screen.storyboard */,
 				716EEDCA25821C080081EFF5 /* Main.storyboard */,
 			);
@@ -192,7 +183,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				716EEDC825810FCA0081EFF5 /* location.json in Resources */,
 				711308422588DA32003214A2 /* checkpoints.json in Resources */,
 				71C28610257B8946000486A2 /* Assets.xcassets in Resources */,
 				71D2FFB925833FD400015D27 /* Launch Screen.storyboard in Resources */,
@@ -227,11 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71C2860B257B8943000486A2 /* ViewController.swift in Sources */,
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
-				71C2860B257B8943000486A2 /* ViewController.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
-				66F0C7C3258523C100521EAF /* Venue.swift in Sources */,
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
 				7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */,
