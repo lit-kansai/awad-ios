@@ -18,7 +18,7 @@ final class MapModel: MapModelInput {
 		var annotations: [CheckpointAnnotation] = []
 		var overlays: [MKOverlay] = []
 		
-		guard let url = Bundle.main.url(forResource: "checkpoints", withExtension: "json") else {
+		guard let url = Bundle.main.url(forResource: "location", withExtension: "json") else {
 			fatalError("File not found")
 		}
 		
