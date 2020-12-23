@@ -8,7 +8,6 @@
 import Foundation
 
 protocol CompassModelInput {
-	func distance(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) -> Double
 	func setupDirection(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double))
 	func calcCheckpointDirection(direction: Double) -> Double
 	func calcCheckpointDistance(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) -> Double
@@ -23,7 +22,7 @@ final class CompassModel: CompassModelInput {
 		return angle * Double.pi / 180
 	}
 	
-	func distance(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) -> Double {
+	private func distance(current: (latitude: Double, longitude: Double), target: (latitude: Double, longitude: Double)) -> Double {
 		// 緯度経度をラジアンに変換
 		let currentLatitude: Double   = current.latitude * Double.pi / 180
 		let currentLongitude: Double   = current.longitude * Double.pi / 180

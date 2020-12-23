@@ -11,6 +11,8 @@
 		7174F1392588C05500D55D24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F1382588C05500D55D24 /* MapViewController.swift */; };
 		7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13B2588C05E00D55D24 /* MapModel.swift */; };
 		7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13E2588C06F00D55D24 /* MapPresenter.swift */; };
+		71982538259258A90017E39D /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71982537259258A90017E39D /* Checkpoint.swift */; };
+		7198253C259332350017E39D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7198253B259332350017E39D /* Router.swift */; };
 		71C28607257B8943000486A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28606257B8943000486A2 /* AppDelegate.swift */; };
 		71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28608257B8943000486A2 /* SceneDelegate.swift */; };
 		71C28610257B8946000486A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C2860F257B8946000486A2 /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		7174F1382588C05500D55D24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7174F13B2588C05E00D55D24 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		7174F13E2588C06F00D55D24 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		71982537259258A90017E39D /* Checkpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
+		7198253B259332350017E39D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		71C28603257B8943000486A2 /* awjntr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awjntr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C28606257B8943000486A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C28608257B8943000486A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 			children = (
 				71D2000F2585266100015D27 /* CompassModel.swift */,
 				7174F13B2588C05E00D55D24 /* MapModel.swift */,
+				71982537259258A90017E39D /* Checkpoint.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +100,14 @@
 				716EEDCA25821C080081EFF5 /* Main.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7198253A259332270017E39D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				7198253B259332350017E39D /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		71C285FA257B8943000486A2 = {
@@ -116,6 +129,7 @@
 		71C28605257B8943000486A2 /* awjntr */ = {
 			isa = PBXGroup;
 			children = (
+				7198253A259332270017E39D /* Router */,
 				71374C53257F09D2006105A2 /* App */,
 				71374C56257F09E6006105A2 /* Model */,
 				71374C55257F09E1006105A2 /* View */,
@@ -219,6 +233,8 @@
 			files = (
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
+				7198253C259332350017E39D /* Router.swift in Sources */,
+				71982538259258A90017E39D /* Checkpoint.swift in Sources */,
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
 				7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */,

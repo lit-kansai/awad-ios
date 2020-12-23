@@ -15,48 +15,64 @@ class MapViewController: UIViewController {
 	func inject(presenter: MapPresenterInput) {
 		self.presenter = presenter
 	}
+	
+	let window: UIView = UIView()
+	let destinationLabel: UILabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
 		self.overrideUserInterfaceStyle = .light
 		
+		let AWAJISHIMA_CENTER_LATITUDE: Double = 34.325_7
+		let AWAJISHIMA_CENTER_LONGITUDE: Double = 134.813_1
+		let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(AWAJISHIMA_CENTER_LATITUDE, AWAJISHIMA_CENTER_LONGITUDE)
+		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
 		mapView.delegate = self
 		mapView.isRotateEnabled = false
 		mapView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)
 		mapView.center = view.center
-		let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(34.325_7, 134.813_1)
-		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
 		mapView.setRegion(region, animated: false)
 		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
-		// マップのズーム率を制限
 		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
 		mapView.setCameraZoomRange(zoomRange, animated: false)
-		// マップの表示される範囲を制限
 		view.addSubview(mapView)
-		
+	
 		let button: UIButton = UIButton()
 		button.frame.size = CGSize(width: 50, height: 50)
-		button.center = CGPoint(x: view.frame.maxX - 50, y: view.frame.maxY - 50)
+		button.center = CGPoint(x: view.frame.maxX - 50, y: 100)
 		button.setTitle("コンパス", for: .normal)
 		button.setTitleColor(.black, for: .normal)
 		button.backgroundColor = .white
 		button.addTarget(nil, action: #selector(openCompassViewController), for: .touchUpInside)
 		view.addSubview(button)
 		
+		window.backgroundColor = .white
+		window.frame.size = CGSize(width: self.view.frame.width - 50, height: 150)
+		window.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 100)
+		window.layer.cornerRadius = 10
+		window.alpha = 0
+		self.view.addSubview(window)
+		
+		destinationLabel.frame = CGRect(x: 20, y: 20, width: window.frame.width - 50, height: window.frame.height / 4)
+		destinationLabel.text = "hoge"
+		destinationLabel.font = UIFont(name: "HiraginoSans-W6", size: 24)
+		window.addSubview(destinationLabel)
+		
+		let registerButton: UIButton = UIButton()
+		registerButton.frame.size = CGSize(width: window.frame.width - 50, height: window.frame.height / 3)
+		registerButton.center = CGPoint(x: window.frame.width / 2, y: window.bounds.maxY - 50)
+		registerButton.setTitle("目的地に設定する", for: .normal)
+		registerButton.setTitleColor(.white, for: .normal)
+		registerButton.backgroundColor = UIColor.systemGreen
+		registerButton.layer.cornerRadius = 10
+		window.addSubview(registerButton)
 		presenter?.viewDidLoad()
     }
 	
 	@objc
 	func openCompassViewController() {
-		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		let destinationViewController: CompassViewController = storyboard.instantiateViewController(withIdentifier: "CompassViewController") as! CompassViewController
-		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-		self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-		let model: CompassModel = CompassModel()
-		let presenter: CompassPresenter = CompassPresenter(view: destinationViewController, model: model)
-		destinationViewController.inject(presenter: presenter)
-		self.present(destinationViewController, animated: true, completion: nil)
-
+		presenter?.transition()
 	}
 }
 
@@ -87,16 +103,11 @@ extension MapViewController: MKMapViewDelegate {
 		if let dequeuedAnnotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
 			annotationView = dequeuedAnnotationView
 		} else {
-			let annotation: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			let pinImage: UIImage? = #imageLiteral(resourceName: "slime")
-			let size: CGSize = CGSize(width: 50, height: 50)
-			UIGraphicsBeginImageContext(size)
-			pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-			let resizedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-			annotation.image = resizedImage
-			annotation.displayPriority = .required
-			annotation.canShowCallout = true
-			annotationView = annotation
+			if let subtitle: String? = annotation.subtitle, let category: String = subtitle {
+				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
+				
+				annotationView = annotation
+			}
 		}
 		return annotationView
 	}
@@ -106,17 +117,20 @@ extension MapViewController: MKMapViewDelegate {
 		let annotations: [MKAnnotation] = mapView.annotations
 		let latitudeDelta: CLLocationDegrees = region.span.latitudeDelta
 		let longitudeDelta: CLLocationDegrees = region.span.longitudeDelta
-		if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
-			for annotation in annotations {
-				UIView.animate(withDuration: 0.5, animations: {
-					mapView.view(for: annotation)?.alpha = 0
-				})
-			}
-		} else {
-			for annotation in annotations {
-				UIView.animate(withDuration: 0.5, animations: {
-					mapView.view(for: annotation)?.alpha = 1
-				})
+		
+		if !annotations.isEmpty {
+			if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
+				for annotation in annotations {
+					UIView.animate(withDuration: 0.5, animations: {
+						mapView.view(for: annotation)?.alpha = 0
+					})
+				}
+			} else if mapView.view(for: annotations.first!)?.alpha == 0 {
+				for annotation in annotations {
+					UIView.animate(withDuration: 0.5, animations: {
+						mapView.view(for: annotation)?.alpha = 0.5
+					})
+				}
 			}
 		}
 		
@@ -137,12 +151,36 @@ extension MapViewController: MKMapViewDelegate {
 
 		return myCircleView
 	}
+	
+	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+		let annotations: [MKAnnotation] = mapView.annotations
+		for annotation in annotations {
+			mapView.view(for: annotation)?.alpha = 0.5
+		}
+		var region: MKCoordinateRegion = mapView.region
+		region.center.latitude = (view.annotation?.coordinate.latitude)!
+		region.center.longitude = (view.annotation?.coordinate.longitude)!
+		region.span.latitudeDelta = 0.3
+		region.span.longitudeDelta = 0.3
+		DispatchQueue.main.async {
+			mapView.setRegion(region, animated: true)
+			view.alpha = 1
+		}
+		destinationLabel.text = view.annotation?.subtitle!
+		window.alpha = 1
+	}
 		
 }
 
 extension MapViewController: MapPresenterOutput {
 	func initMapAddition(_ addition: MapAddition) {
 		mapView.addAnnotations(addition.annotations)
-		mapView.addOverlays(addition.circles)
+//		mapView.addOverlays(addition.circles)
+	}
+}
+
+extension MapViewController: TransitionRouterDelegate {
+	func transition(to viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+		present(viewController, animated: animated, completion: completion)
 	}
 }
