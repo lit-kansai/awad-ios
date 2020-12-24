@@ -38,6 +38,10 @@ class MapViewController: UIViewController {
 		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
 		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
 		mapView.setCameraZoomRange(zoomRange, animated: false)
+		mapView.showsBuildings = false
+		mapView.showsTraffic = false
+		mapView.mapType = .mutedStandard
+		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
 		view.addSubview(mapView)
 	
 		let button: UIButton = UIButton()
@@ -57,7 +61,6 @@ class MapViewController: UIViewController {
 		self.view.addSubview(window)
 		
 		destinationLabel.frame = CGRect(x: 20, y: 20, width: window.frame.width - 50, height: window.frame.height / 4)
-		destinationLabel.text = "hoge"
 		destinationLabel.font = UIFont(name: "HiraginoSans-W6", size: 24)
 		window.addSubview(destinationLabel)
 		
@@ -66,6 +69,7 @@ class MapViewController: UIViewController {
 		registerButton.center = CGPoint(x: window.frame.width / 2, y: window.bounds.maxY - 50)
 		registerButton.setTitle("目的地に設定する", for: .normal)
 		registerButton.setTitleColor(.white, for: .normal)
+		registerButton.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .highlighted)
 		registerButton.backgroundColor = UIColor.systemGreen
 		registerButton.layer.cornerRadius = 10
 		window.addSubview(registerButton)
@@ -127,14 +131,14 @@ extension MapViewController: MKMapViewDelegate {
 				}
 				for overlay in overlays {
 					UIView.animate(withDuration: 0.5, animations: {
-						mapView.renderer(for: overlay)?.alpha = 0.8
+						mapView.renderer(for: overlay)?.alpha = 1
 					})
 				}
 				
 			} else if mapView.view(for: annotations.first!)?.alpha == 0 {
 				for annotation in annotations {
 					UIView.animate(withDuration: 0.5, animations: {
-						mapView.view(for: annotation)?.alpha = 0.5
+						mapView.view(for: annotation)?.alpha = 0.7
 					})
 				}
 				for overlay in overlays {
@@ -168,7 +172,7 @@ extension MapViewController: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
-			mapView.view(for: annotation)?.alpha = 0.5
+			mapView.view(for: annotation)?.alpha = 0.7
 		}
 		var region: MKCoordinateRegion = mapView.region
 		region.center.latitude = (view.annotation?.coordinate.latitude)!
