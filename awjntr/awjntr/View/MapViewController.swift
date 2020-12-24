@@ -18,9 +18,11 @@ class MapViewController: UIViewController {
 	
 	let window: UIView = UIView()
 	let destinationLabel: UILabel = UILabel()
+	var annotations: [MKAnnotation] = []
+	var overlays: [MKOverlay] = []
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
 		self.overrideUserInterfaceStyle = .light
 		
@@ -68,7 +70,7 @@ class MapViewController: UIViewController {
 		registerButton.layer.cornerRadius = 10
 		window.addSubview(registerButton)
 		presenter?.viewDidLoad()
-    }
+	}
 	
 	@objc
 	func openCompassViewController() {
@@ -114,10 +116,8 @@ extension MapViewController: MKMapViewDelegate {
 	
 	func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
 		let region: MKCoordinateRegion = mapView.region
-		let annotations: [MKAnnotation] = mapView.annotations
 		let latitudeDelta: CLLocationDegrees = region.span.latitudeDelta
 		let longitudeDelta: CLLocationDegrees = region.span.longitudeDelta
-		
 		if !annotations.isEmpty {
 			if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
 				for annotation in annotations {
@@ -125,12 +125,25 @@ extension MapViewController: MKMapViewDelegate {
 						mapView.view(for: annotation)?.alpha = 0
 					})
 				}
+				for overlay in overlays {
+					UIView.animate(withDuration: 0.5, animations: {
+						mapView.renderer(for: overlay)?.alpha = 0.8
+					})
+				}
+				
 			} else if mapView.view(for: annotations.first!)?.alpha == 0 {
 				for annotation in annotations {
 					UIView.animate(withDuration: 0.5, animations: {
 						mapView.view(for: annotation)?.alpha = 0.5
 					})
 				}
+				for overlay in overlays {
+					UIView.animate(withDuration: 0.5, animations: {
+						mapView.renderer(for: overlay)?.alpha = 0
+					})
+				}
+			} else {
+				print("error")
 			}
 		}
 		
@@ -144,7 +157,7 @@ extension MapViewController: MKMapViewDelegate {
 		// 円の内部を赤色で塗りつぶす.
 		myCircleView.fillColor = UIColor.systemGreen
 		// 円を透過させる.
-		myCircleView.alpha = 0.8
+		myCircleView.alpha = 0
 
 		// 円周の線の太さ.
 		myCircleView.lineWidth = 1.5
@@ -174,8 +187,10 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: MapPresenterOutput {
 	func initMapAddition(_ addition: MapAddition) {
-		mapView.addAnnotations(addition.annotations)
-//		mapView.addOverlays(addition.circles)
+		annotations = addition.annotations
+		overlays = addition.circles
+		mapView.addAnnotations(annotations)
+		mapView.addOverlays(overlays)
 	}
 }
 
