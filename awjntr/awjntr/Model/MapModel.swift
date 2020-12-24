@@ -29,7 +29,7 @@ final class MapModel: MapModelInput {
 		do {
 			let locations: [Checkpoint] = try JSONDecoder().decode([Checkpoint].self, from: data)
 			for location in locations {
-				let annotation: CheckpointAnnotation = CheckpointAnnotation(latitude: Double(location.latitude)!, longitude: Double(location.longitude)!)
+				let annotation: CheckpointAnnotation = CheckpointAnnotation(title: location.name, subtitle: location.category, latitude: Double(location.latitude)!, longitude: Double(location.longitude)!)
 				annotations.append(annotation)
 				
 				let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(location.latitude)!, Double(location.longitude)!)
@@ -40,21 +40,6 @@ final class MapModel: MapModelInput {
 			print(error)
 		}
 		return MapAddition(annotations: annotations, circles: overlays)
-	}
-}
-
-final class CheckpointAnnotation: NSObject, MKAnnotation {
-	let coordinate: CLLocationCoordinate2D
-	let title: String?
-	let subtitle: String?
-
-	init(latitude: Double, longitude: Double) {
-		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-		self.coordinate = coordinate
-		// NOTE: 書かないと、titleとsubtitleは絶対必要ですと怒られます。(MKAnnotationViewが必須としている)
-		self.title = ""
-		self.subtitle = ""
-		super.init()
 	}
 }
 

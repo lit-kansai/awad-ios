@@ -48,4 +48,5 @@ line_length: 300
 # 変数名が１文字以上なら許可に変更
 identifier_name:
   min_length: 1
-  
+  allowed_symbols: "_"
+

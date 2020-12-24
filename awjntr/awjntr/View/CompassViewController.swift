@@ -26,14 +26,12 @@ class CompassViewController: UIViewController {
 			locationManager = CLLocationManager()
 			locationManager.delegate = self
 			locationManager.headingOrientation = .portrait
-			locationManager.startUpdatingHeading()
 			if let location: CLLocation = locationManager.location {
 				let targetLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
 				presenter?.viewDidLoad(currentLocation: location.coordinate, targetLocation: targetLocation)
 			} else {
 				locationManager.requestWhenInUseAuthorization()
 			}
-
 		}
 		
 		let distance: Int = 1_000
@@ -56,7 +54,7 @@ class CompassViewController: UIViewController {
 		
 		let button: UIButton = UIButton()
 		button.frame.size = CGSize(width: 200, height: 50)
-		button.center = CGPoint(x: view.center.x, y: view.frame.maxY - 100)
+		button.center = CGPoint(x: view.frame.maxX - 50, y: 100)
 		button.setTitle("閉じる", for: .normal)
 		button.setTitleColor(.black, for: .normal)
 		button.backgroundColor = .white
@@ -68,12 +66,13 @@ class CompassViewController: UIViewController {
 		super.viewDidDisappear(animated)
 		if CLLocationManager.locationServicesEnabled() {
 			locationManager.stopUpdatingHeading()
+		
 		}
 	}
 	
 	@objc
 	func closeCompass() {
-		self.dismiss(animated: true, completion: nil)
+		dismiss(animated: true, completion: nil)
 	}
 }
 
@@ -107,15 +106,13 @@ extension CompassViewController: CLLocationManagerDelegate {
 
 extension CompassViewController: CompassPresenterOutput {
 	func changeCheckpointDistance(distance: Double) {
-		let formattedDistance = String(format: "%.0f", distance)
-		
+		let formattedDistance: String = String(format: "%.0f", distance)
 		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(formattedDistance)m")
 		attrDistanceText.addAttributes([
 			.foregroundColor: UIColor.blue,
 			.font: UIFont(name: "HiraginoSans-W6", size: 36) as Any
 		], range: _NSRange(location: 2, length: String(formattedDistance).count))
 		distanceTextLabel.attributedText = attrDistanceText
-		print(distance)
 	}
 	
 	func changeNeedleDirection(radian: Double) {

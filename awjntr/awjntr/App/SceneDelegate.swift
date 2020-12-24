@@ -15,19 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		
 		if scene as? UIWindowScene != nil {
 			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
-//			window = UIWindow(frame: UIScreen.main.bounds)
-//			let view: CompassViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CompassViewController") as CompassViewController
-//			let model: CompassModel = CompassModel()
-//			let presenter: CompassPresenter = CompassPresenter(view: view, model: model)
-//			view.inject(presenter: presenter)
-//			window?.rootViewController = view
-//			window?.makeKeyAndVisible()
-//			window?.windowScene = windowScene
 			
 			window = UIWindow(frame: UIScreen.main.bounds)
 			let view: MapViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as MapViewController
 			let model: MapModel = MapModel()
-			let presenter: MapPresenter = MapPresenter(view: view, model: model)
+			let presenter: MapPresenter = MapPresenter(view: view, model: model, transitionRouterDelegate: view as TransitionRouterDelegate)
 			view.inject(presenter: presenter)
 			window?.rootViewController = view
 			window?.makeKeyAndVisible()
