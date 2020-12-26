@@ -11,8 +11,7 @@ import MapKit
 protocol MapPresenterInput {
 	func viewDidLoad()
 	func transition()
-	var annotations: [CheckpointAnnotation] { get }
-	var overlayCircles: [MKOverlay] { get }
+	func setDestination(_ destination: MKAnnotation)
 }
 
 protocol MapPresenterOutput: AnyObject {
@@ -24,9 +23,7 @@ final class MapPresenter: MapPresenterInput {
 	private weak var view: MapPresenterOutput!
 	private var model: MapModelInput
 	private var transitionRouter: TransitionRouter?
-	
-	private(set) var annotations: [CheckpointAnnotation] = []
-	private(set) var overlayCircles: [MKOverlay] = []
+	private(set) var currentDestination: MKAnnotation?
 	
 	init(view: MapPresenterOutput, model: MapModelInput, transitionRouterDelegate: TransitionRouterDelegate) {
 		self.view = view
@@ -41,5 +38,10 @@ final class MapPresenter: MapPresenterInput {
 	
 	func transition() {
 		transitionRouter?.transition()
+	}
+	
+	func setDestination(_ destination: MKAnnotation) {
+		currentDestination = destination
+		print("destionation set")
 	}
 }

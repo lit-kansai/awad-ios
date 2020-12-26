@@ -14,7 +14,6 @@ class CompassViewController: UIViewController {
 		self.presenter = presenter
 	}
 	
-	var locationManager: CLLocationManager!
 	let needleImageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "needle"))
 	let distanceTextLabel: UILabel = UILabel()
 	
@@ -23,14 +22,13 @@ class CompassViewController: UIViewController {
 		self.overrideUserInterfaceStyle = .light
 		
 		if CLLocationManager.locationServicesEnabled() {
-			locationManager = CLLocationManager()
-			locationManager.delegate = self
-			locationManager.headingOrientation = .portrait
-			if let location: CLLocation = locationManager.location {
+			UserLocationManager.shared.startUpdatingHeading()
+			UserLocationManager.shared.delegate = self
+			if let location: CLLocation = UserLocationManager.shared.getLocation() {
 				let targetLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
 				presenter?.viewDidLoad(currentLocation: location.coordinate, targetLocation: targetLocation)
 			} else {
-				locationManager.requestWhenInUseAuthorization()
+				UserLocationManager.shared.requestAlwaysAuthorization()
 			}
 		}
 		
@@ -65,8 +63,7 @@ class CompassViewController: UIViewController {
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		if CLLocationManager.locationServicesEnabled() {
-			locationManager.stopUpdatingHeading()
-		
+			UserLocationManager.shared.stopUpdatingHeading()
 		}
 	}
 	
@@ -76,31 +73,13 @@ class CompassViewController: UIViewController {
 	}
 }
 
-extension CompassViewController: CLLocationManagerDelegate {
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		switch status {
-		case .notDetermined:
-			locationManager.requestWhenInUseAuthorization()
-		case .restricted, .denied:
-			break
-		case .authorizedAlways, .authorizedWhenInUse:
-			locationManager.startUpdatingHeading()
-			locationManager.startUpdatingLocation()
-		default:
-			fatalError("error")
-		}
+extension CompassViewController: UserLocationManagerDelegate {
+	func locationDidUpdateToLocation(location: CLLocation) {
+		presenter?.updateCheckpointDistance(coordinate: location.coordinate)
 	}
 	
-	// 方角が更新された時
-	func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+	func locationDidUpdateHeading(newHeading: CLHeading) {
 		presenter?.updateCheckpointDirection(degree: newHeading.magneticHeading)
-	}
-	
-	// 座標が更新された時
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		if let location: CLLocation = locations.first {
-			presenter?.updateCheckpointDistance(coordinate: location.coordinate)
-		}
 	}
 }
 
