@@ -22,6 +22,7 @@
 		71D200132585267200015D27 /* CompassPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D200122585267200015D27 /* CompassPresenter.swift */; };
 		71D2FFB925833FD400015D27 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D2FFB825833FD400015D27 /* Launch Screen.storyboard */; };
 		71F2BCDF2591FBEC003EBE65 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F2BCDE2591FBEC003EBE65 /* location.json */; };
+		71F42E19259787C800114BC0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F42E18259787C800114BC0 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		71D200122585267200015D27 /* CompassPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassPresenter.swift; sourceTree = "<group>"; };
 		71D2FFB825833FD400015D27 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		71F2BCDE2591FBEC003EBE65 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
+		71F42E18259787C800114BC0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				71D2000F2585266100015D27 /* CompassModel.swift */,
 				7174F13B2588C05E00D55D24 /* MapModel.swift */,
 				71982537259258A90017E39D /* Checkpoint.swift */,
+				71F42E18259787C800114BC0 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
+				71F42E19259787C800114BC0 /* Location.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
 				7198253C259332350017E39D /* Router.swift in Sources */,
 				71982538259258A90017E39D /* Checkpoint.swift in Sources */,
