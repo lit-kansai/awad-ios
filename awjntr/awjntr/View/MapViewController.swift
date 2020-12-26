@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
 	let destinationLabel: UILabel = UILabel()
 	var annotations: [MKAnnotation] = []
 	var overlays: [MKOverlay] = []
+	var currentSelectedAnnotationView: MKAnnotationView?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -64,21 +65,30 @@ class MapViewController: UIViewController {
 		destinationLabel.font = UIFont(name: "HiraginoSans-W6", size: 24)
 		window.addSubview(destinationLabel)
 		
-		let registerButton: UIButton = UIButton()
-		registerButton.frame.size = CGSize(width: window.frame.width - 50, height: window.frame.height / 3)
-		registerButton.center = CGPoint(x: window.frame.width / 2, y: window.bounds.maxY - 50)
-		registerButton.setTitle("目的地に設定する", for: .normal)
-		registerButton.setTitleColor(.white, for: .normal)
-		registerButton.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .highlighted)
-		registerButton.backgroundColor = UIColor.systemGreen
-		registerButton.layer.cornerRadius = 10
-		window.addSubview(registerButton)
+		let setDestinationButton: UIButton = UIButton()
+		setDestinationButton.frame.size = CGSize(width: window.frame.width - 50, height: window.frame.height / 3)
+		setDestinationButton.center = CGPoint(x: window.frame.width / 2, y: window.bounds.maxY - 50)
+		setDestinationButton.setTitle("目的地に設定する", for: .normal)
+		setDestinationButton.setTitleColor(.white, for: .normal)
+		setDestinationButton.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .highlighted)
+		setDestinationButton.backgroundColor = UIColor.systemGreen
+		setDestinationButton.layer.cornerRadius = 10
+		setDestinationButton.addTarget(nil, action: #selector(setDestination), for: .touchUpInside)
+		window.addSubview(setDestinationButton)
 		presenter?.viewDidLoad()
 	}
 	
 	@objc
 	func openCompassViewController() {
 		presenter?.transition()
+	}
+	
+	@objc
+	func setDestination() {
+		guard let currentSelectedAnnotationView = currentSelectedAnnotationView else {
+			return
+		}
+		presenter?.setDestination(currentSelectedAnnotationView.annotation!)
 	}
 }
 
@@ -170,6 +180,7 @@ extension MapViewController: MKMapViewDelegate {
 	}
 	
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+		currentSelectedAnnotationView = view
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
 			mapView.view(for: annotation)?.alpha = 0.7
