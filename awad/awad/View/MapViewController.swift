@@ -11,21 +11,31 @@ import MapKit
 class MapViewController: UIViewController {
 	
 	let mapView: MKMapView = MKMapView()
+	let window: UIView = UIView()
+	let destinationLabel: UILabel = UILabel()
+	let button: UIButton = UIButton()
+	
 	private var presenter: MapPresenterInput?
 	func inject(presenter: MapPresenterInput) {
 		self.presenter = presenter
 	}
 	
-	let window: UIView = UIView()
-	let destinationLabel: UILabel = UILabel()
 	var annotations: [MKAnnotation] = []
 	var overlays: [MKOverlay] = []
 	var currentSelectedAnnotationView: MKAnnotationView?
+	var isArrived: Bool = false
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		UserLocationManager.shared.delegate = self
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		self.overrideUserInterfaceStyle = .light
+		let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
+		UserLocationManager.shared.setDestinationLocation(targetLocation)
 		
 		let AWAJISHIMA_CENTER_LATITUDE: Double = 34.325_7
 		let AWAJISHIMA_CENTER_LONGITUDE: Double = 134.813_1
@@ -45,13 +55,13 @@ class MapViewController: UIViewController {
 		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
 		view.addSubview(mapView)
 	
-		let button: UIButton = UIButton()
 		button.frame.size = CGSize(width: 50, height: 50)
 		button.center = CGPoint(x: view.frame.maxX - 50, y: 100)
 		button.setTitle("コンパス", for: .normal)
 		button.setTitleColor(.black, for: .normal)
 		button.backgroundColor = .white
 		button.addTarget(nil, action: #selector(openCompassViewController), for: .touchUpInside)
+		button.isEnabled = false
 		view.addSubview(button)
 		
 		window.backgroundColor = .white
@@ -90,24 +100,6 @@ class MapViewController: UIViewController {
 		}
 		presenter?.setDestination(currentSelectedAnnotationView.annotation!)
 	}
-}
-
-extension MapViewController: CLLocationManagerDelegate {
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-			switch status {
-			//許可されていない場合
-			case .notDetermined:
-				manager.requestWhenInUseAuthorization()
-			//許可されている場合
-			case .restricted, .denied:
-				break
-			case .authorizedAlways, .authorizedWhenInUse:
-			// 現在地の取得を開始
-				manager.startUpdatingLocation()
-			default:
-				break
-			}
-		}
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -198,6 +190,21 @@ extension MapViewController: MKMapViewDelegate {
 		window.alpha = 1
 	}
 		
+}
+
+extension MapViewController: UserLocationManagerDelegate {
+	
+	func locationDidUpdateToLocation(location: CLLocation) {
+		print(UserLocationManager.shared.calcDistanceToDestination())
+		if UserLocationManager.shared.calcDistanceToDestination() < 100 && !isArrived {
+			isArrived = true
+			button.isEnabled = true
+			presenter?.transition()
+		}
+	}
+	
+	func locationDidUpdateHeading(newHeading: CLHeading) {
+	}
 }
 
 extension MapViewController: MapPresenterOutput {

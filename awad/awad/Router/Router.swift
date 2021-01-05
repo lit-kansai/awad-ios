@@ -22,7 +22,7 @@ class TransitionRouter {
 	func transition() {
 		guard let destinationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CompassViewController") as? CompassViewController
 		else { return }
-		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
 		let model: CompassModel = CompassModel()
 		let presenter: CompassPresenter = CompassPresenter(view: destinationViewController, model: model)
 		destinationViewController.inject(presenter: presenter)
