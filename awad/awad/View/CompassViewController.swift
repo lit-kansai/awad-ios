@@ -22,10 +22,7 @@ class CompassViewController: UIViewController {
 		self.overrideUserInterfaceStyle = .light
 		
 		if CLLocationManager.locationServicesEnabled() {
-			UserLocationManager.shared.startUpdatingHeading()
 			UserLocationManager.shared.delegate = self
-			let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
-			UserLocationManager.shared.setDestinationLocation(targetLocation)
 			UserLocationManager.shared.initOriginDegree()
 		}
 		
@@ -59,9 +56,9 @@ class CompassViewController: UIViewController {
 	
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
-		if CLLocationManager.locationServicesEnabled() {
-			UserLocationManager.shared.stopUpdatingHeading()
-		}
+//		if CLLocationManager.locationServicesEnabled() {
+//			UserLocationManager.shared.stopUpdatingHeading()
+//		}
 	}
 	
 	@objc
@@ -73,6 +70,13 @@ class CompassViewController: UIViewController {
 extension CompassViewController: UserLocationManagerDelegate {
 	func locationDidUpdateToLocation(location: CLLocation) {
 		presenter?.updateCheckpointDistance()
+		let distance: Double = UserLocationManager.shared.calcDistanceToDestination()
+		if distance < 50 {
+			guard let destinationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MissionViewController") as? MissionViewController
+			else { return }
+			destinationViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+			present(destinationViewController, animated: true, completion: nil)
+		}
 	}
 	
 	func locationDidUpdateHeading(newHeading: CLHeading) {

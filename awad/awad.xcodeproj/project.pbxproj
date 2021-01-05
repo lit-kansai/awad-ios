@@ -22,6 +22,7 @@
 		71D200132585267200015D27 /* CompassPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D200122585267200015D27 /* CompassPresenter.swift */; };
 		71D2FFB925833FD400015D27 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D2FFB825833FD400015D27 /* Launch Screen.storyboard */; };
 		71F2BCDF2591FBEC003EBE65 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F2BCDE2591FBEC003EBE65 /* location.json */; };
+		71F41E4925A432FA00457867 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F41E4825A432FA00457867 /* MissionViewController.swift */; };
 		71F42E19259787C800114BC0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F42E18259787C800114BC0 /* Location.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		71D200122585267200015D27 /* CompassPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassPresenter.swift; sourceTree = "<group>"; };
 		71D2FFB825833FD400015D27 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		71F2BCDE2591FBEC003EBE65 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
+		71F41E4825A432FA00457867 /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
 		71F42E18259787C800114BC0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 			children = (
 				71D2000C2585261E00015D27 /* CompassViewController.swift */,
 				7174F1382588C05500D55D24 /* MapViewController.swift */,
+				71F41E4825A432FA00457867 /* MissionViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71F42E19259787C800114BC0 /* Location.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
+				71F41E4925A432FA00457867 /* MissionViewController.swift in Sources */,
 				7198253C259332350017E39D /* Router.swift in Sources */,
 				71982538259258A90017E39D /* Checkpoint.swift in Sources */,
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,

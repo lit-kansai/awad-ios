@@ -58,17 +58,13 @@ class UserLocationManager: NSObject {
 	func requestAlwaysAuthorization() {
 		locationManager.requestAlwaysAuthorization()
 	}
-	func startUpdatingHeading() {
-		locationManager.startUpdatingHeading()
-	}
-	
-	func stopUpdatingHeading() {
-		locationManager.stopUpdatingHeading()
-	}
 	
 	func calcDistanceToDestination() -> Double {
-		let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destinationLocation!)
-		return distanceToDestination!
+		if let destinationLocation = destinationLocation {
+			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destinationLocation)
+			return distanceToDestination!
+		}
+		return 0
 	}
 	
 	func calcCheckpointDirection(direction: Double) -> Double {
