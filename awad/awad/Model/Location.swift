@@ -60,7 +60,7 @@ class UserLocationManager: NSObject {
 	}
 	
 	func calcDistanceToDestination() -> Double {
-		if let destinationLocation = destinationLocation {
+		if let destinationLocation: CLLocation = destinationLocation {
 			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destinationLocation)
 			return distanceToDestination!
 		}

@@ -129,6 +129,7 @@ extension MapViewController: MKMapViewDelegate {
 				for annotation in annotations {
 					UIView.animate(withDuration: 0.5, animations: {
 						mapView.view(for: annotation)?.alpha = 0
+						mapView.view(for: annotation)?.isEnabled = false
 					})
 				}
 				for overlay in overlays {
@@ -141,6 +142,7 @@ extension MapViewController: MKMapViewDelegate {
 				for annotation in annotations {
 					UIView.animate(withDuration: 0.5, animations: {
 						mapView.view(for: annotation)?.alpha = 0.7
+						mapView.view(for: annotation)?.isEnabled = true
 					})
 				}
 				for overlay in overlays {
@@ -195,7 +197,6 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: UserLocationManagerDelegate {
 	
 	func locationDidUpdateToLocation(location: CLLocation) {
-		print(UserLocationManager.shared.calcDistanceToDestination())
 		if UserLocationManager.shared.calcDistanceToDestination() < 100 && !isArrived {
 			isArrived = true
 			button.isEnabled = true
