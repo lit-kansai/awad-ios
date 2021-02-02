@@ -20,13 +20,15 @@ class TransitionRouter {
 	}
 	
 	func transition() {
-		guard let destinationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CompassViewController") as? CompassViewController
-		else { return }
+		let destinationViewController: CompassViewController = CompassViewController()
 		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-		let model: CompassModel = CompassModel()
-		let presenter: CompassPresenter = CompassPresenter(view: destinationViewController, model: model)
-		destinationViewController.inject(presenter: presenter)
 		transitionRouterDelegate?.transition(to: destinationViewController, animated: true, completion: nil)
 	}
 	
+	func transitionToCompassViewController() {
+		let destinationViewController: CompassViewController = CompassViewController()
+		destinationViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+		transitionRouterDelegate?.transition(to: destinationViewController, animated: true, completion: nil)
+	}
+		
 }

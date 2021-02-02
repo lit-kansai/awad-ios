@@ -9,32 +9,48 @@ import UIKit
 import CoreLocation
 
 class CompassViewController: UIViewController {
-	private var presenter: CompassPresenterInput?
-	func inject(presenter: CompassPresenterInput) {
-		self.presenter = presenter
-	}
-	
 	let needleImageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "needle"))
 	let distanceTextLabel: UILabel = UILabel()
+	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
+	let titleHeader: Header = Header(imageName: "compass")
+	
+	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
+	
+	private var presenter: CompassPresenterInput?
+	let model: CompassModelInput = CompassModel()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.overrideUserInterfaceStyle = .light
+		background.activateConstraint(parent: view)
+		titleHeader.activateConstraint(parent: view)
+		MenuBar.shared.activate(parent: self)
 		
+		distanceLabelBackground.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(distanceLabelBackground)
+		distanceLabelBackground.contentMode = .scaleAspectFill
+		NSLayoutConstraint.activate([
+			distanceLabelBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+			distanceLabelBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			distanceLabelBackground.topAnchor.constraint(equalTo: titleHeader.bottomAnchor, constant: 10)
+		])
+		
+		
+		
+		self.presenter = CompassPresenter(view: self, model: model)
 		if CLLocationManager.locationServicesEnabled() {
 			UserLocationManager.shared.delegate = self
 			UserLocationManager.shared.initOriginDegree()
 		}
 		
 		let distance: Int = 1_000
-		distanceTextLabel.font = UIFont(name: "HiraginoSans-W6", size: 24)
+		distanceTextLabel.font = UIFont(name: "Keifont", size: 30)
 		distanceTextLabel.frame.size = CGSize(width: view.frame.width / 2, height: 100)
 		distanceTextLabel.center = CGPoint(x: view.frame.width / 2, y: 200)
 		distanceTextLabel.textAlignment = NSTextAlignment.center
 		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(distance)m")
 		attrDistanceText.addAttributes([
 			.foregroundColor: UIColor.blue,
-			.font: UIFont(name: "HiraginoSans-W6", size: 36) as Any
+			.font: UIFont(name: "Keifont", size: 36) as Any
 		], range: _NSRange(location: 2, length: String(distance).count))
 		distanceTextLabel.attributedText = attrDistanceText
 		view.addSubview(distanceTextLabel)
@@ -54,12 +70,20 @@ class CompassViewController: UIViewController {
 		view.addSubview(button)
 	}
 	
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-//		if CLLocationManager.locationServicesEnabled() {
-//			UserLocationManager.shared.stopUpdatingHeading()
-//		}
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(false)
+		titleHeader.setupForAnimation()
+		MenuBar.shared.openMenu()
+		// アニメーション
+		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+			self.view.layoutIfNeeded()
+		}, completion: nil)
 	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		MenuBar.shared.activate(parent: self)
+	 }
 	
 	@objc
 	func closeCompass() {

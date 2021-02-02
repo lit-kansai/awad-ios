@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7130613B25C5344A00DF8041 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130613A25C5344A00DF8041 /* HomeViewController.swift */; };
+		7130613E25C534B500DF8041 /* StampListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130613D25C534B400DF8041 /* StampListViewController.swift */; };
+		7130614125C577A700DF8041 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614025C577A700DF8041 /* MenuBar.swift */; };
+		7130614425C6DF0300DF8041 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614325C6DF0200DF8041 /* Header.swift */; };
+		7130614725C6E78200DF8041 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614625C6E78200DF8041 /* Background.swift */; };
+		7130614A25C6FD7800DF8041 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614925C6FD7800DF8041 /* Button.swift */; };
+		7130614E25C91E0500DF8041 /* keifont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7130614D25C91DF100DF8041 /* keifont.ttf */; };
 		716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDCA25821C080081EFF5 /* Main.storyboard */; };
 		7174F1392588C05500D55D24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F1382588C05500D55D24 /* MapViewController.swift */; };
 		7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13B2588C05E00D55D24 /* MapModel.swift */; };
@@ -27,6 +34,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7130613A25C5344A00DF8041 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7130613D25C534B400DF8041 /* StampListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampListViewController.swift; sourceTree = "<group>"; };
+		7130614025C577A700DF8041 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		7130614325C6DF0200DF8041 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		7130614625C6E78200DF8041 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		7130614925C6FD7800DF8041 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		7130614D25C91DF100DF8041 /* keifont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = keifont.ttf; sourceTree = "<group>"; };
 		716EEDCA25821C080081EFF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7174F1382588C05500D55D24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7174F13B2588C05E00D55D24 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
@@ -59,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7130614C25C91DDE00DF8041 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7130614D25C91DF100DF8041 /* keifont.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		71374C53257F09D2006105A2 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +105,12 @@
 				71D2000C2585261E00015D27 /* CompassViewController.swift */,
 				7174F1382588C05500D55D24 /* MapViewController.swift */,
 				71F41E4825A432FA00457867 /* MissionViewController.swift */,
+				7130613A25C5344A00DF8041 /* HomeViewController.swift */,
+				7130613D25C534B400DF8041 /* StampListViewController.swift */,
+				7130614025C577A700DF8041 /* MenuBar.swift */,
+				7130614325C6DF0200DF8041 /* Header.swift */,
+				7130614625C6E78200DF8041 /* Background.swift */,
+				7130614925C6FD7800DF8041 /* Button.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,6 +166,7 @@
 		71C28605257B8943000486A2 /* awad */ = {
 			isa = PBXGroup;
 			children = (
+				7130614C25C91DDE00DF8041 /* Fonts */,
 				7198253A259332270017E39D /* Router */,
 				71374C53257F09D2006105A2 /* App */,
 				71374C56257F09E6006105A2 /* Model */,
@@ -206,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7130614E25C91E0500DF8041 /* keifont.ttf in Resources */,
 				71C28610257B8946000486A2 /* Assets.xcassets in Resources */,
 				71D2FFB925833FD400015D27 /* Launch Screen.storyboard in Resources */,
 				71F2BCDF2591FBEC003EBE65 /* location.json in Resources */,
@@ -241,10 +271,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7130614425C6DF0300DF8041 /* Header.swift in Sources */,
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71F42E19259787C800114BC0 /* Location.swift in Sources */,
+				7130613E25C534B500DF8041 /* StampListViewController.swift in Sources */,
+				7130614725C6E78200DF8041 /* Background.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
 				71F41E4925A432FA00457867 /* MissionViewController.swift in Sources */,
+				7130614A25C6FD7800DF8041 /* Button.swift in Sources */,
 				7198253C259332350017E39D /* Router.swift in Sources */,
 				71982538259258A90017E39D /* Checkpoint.swift in Sources */,
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,
@@ -252,7 +286,9 @@
 				7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */,
 				71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */,
 				71D200102585266100015D27 /* CompassModel.swift in Sources */,
+				7130613B25C5344A00DF8041 /* HomeViewController.swift in Sources */,
 				71D2000D2585261E00015D27 /* CompassViewController.swift in Sources */,
+				7130614125C577A700DF8041 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

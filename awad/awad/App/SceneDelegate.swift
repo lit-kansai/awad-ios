@@ -10,18 +10,19 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
+	
+	var navigationController: UINavigationController?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		
 		if scene as? UIWindowScene != nil {
 			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
-			
+			let view: UIViewController = CompassViewController()
+			navigationController = UINavigationController(rootViewController: view)
+			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+			self.navigationController?.navigationBar.isHidden = true
 			window = UIWindow(frame: UIScreen.main.bounds)
-			let view: MapViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewController") as MapViewController
-			let model: MapModel = MapModel()
-			let presenter: MapPresenter = MapPresenter(view: view, model: model, transitionRouterDelegate: view as TransitionRouterDelegate)
-			view.inject(presenter: presenter)
-			window?.rootViewController = view
+			window?.rootViewController = navigationController
 			window?.makeKeyAndVisible()
 			window?.windowScene = windowScene
 		} else {

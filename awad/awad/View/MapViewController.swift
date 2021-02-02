@@ -11,28 +11,20 @@ import MapKit
 class MapViewController: UIViewController {
 	
 	let mapView: MKMapView = MKMapView()
-	let window: UIView = UIView()
-	let destinationLabel: UILabel = UILabel()
-	let button: UIButton = UIButton()
-	
-	private var presenter: MapPresenterInput?
-	func inject(presenter: MapPresenterInput) {
-		self.presenter = presenter
-	}
+	let titleHeader: Header = Header(imageName: "map")
+	let setDestinationButton: UIImageView = UIImageView(image: #imageLiteral(resourceName: "setDestinationButton"))
+	let model: MapModel = MapModel()
+	var presenter: MapPresenterInput!
 	
 	var annotations: [MKAnnotation] = []
 	var overlays: [MKOverlay] = []
 	var currentSelectedAnnotationView: MKAnnotationView?
 	var isArrived: Bool = false
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		UserLocationManager.shared.delegate = self
-	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
+		self.presenter = MapPresenter(view: self, model: model, transitionRouterDelegate: self)
 		self.overrideUserInterfaceStyle = .light
 		let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
 		UserLocationManager.shared.setDestinationLocation(targetLocation)
@@ -54,47 +46,49 @@ class MapViewController: UIViewController {
 		mapView.mapType = .mutedStandard
 		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
 		view.addSubview(mapView)
-	
-		button.frame.size = CGSize(width: 50, height: 50)
-		button.center = CGPoint(x: view.frame.maxX - 50, y: 100)
-		button.setTitle("コンパス", for: .normal)
-		button.setTitleColor(.black, for: .normal)
-		button.backgroundColor = .white
-		button.addTarget(nil, action: #selector(openCompassViewController), for: .touchUpInside)
-		button.isEnabled = false
-		view.addSubview(button)
 		
-		window.backgroundColor = .white
-		window.frame.size = CGSize(width: self.view.frame.width - 50, height: 150)
-		window.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 100)
-		window.layer.cornerRadius = 10
-		window.alpha = 0
-		self.view.addSubview(window)
+		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
+		setDestinationButton.contentMode = .scaleAspectFill
+		setDestinationButton.alpha = 0
+		view.addSubview(setDestinationButton)
+		setDestinationButton.isUserInteractionEnabled = true
+		NSLayoutConstraint.activate([
+			setDestinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
+			setDestinationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
+			setDestinationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+		])
+		setDestinationButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setDestination(_:))))
 		
-		destinationLabel.frame = CGRect(x: 20, y: 20, width: window.frame.width - 50, height: window.frame.height / 4)
-		destinationLabel.font = UIFont(name: "HiraginoSans-W6", size: 24)
-		window.addSubview(destinationLabel)
-		
-		let setDestinationButton: UIButton = UIButton()
-		setDestinationButton.frame.size = CGSize(width: window.frame.width - 50, height: window.frame.height / 3)
-		setDestinationButton.center = CGPoint(x: window.frame.width / 2, y: window.bounds.maxY - 50)
-		setDestinationButton.setTitle("目的地に設定する", for: .normal)
-		setDestinationButton.setTitleColor(.white, for: .normal)
-		setDestinationButton.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .highlighted)
-		setDestinationButton.backgroundColor = UIColor.systemGreen
-		setDestinationButton.layer.cornerRadius = 10
-		setDestinationButton.addTarget(nil, action: #selector(setDestination), for: .touchUpInside)
-		window.addSubview(setDestinationButton)
+		titleHeader.activateConstraint(parent: view)
 		presenter?.viewDidLoad()
+		MenuBar.shared.activate(parent: self)
+//		setSwipeBack()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(false)
+		titleHeader.setupForAnimation()
+		MenuBar.shared.openMenu()
+		// アニメーション
+		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+			self.view.layoutIfNeeded()
+		}, completion: nil)
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		MenuBar.shared.activate(parent: self)
+		UserLocationManager.shared.delegate = self
 	}
 	
 	@objc
 	func openCompassViewController() {
+		print("click")
 		presenter?.transition()
 	}
 	
 	@objc
-	func setDestination() {
+	func setDestination(_ sender: UITapGestureRecognizer) {
 		guard let currentSelectedAnnotationView = currentSelectedAnnotationView else {
 			return
 		}
@@ -150,8 +144,6 @@ extension MapViewController: MKMapViewDelegate {
 						mapView.renderer(for: overlay)?.alpha = 0
 					})
 				}
-			} else {
-				print("error")
 			}
 		}
 		
@@ -187,9 +179,10 @@ extension MapViewController: MKMapViewDelegate {
 		DispatchQueue.main.async {
 			mapView.setRegion(region, animated: true)
 			view.alpha = 1
+			
 		}
-		destinationLabel.text = view.annotation?.subtitle!
-		window.alpha = 1
+		MenuBar.shared.closeMenuBar()
+		setDestinationButton.alpha = 1
 	}
 		
 }
@@ -199,7 +192,6 @@ extension MapViewController: UserLocationManagerDelegate {
 	func locationDidUpdateToLocation(location: CLLocation) {
 		if UserLocationManager.shared.calcDistanceToDestination() < 100 && !isArrived {
 			isArrived = true
-			button.isEnabled = true
 			presenter?.transition()
 		}
 	}
