@@ -14,6 +14,8 @@
 		7130614725C6E78200DF8041 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614625C6E78200DF8041 /* Background.swift */; };
 		7130614A25C6FD7800DF8041 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614925C6FD7800DF8041 /* Button.swift */; };
 		7130614E25C91E0500DF8041 /* keifont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7130614D25C91DF100DF8041 /* keifont.ttf */; };
+		7130615225C97F2700DF8041 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130615125C97F2700DF8041 /* UIColor.swift */; };
+		7130615625C9A1F500DF8041 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130615525C9A1F500DF8041 /* UIView.swift */; };
 		716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDCA25821C080081EFF5 /* Main.storyboard */; };
 		7174F1392588C05500D55D24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F1382588C05500D55D24 /* MapViewController.swift */; };
 		7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13B2588C05E00D55D24 /* MapModel.swift */; };
@@ -41,6 +43,8 @@
 		7130614625C6E78200DF8041 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		7130614925C6FD7800DF8041 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7130614D25C91DF100DF8041 /* keifont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = keifont.ttf; sourceTree = "<group>"; };
+		7130615125C97F2700DF8041 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		7130615525C9A1F500DF8041 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		716EEDCA25821C080081EFF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7174F1382588C05500D55D24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7174F13B2588C05E00D55D24 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
@@ -79,6 +83,15 @@
 				7130614D25C91DF100DF8041 /* keifont.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7130615025C97F1800DF8041 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7130615125C97F2700DF8041 /* UIColor.swift */,
+				7130615525C9A1F500DF8041 /* UIView.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		71374C53257F09D2006105A2 /* App */ = {
@@ -166,6 +179,7 @@
 		71C28605257B8943000486A2 /* awad */ = {
 			isa = PBXGroup;
 			children = (
+				7130615025C97F1800DF8041 /* Util */,
 				7130614C25C91DDE00DF8041 /* Fonts */,
 				7198253A259332270017E39D /* Router */,
 				71374C53257F09D2006105A2 /* App */,
@@ -271,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7130615625C9A1F500DF8041 /* UIView.swift in Sources */,
 				7130614425C6DF0300DF8041 /* Header.swift in Sources */,
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71F42E19259787C800114BC0 /* Location.swift in Sources */,
@@ -279,6 +294,7 @@
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
 				71F41E4925A432FA00457867 /* MissionViewController.swift in Sources */,
 				7130614A25C6FD7800DF8041 /* Button.swift in Sources */,
+				7130615225C97F2700DF8041 /* UIColor.swift in Sources */,
 				7198253C259332350017E39D /* Router.swift in Sources */,
 				71982538259258A90017E39D /* Checkpoint.swift in Sources */,
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,

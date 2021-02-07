@@ -170,10 +170,3 @@ extension StampListViewController: UICollectionViewDelegateFlowLayout {
 		return CGSize(width: collectionView.frame.width * 0.2, height: collectionView.frame.width * 0.2)
 		}
 }
-
-extension UIColor {
-	class func turquoiseColor() -> UIColor {
-		let turquoise: UIColor = UIColor(red: 7 / 255, green: 180 / 255, blue: 205 / 255, alpha: 1)
-		return turquoise
-	}
-}

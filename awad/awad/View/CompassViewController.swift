@@ -13,11 +13,14 @@ class CompassViewController: UIViewController {
 	let distanceTextLabel: UILabel = UILabel()
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
 	let titleHeader: Header = Header(imageName: "compass")
+	let missionButton: UIImageView = UIImageView(image: #imageLiteral(resourceName: "missionButton"))
 	
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
 	private var presenter: CompassPresenterInput?
 	let model: CompassModelInput = CompassModel()
+	
+	//45
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -34,8 +37,6 @@ class CompassViewController: UIViewController {
 			distanceLabelBackground.topAnchor.constraint(equalTo: titleHeader.bottomAnchor, constant: 10)
 		])
 		
-		
-		
 		self.presenter = CompassPresenter(view: self, model: model)
 		if CLLocationManager.locationServicesEnabled() {
 			UserLocationManager.shared.delegate = self
@@ -47,27 +48,36 @@ class CompassViewController: UIViewController {
 		distanceTextLabel.frame.size = CGSize(width: view.frame.width / 2, height: 100)
 		distanceTextLabel.center = CGPoint(x: view.frame.width / 2, y: 200)
 		distanceTextLabel.textAlignment = NSTextAlignment.center
+		distanceTextLabel.textColor = UIColor.distanceLabelColor()
 		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(distance)m")
 		attrDistanceText.addAttributes([
-			.foregroundColor: UIColor.blue,
 			.font: UIFont(name: "Keifont", size: 36) as Any
 		], range: _NSRange(location: 2, length: String(distance).count))
 		distanceTextLabel.attributedText = attrDistanceText
 		view.addSubview(distanceTextLabel)
+		distanceTextLabel.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			distanceTextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+			distanceTextLabel.centerYAnchor.constraint(equalTo: distanceLabelBackground.centerYAnchor)
+		])
 		
-		needleImageView.frame.size = CGSize(width: view.frame.width * 0.7, height: view.frame.width * 0.7)
-		needleImageView.contentMode = .scaleAspectFit
-		needleImageView.center = view.center
 		view.addSubview(needleImageView)
+		needleImageView.contentMode = .scaleAspectFit
+		needleImageView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			needleImageView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
+			needleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+		])
 		
-		let button: UIButton = UIButton()
-		button.frame.size = CGSize(width: 200, height: 50)
-		button.center = CGPoint(x: view.frame.maxX - 50, y: 100)
-		button.setTitle("閉じる", for: .normal)
-		button.setTitleColor(.black, for: .normal)
-		button.backgroundColor = .white
-		button.addTarget(nil, action: #selector(closeCompass), for: .touchUpInside)
-		view.addSubview(button)
+		view.addSubview(missionButton)
+		missionButton.translatesAutoresizingMaskIntoConstraints = false
+		missionButton.contentMode = .scaleAspectFill
+		NSLayoutConstraint.activate([
+			missionButton.bottomAnchor.constraint(equalTo: needleImageView.topAnchor, constant: 30),
+			missionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			missionButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+			missionButton.heightAnchor.constraint(equalTo: missionButton.widthAnchor, multiplier: 0.6)
+		])
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -85,10 +95,10 @@ class CompassViewController: UIViewController {
 		MenuBar.shared.activate(parent: self)
 	 }
 	
-	@objc
-	func closeCompass() {
-		dismiss(animated: true, completion: nil)
-	}
+//	@objc
+//	func closeCompass() {
+//		dismiss(animated: true, completion: nil)
+//	}
 }
 
 extension CompassViewController: UserLocationManagerDelegate {
