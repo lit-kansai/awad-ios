@@ -126,10 +126,6 @@ class HomeViewController: UIViewController {
 		achieveRatioLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
 		movementDistanceLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
 		totalPlayTimeLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
-		
-//		self.label.addBorder(width: 0.5, color: UIColor.black, position: .bottom)
-//		self.label.addBorder(width: 0.5, color: UIColor.black, position: .top)
-//		self.label.addBorder(width: 0.5, color: UIColor.black, position: .left)
 	}
 	
 }

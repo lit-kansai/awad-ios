@@ -92,7 +92,7 @@ class MenuBar: UIView {
 			mapButtonBottomConstraint?.constant = 0
 		}
 		UIView.animate(withDuration: 0.3, delay: 0, options: .preferredFramesPerSecond60, animations: {
-			self.layoutIfNeeded()
+			self.mapButton.updateConstraints()
 		}, completion: nil)
 	}
 	
@@ -114,9 +114,17 @@ class MenuBar: UIView {
 	func openMenu() {
 		// NOTE: 後で定数から変える
 		stampButton.setupForAnimation(constant: 50)
-		compassButton.setupForAnimation(constant: 20)
-		mapButton.setupForAnimation(constant: 10)
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+			self.layoutIfNeeded()
+		}, completion: nil)
+		
+		compassButton.setupForAnimation(constant: 20)
+		UIView.animate(withDuration: 0.6, delay: 0, options: .curveEaseOut, animations: {
+			self.layoutIfNeeded()
+		}, completion: nil)
+		
+		mapButton.setupForAnimation(constant: 10)
+		UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
 			self.layoutIfNeeded()
 		}, completion: nil)
 	}
