@@ -20,8 +20,6 @@ class CompassViewController: UIViewController {
 	private var presenter: CompassPresenterInput?
 	let model: CompassModelInput = CompassModel()
 	
-	//45
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		background.activateConstraint(parent: view)
@@ -95,10 +93,6 @@ class CompassViewController: UIViewController {
 		MenuBar.shared.activate(parent: self)
 	 }
 	
-//	@objc
-//	func closeCompass() {
-//		dismiss(animated: true, completion: nil)
-//	}
 }
 
 extension CompassViewController: UserLocationManagerDelegate {

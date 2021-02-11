@@ -39,7 +39,7 @@ class MissionViewController: UIViewController {
 		doneButton.frame.size = CGSize(width: 67, height: 67)
 		NSLayoutConstraint.activate([
 			doneButton.topAnchor.constraint(equalTo: missionBackground.bottomAnchor, constant: 40),
-			doneButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 30),
+			doneButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 30)
 		])
 		
 		cancelButton.translatesAutoresizingMaskIntoConstraints = false

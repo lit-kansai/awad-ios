@@ -20,7 +20,7 @@ class StampListViewController: UIViewController {
 	let stampInformation: [[Any]] = [
 		[#imageLiteral(resourceName: "monument"), "公園スタンプ", "公園でゲットした \n お手洗いも合ってちょうど良かったね。" ],
 		[#imageLiteral(resourceName: "slime"), "スライムスタンプ", "スライムでゲットした \n お手洗いも合ってちょうど良かったね。"],
-		[#imageLiteral(resourceName: "shrine"), "神社スタンプ", "神社でゲットした \n お手洗いも合ってちょうど良かったね。"],
+		[#imageLiteral(resourceName: "shrine"), "神社スタンプ", "神社でゲットした \n お手洗いも合ってちょうど良かったね。"]
 	]
 		
     override func viewDidLoad() {
@@ -119,7 +119,7 @@ extension StampListViewController: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-		let imageView: UIImageView = UIImageView(image: stampInformation[indexPath.row % 3][0] as! UIImage)
+		let imageView: UIImageView = UIImageView(image: (stampInformation[indexPath.row % 3][0] as! UIImage))
 		cell.addSubview(imageView)
 		cell.clipsToBounds = true
 		imageView.contentMode = .scaleAspectFit

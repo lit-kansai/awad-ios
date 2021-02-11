@@ -92,7 +92,7 @@ class MenuBar: UIView {
 			mapButtonBottomConstraint?.constant = 0
 		}
 		UIView.animate(withDuration: 0.3, delay: 0, options: .preferredFramesPerSecond60, animations: {
-			self.mapButton.updateConstraints()
+			self.layoutIfNeeded()
 		}, completion: nil)
 	}
 	

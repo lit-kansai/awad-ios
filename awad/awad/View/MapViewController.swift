@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		
 		self.presenter = MapPresenter(view: self, model: model, transitionRouterDelegate: self)
 		self.overrideUserInterfaceStyle = .light
 		let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
@@ -46,6 +46,11 @@ class MapViewController: UIViewController {
 		mapView.mapType = .mutedStandard
 		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
 		view.addSubview(mapView)
+		// NOTE: リジェクトされるかもしれないコード達
+		let legalLabel: UIView = mapView.subviews[1]
+		legalLabel.alpha = 0
+		let appleIconLabel: UIView = mapView.subviews[2]
+		appleIconLabel.alpha = 0
 		
 		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
 		setDestinationButton.contentMode = .scaleAspectFill
@@ -62,7 +67,6 @@ class MapViewController: UIViewController {
 		titleHeader.activateConstraint(parent: view)
 		presenter?.viewDidLoad()
 		MenuBar.shared.activate(parent: self)
-//		setSwipeBack()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {

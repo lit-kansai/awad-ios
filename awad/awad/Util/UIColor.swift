@@ -9,12 +9,12 @@ import UIKit
 
 extension UIColor {
 	class func turquoiseColor() -> UIColor {
-		let turquoise: UIColor = UIColor(red: 7 / 255, green: 180 / 255, blue: 205 / 255, alpha: 1)
+		let turquoise: UIColor = #colorLiteral(red: 0.02745098039, green: 0.7058823529, blue: 0.8039215686, alpha: 1)
 		return turquoise
 	}
 	
 	class func distanceLabelColor() -> UIColor {
-		let lightBlack: UIColor = UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1)
+		let lightBlack: UIColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
 		return lightBlack
 	}
 }
