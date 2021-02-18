@@ -31,38 +31,6 @@ class MenuBar: UIView {
 		super.init(coder: aDecoder)
 		setupView()
 	}
-
-	private func setupView() {
-		self.frame.size = CGSize(width: 400, height: 400)
-		self.translatesAutoresizingMaskIntoConstraints = false
-		
-		stampButton.activateConstraint(parent: self)
-		stampButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
-		stampButton.tag = 3
-		stampButtonBottomConstraint = NSLayoutConstraint(item: stampButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -30)
-		self.addConstraint(stampButtonBottomConstraint!)
-		
-		compassButton.activateConstraint(parent: self)
-		compassButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
-		compassButton.tag = 2
-		compassButtonBottomConstraint = NSLayoutConstraint(item: compassButton, attribute: .bottom, relatedBy: .equal, toItem: stampButton, attribute: .top, multiplier: 1.0, constant: 0)
-		self.addConstraint(compassButtonBottomConstraint!)
-		
-		mapButton.activateConstraint(parent: self)
-		mapButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
-		mapButton.tag = 1
-		mapButtonBottomConstraint = NSLayoutConstraint(item: mapButton, attribute: .bottom, relatedBy: .equal, toItem: compassButton, attribute: .top, multiplier: 1.0, constant: 0)
-		self.addConstraint(mapButtonBottomConstraint!)
-		
-		let rightSwipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-		rightSwipe.direction = .right
-		self.addGestureRecognizer(rightSwipe)
-		
-		let leftSwipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-		leftSwipe.direction = .left
-		self.addGestureRecognizer(leftSwipe)
-		
-	}
 	
 	func activate(parent: UIViewController) {
 		self.parent = parent
@@ -162,4 +130,38 @@ class MenuBar: UIView {
 
 	}
 	
+}
+
+extension MenuBar {
+	private func setupView() {
+		self.frame.size = CGSize(width: 400, height: 400)
+		self.translatesAutoresizingMaskIntoConstraints = false
+		
+		stampButton.activateConstraint(parent: self)
+		stampButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
+		stampButton.tag = 3
+		stampButtonBottomConstraint = NSLayoutConstraint(item: stampButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -30)
+		self.addConstraint(stampButtonBottomConstraint!)
+		
+		compassButton.activateConstraint(parent: self)
+		compassButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
+		compassButton.tag = 2
+		compassButtonBottomConstraint = NSLayoutConstraint(item: compassButton, attribute: .bottom, relatedBy: .equal, toItem: stampButton, attribute: .top, multiplier: 1.0, constant: 0)
+		self.addConstraint(compassButtonBottomConstraint!)
+		
+		mapButton.activateConstraint(parent: self)
+		mapButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
+		mapButton.tag = 1
+		mapButtonBottomConstraint = NSLayoutConstraint(item: mapButton, attribute: .bottom, relatedBy: .equal, toItem: compassButton, attribute: .top, multiplier: 1.0, constant: 0)
+		self.addConstraint(mapButtonBottomConstraint!)
+		
+		let rightSwipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+		rightSwipe.direction = .right
+		self.addGestureRecognizer(rightSwipe)
+		
+		let leftSwipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+		leftSwipe.direction = .left
+		self.addGestureRecognizer(leftSwipe)
+		
+	}
 }

@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
+		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)
+		UILabel.appearance().textColor = UIColor.turquoiseColor()
 		return true
 	}
 

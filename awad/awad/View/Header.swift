@@ -29,7 +29,17 @@ class Header: UIImageView {
 	}
 	
 	func setupForAnimation() {
+	}
+	
+	func resetForAnimation() {
+		self.constraint?.constant = -self.frame.width
+	}
+	
+	func animate() {
 		self.constraint?.constant = -15
+		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+			self.parent!.layoutIfNeeded()
+		}, completion: nil)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
