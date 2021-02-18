@@ -7,14 +7,14 @@
 
 import UIKit
 
-class Button: UIImageView {
+class Button: UIButton {
 	var parent: UIView?
 	var constraint: NSLayoutConstraint?
 	init(image: UIImage) {
-		super.init(image: image)
-		self.contentMode = .scaleAspectFill
+		super.init(frame: .zero)
+		self.setImage(image, for: .normal)
+		self.imageView?.contentMode = .scaleAspectFill
 		self.translatesAutoresizingMaskIntoConstraints = false
-		self.isUserInteractionEnabled = true
 	}
 	
 	func activateConstraint(parent: UIView) {

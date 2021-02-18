@@ -48,7 +48,8 @@ final class MapModel: MapModelInput {
 			let locations: [RandomCheckpointCircle] = try JSONDecoder().decode([RandomCheckpointCircle].self, from: randomCheckPointCircleData)
 			for location in locations {
 				let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(location.latitude)!, Double(location.longitude)!)
-				let circle: MKCircle = MKCircle(center: location, radius: CLLocationDistance(500))
+				let circle: MKCircle = MKCircle(center: location, radius: CLLocationDistance(150))
+				
 				overlays.append(circle)
 			}
 		} catch let error {

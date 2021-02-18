@@ -19,7 +19,6 @@ class MissionViewController: UIViewController {
         super.viewDidLoad()
 		background.activateConstraint(parent: view)
 		titleHeader.activateConstraint(parent: view)
-//		MenuBar.shared.activate(parent: self)
 
 		view.addSubview(missionBackground)
 		view.addSubview(doneButton)

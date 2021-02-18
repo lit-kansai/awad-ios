@@ -13,7 +13,7 @@ class CompassViewController: UIViewController {
 	let distanceTextLabel: UILabel = UILabel()
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
 	let titleHeader: Header = Header(imageName: "compass")
-	let missionButton: UIImageView = UIImageView(image: #imageLiteral(resourceName: "missionButton"))
+	let missionButton: UIButton = UIButton()
 	
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
@@ -69,13 +69,16 @@ class CompassViewController: UIViewController {
 		
 		view.addSubview(missionButton)
 		missionButton.translatesAutoresizingMaskIntoConstraints = false
-		missionButton.contentMode = .scaleAspectFill
+		missionButton.setImage(#imageLiteral(resourceName: "missionButton"), for: .normal)
+		missionButton.imageView?.contentMode = .scaleAspectFill
 		NSLayoutConstraint.activate([
 			missionButton.bottomAnchor.constraint(equalTo: needleImageView.topAnchor, constant: 30),
 			missionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			missionButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
 			missionButton.heightAnchor.constraint(equalTo: missionButton.widthAnchor, multiplier: 0.6)
 		])
+		
+		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -92,6 +95,12 @@ class CompassViewController: UIViewController {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
 	 }
+	
+	@objc
+	func transitionToMissionViewController() {
+		let missionViewController: MissionViewController = MissionViewController()
+		self.navigationController?.pushViewController(missionViewController, animated: true)
+	}
 	
 }
 
