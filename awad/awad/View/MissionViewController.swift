@@ -53,7 +53,6 @@ class MissionViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
 		titleHeader.setupForAnimation()
-//		MenuBar.shared.openMenu()
 		// アニメーション
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
@@ -62,7 +61,6 @@ class MissionViewController: UIViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		MenuBar.shared.activate(parent: self)
 	 }
 
 }

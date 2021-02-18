@@ -21,21 +21,21 @@ class HomeViewController: UIViewController {
 	
 	let titleHeader: Header = Header(imageName: "home")
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "homeBackground")
-	let missionButtonBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "missionButtonBackground"))
+	let missionButton: UIButton = UIButton()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		background.activateConstraint(parent: view)
 		titleHeader.activateConstraint(parent: view)
-		MenuBar.shared.activate(parent: self)
+		
 		view.addSubview(achieveRatioTitleLabel)
 		view.addSubview(movementDistanceTitleLabel)
 		view.addSubview(totalPlayTimeTitleLabel)
 		view.addSubview(achieveRatioLabel)
 		view.addSubview(movementDistanceLabel)
 		view.addSubview(totalPlayTimeLabel)
-		view.addSubview(missionButtonBackground)
+		view.addSubview(missionButton)
 		
 		achieveRatioTitleLabel.translatesAutoresizingMaskIntoConstraints = false
 		achieveRatioTitleLabel.text = "ミッション達成率"
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
 		achieveRatioTitleLabel.textColor = UIColor.turquoiseColor()
 		NSLayoutConstraint.activate([
 			achieveRatioTitleLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -30),
-			achieveRatioTitleLabel.topAnchor.constraint(equalTo: missionButtonBackground.bottomAnchor, constant: 80)
+			achieveRatioTitleLabel.topAnchor.constraint(equalTo: missionButton.bottomAnchor, constant: 80)
 		])
 		
 		achieveRatioLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -97,35 +97,47 @@ class HomeViewController: UIViewController {
 			totalPlayTimeLabel.widthAnchor.constraint(equalToConstant: 100)
 		])
 		
-		missionButtonBackground.translatesAutoresizingMaskIntoConstraints = false
-		
-		missionButtonBackground.contentMode = .scaleAspectFill
+		missionButton.translatesAutoresizingMaskIntoConstraints = false
+		missionButton.setImage(#imageLiteral(resourceName: "missionButtonEnable"), for: .normal)
+		missionButton.setImage(#imageLiteral(resourceName: "missionButtonBackground"), for: .disabled)
+		missionButton.imageView?.contentMode = .scaleAspectFit
+		missionButton.isEnabled = true
 		NSLayoutConstraint.activate([
-			missionButtonBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-			missionButtonBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			missionButtonBackground.topAnchor.constraint(equalTo: titleHeader.bottomAnchor, constant: 10)
+			missionButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+			missionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			missionButton.topAnchor.constraint(equalTo: titleHeader.bottomAnchor, constant: 10)
 		])
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(false)
-		titleHeader.setupForAnimation()
-		MenuBar.shared.openMenu()
-		// アニメーション
-		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-			self.view.layoutIfNeeded()
-		}, completion: nil)
+		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
+				
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		print("willappear")
+		titleHeader.setupForAnimation()
 		MenuBar.shared.activate(parent: self)
+		MenuBar.shared.resetMenuButtonLocation()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(false)
+		MenuBar.shared.openMenu()
+//		 アニメーション
+		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+			self.view.layoutIfNeeded()
+		}, completion: nil)
 	}
 	
 	override func viewDidLayoutSubviews() {
 		achieveRatioLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
 		movementDistanceLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
 		totalPlayTimeLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
+	}
+	
+	@objc
+	func transitionToMissionViewController() {
+		let missionViewController: MissionViewController = MissionViewController()
+		self.navigationController?.pushViewController(missionViewController, animated: true)
 	}
 	
 }

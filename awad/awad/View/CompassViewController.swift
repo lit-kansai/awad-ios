@@ -80,6 +80,11 @@ class CompassViewController: UIViewController {
 		
 		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
 	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		MenuBar.shared.activate(parent: self)
+	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
@@ -90,11 +95,6 @@ class CompassViewController: UIViewController {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
 	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		MenuBar.shared.activate(parent: self)
-	 }
 	
 	@objc
 	func transitionToMissionViewController() {
