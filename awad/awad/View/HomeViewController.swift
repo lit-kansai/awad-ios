@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class HomeViewController: UIViewController {
 	
@@ -32,6 +33,8 @@ class HomeViewController: UIViewController {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
+		UserLocationManager.shared.delegate = self
+		print(UserLocationManager.shared.delegate)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -42,8 +45,12 @@ class HomeViewController: UIViewController {
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: {_ in
-		print(self.titleHeader.frame)
 	   })
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		titleHeader.resetForAnimation()
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -52,6 +59,15 @@ class HomeViewController: UIViewController {
 		totalPlayTimeLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
 	}
 	
+}
+
+extension HomeViewController: UserLocationManagerDelegate {
+	
+	func locationDidUpdateToLocation(location: CLLocation) {
+	}
+	
+	func locationDidUpdateHeading(newHeading: CLHeading) {
+	}
 }
 
 extension HomeViewController {

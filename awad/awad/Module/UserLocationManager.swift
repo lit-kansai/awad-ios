@@ -15,11 +15,16 @@ protocol UserLocationManagerDelegate: class {
 
 class UserLocationManager: NSObject {
 	let locationManager: CLLocationManager = CLLocationManager()
+	// 目的地
 	private(set) var destinationLocation: CLLocation?
+	// 目的地までの距離
+	private(set) var distance = 0
+	
 	private(set) var originDegree: Double = 0
 	private(set) var currentDegree: Double = 0
 	
 	weak var delegate: UserLocationManagerDelegate?
+	
 	static let shared: UserLocationManager = UserLocationManager()
 	
 	private override init() {
@@ -35,6 +40,7 @@ class UserLocationManager: NSObject {
 		destinationLocation = location
 	}
 	
+	// 目的地まで角度を計算
 	func initOriginDegree() {
 		guard let userLocation = locationManager.location
 		else { return }
@@ -59,9 +65,11 @@ class UserLocationManager: NSObject {
 		locationManager.requestAlwaysAuthorization()
 	}
 	
+	// 現在地までの距離を計算
 	func calcDistanceToDestination() -> Double {
 		if let destinationLocation: CLLocation = destinationLocation {
 			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destinationLocation)
+			distance = Int(distanceToDestination!)
 			return distanceToDestination!
 		}
 		return 0

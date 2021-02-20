@@ -13,7 +13,7 @@ class CompassViewController: UIViewController {
 	let distanceTextLabel: UILabel = UILabel()
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
 	let titleHeader: Header = Header(imageName: "compass")
-	let missionButton: UIButton = UIButton()
+	let missionButton: Button = Button(image: #imageLiteral(resourceName: "missionButton"))
 
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
@@ -46,6 +46,11 @@ class CompassViewController: UIViewController {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
 	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		titleHeader.resetForAnimation()
+	}
 }
 
 extension CompassViewController: UserLocationManagerDelegate {
@@ -53,10 +58,7 @@ extension CompassViewController: UserLocationManagerDelegate {
 		presenter?.updateCheckpointDistance()
 		let distance: Double = UserLocationManager.shared.calcDistanceToDestination()
 		if distance < 50 {
-			guard let destinationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MissionViewController") as? MissionViewController
-			else { return }
-			destinationViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-			present(destinationViewController, animated: true, completion: nil)
+			missionButton.layer.opacity = 1
 		}
 	}
 	
@@ -70,8 +72,7 @@ extension CompassViewController: CompassPresenterOutput {
 		let formattedDistance: String = String(format: "%.0f", distance)
 		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(formattedDistance)m")
 		attrDistanceText.addAttributes([
-			.foregroundColor: UIColor.blue,
-			.font: UIFont(name: "HiraginoSans-W6", size: 36) as Any
+			.font: UIFont(name: "Keifont", size: 36) as Any
 		], range: _NSRange(location: 2, length: String(formattedDistance).count))
 		distanceTextLabel.attributedText = attrDistanceText
 	}
@@ -113,7 +114,6 @@ extension CompassViewController {
 		distanceTextLabel.attributedText = attrDistanceText
 		
 		needleImageView.contentMode = .scaleAspectFit
-		missionButton.setImage(#imageLiteral(resourceName: "missionButton"), for: .normal)
 		missionButton.imageView?.contentMode = .scaleAspectFill
 		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
 

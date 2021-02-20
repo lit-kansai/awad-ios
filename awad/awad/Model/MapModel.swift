@@ -14,6 +14,7 @@ protocol MapModelInput {
 
 final class MapModel: MapModelInput {
 	
+	// Annotationと緑の○を生成
 	func generateAdditions() -> MapAddition {
 		var annotations: [CheckpointAnnotation] = []
 		var overlays: [MKOverlay] = []

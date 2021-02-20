@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)
 		UILabel.appearance().textColor = UIColor.turquoiseColor()
+		FirebaseApp.configure()
+		FirestoreManager.shared.setTeam(team: "A")
 		return true
 	}
 

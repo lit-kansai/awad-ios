@@ -6,18 +6,27 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class StampListViewController: UIViewController {
+	
+	struct Stamp: Codable {
+		var name: String
+		var description: String
+		var image: String
+	}
 	
 	let titleHeader: Header = Header(imageName: "stamp")
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "stampBackground")
 	let achievementRatioLabel: UILabel = UILabel()
-	var stamp: UIImageView = UIImageView(image: #imageLiteral(resourceName: "monument"))
+	var stamp: UIImageView = UIImageView()
 	let stampBackground: UIView = UIView()
 	var stampTitleLabel: UILabel = UILabel()
 	var stampDescriptionLabel: UILabel = UILabel()
 	let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 	var stampCollectionView: UICollectionView!
+	var stamps: [Stamp] = []
 	let stampInformation: [[Any]] = [
 		[#imageLiteral(resourceName: "monument"), "公園スタンプ", "公園でゲットした \n お手洗いも合ってちょうど良かったね。" ],
 		[#imageLiteral(resourceName: "slime"), "スライムスタンプ", "スライムでゲットした \n お手洗いも合ってちょうど良かったね。"],
@@ -40,13 +49,36 @@ class StampListViewController: UIViewController {
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
+		FirestoreManager.shared.team?.collection("stamps").getDocuments { (querySnapshot, err) in
+			if let err: Error = err {
+				print("Error getting documents: \(err)")
+			} else {
+				for document in querySnapshot!.documents {
+					let stamp: Stamp? = try? Firestore.Decoder().decode(Stamp.self, from: document.data())
+					self.stamps.append(stamp!)
+				}
+				self.stampCollectionView.reloadData()
+				self.stampTitleLabel.text = self.stamps[0].name
+				self.stampDescriptionLabel.text = self.stamps[0].description
+				self.stamp.image = UIImage(named: self.stamps[0].image)
+				self.stampCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+				let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "1/\(self.stamps.count)")
+				attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
+				self.achievementRatioLabel.attributedText = attributedString
+			}
+		}
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		titleHeader.resetForAnimation()
 	}
 }
 
 extension StampListViewController {
 	func setupView() {
 		stampCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-		
+		stampCollectionView.allowsMultipleSelection = false
 		background.activateConstraint(parent: view)
 		titleHeader.activateConstraint(parent: view)
 		
@@ -62,17 +94,12 @@ extension StampListViewController {
 		stampBackground.layer.cornerRadius = 18
 		stamp.contentMode = .scaleAspectFit
 		stampTitleLabel.font = UIFont(name: "Keifont", size: 20)
-		stampTitleLabel.text = "公園スタンプ"
-		
 		stampDescriptionLabel.font = UIFont(name: "Keifont", size: 15)
-		stampDescriptionLabel.text = "公園でゲットした \n お手洗いも合ってちょうど良かったね。"
+		
 		stampDescriptionLabel.textAlignment = .center
 		stampDescriptionLabel.numberOfLines = 0
 		
 		achievementRatioLabel.textColor = #colorLiteral(red: 0.9503150582, green: 0.9693611264, blue: 0.9732105136, alpha: 1)
-		let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "10/20")
-		attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
-		achievementRatioLabel.attributedText = attributedString
 		stampCollectionView.backgroundColor = .clear
 	}
 	
@@ -114,32 +141,37 @@ extension StampListViewController {
 
 extension StampListViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 10
+		return stamps.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-		let imageView: UIImageView = UIImageView(image: (stampInformation[indexPath.row % 3][0] as! UIImage))
-		cell.addSubview(imageView)
-		cell.clipsToBounds = true
-		imageView.contentMode = .scaleAspectFit
-		imageView.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
-			imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
-			imageView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 0.9),
-			imageView.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 0.9)
-		])
-		cell.backgroundColor = .white
-		cell.layer.cornerRadius = 9
-		
+		print(stamps.isEmpty)
+		if !stamps.isEmpty {
+			let imageView: UIImageView = UIImageView(image: UIImage(named: stamps[indexPath.row].image))
+			cell.addSubview(imageView)
+			cell.clipsToBounds = true
+			imageView.contentMode = .scaleAspectFit
+			imageView.translatesAutoresizingMaskIntoConstraints = false
+			NSLayoutConstraint.activate([
+				imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
+				imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+				imageView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 0.9),
+				imageView.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 0.9)
+			])
+			cell.backgroundColor = .white
+			cell.layer.cornerRadius = 9
+		}
+
 		let selectedBGView: UIView = UIView(frame: cell.frame)
 		selectedBGView.layer.borderWidth = 3
 		selectedBGView.layer.borderColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
 		selectedBGView.backgroundColor = .white
 		selectedBGView.layer.cornerRadius = 9
 		cell.selectedBackgroundView = selectedBGView
-		
+		if indexPath.row == 0 {
+			
+		}
 		return cell
 	}
 	
@@ -147,9 +179,12 @@ extension StampListViewController: UICollectionViewDataSource {
 
 extension StampListViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		stamp.image = stampInformation[indexPath.row % 3][0] as? UIImage
-		stampTitleLabel.text = stampInformation[indexPath.row % 3][1] as? String
-		stampDescriptionLabel.text = stampInformation[indexPath.row % 3][2] as? String
+		stamp.image = UIImage(named: stamps[indexPath.row].image)
+		stampTitleLabel.text = stamps[indexPath.row].name
+		stampDescriptionLabel.text = stamps[indexPath.row].description
+		let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "\(indexPath.row + 1)/\(self.stamps.count)")
+		attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
+		self.achievementRatioLabel.attributedText = attributedString
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {

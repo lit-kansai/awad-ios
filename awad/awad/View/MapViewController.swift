@@ -12,21 +12,19 @@ class MapViewController: UIViewController {
 	
 	let mapView: MKMapView = MKMapView()
 	let titleHeader: Header = Header(imageName: "map")
-	let setDestinationButton: UIImageView = UIImageView(image: #imageLiteral(resourceName: "setDestinationButton"))
+	let setDestinationButton: Button = Button(image: #imageLiteral(resourceName: "setDestinationButton"))
 	let model: MapModel = MapModel()
 	var presenter: MapPresenterInput!
 	
 	var annotations: [MKAnnotation] = []
 	var overlays: [MKOverlay] = []
 	var currentSelectedAnnotationView: MKAnnotationView?
-	var isArrived: Bool = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.overrideUserInterfaceStyle = .light
 		self.setupMap()
-		self.setupView()
-		self.addConstraint()
-		self.presenter = MapPresenter(view: self, model: model, transitionRouterDelegate: self)
+		self.presenter = MapPresenter(view: self, model: model)
 		presenter?.viewDidLoad()
 		mapView.delegate = self
 		
@@ -37,7 +35,8 @@ class MapViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
-		UserLocationManager.shared.delegate = self
+		self.setupView()
+		self.addConstraint()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -51,17 +50,19 @@ class MapViewController: UIViewController {
 		}, completion: nil)
 	}
 	
-	@objc
-	func openCompassViewController() {
-		presenter?.transition()
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		setDestinationButton.layer.opacity = 0
+		titleHeader.resetForAnimation()
 	}
 	
 	@objc
-	func setDestination(_ sender: UITapGestureRecognizer) {
-		guard let currentSelectedAnnotationView = currentSelectedAnnotationView else {
-			return
-		}
-		presenter?.setDestination(currentSelectedAnnotationView.annotation!)
+	func setDestination() {
+//		guard let currentSelectedAnnotationView = currentSelectedAnnotationView else {
+//			return
+//		}
+//		presenter?.setDestination(currentSelectedAnnotationView.annotation!)
+		print("setDestination")
 	}
 }
 
@@ -72,8 +73,7 @@ extension MapViewController {
 //		 NOTE: リジェクトされるかもしれないコード達
 		setDestinationButton.contentMode = .scaleAspectFill
 		setDestinationButton.alpha = 0
-		setDestinationButton.isUserInteractionEnabled = true
-		setDestinationButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(setDestination(_:))))
+		setDestinationButton.addTarget(self, action: #selector(setDestination), for: .touchUpInside)
 	}
 	
 	func addConstraint() {
@@ -208,30 +208,11 @@ extension MapViewController: MKMapViewDelegate {
 		
 }
 
-extension MapViewController: UserLocationManagerDelegate {
-	
-	func locationDidUpdateToLocation(location: CLLocation) {
-		if UserLocationManager.shared.calcDistanceToDestination() < 100 && !isArrived {
-			isArrived = true
-			presenter?.transition()
-		}
-	}
-	
-	func locationDidUpdateHeading(newHeading: CLHeading) {
-	}
-}
-
 extension MapViewController: MapPresenterOutput {
 	func initMapAddition(_ addition: MapAddition) {
 		annotations = addition.annotations
 		overlays = addition.circles
 		mapView.addAnnotations(annotations)
 		mapView.addOverlays(overlays)
-	}
-}
-
-extension MapViewController: TransitionRouterDelegate {
-	func transition(to viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
-		present(viewController, animated: animated, completion: completion)
 	}
 }

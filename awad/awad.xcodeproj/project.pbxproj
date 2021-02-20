@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04034F4CE3B11D83298EB43D /* Pods_awad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C338C0C2380BE5F5BEB3D1EF /* Pods_awad.framework */; };
 		7130613B25C5344A00DF8041 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130613A25C5344A00DF8041 /* HomeViewController.swift */; };
 		7130613E25C534B500DF8041 /* StampListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130613D25C534B400DF8041 /* StampListViewController.swift */; };
 		7130614125C577A700DF8041 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130614025C577A700DF8041 /* MenuBar.swift */; };
@@ -22,6 +23,7 @@
 		7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13E2588C06F00D55D24 /* MapPresenter.swift */; };
 		71982538259258A90017E39D /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71982537259258A90017E39D /* Checkpoint.swift */; };
 		7198253C259332350017E39D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7198253B259332350017E39D /* Router.swift */; };
+		71B2A6B225E18E1B00CD276D /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */; };
 		71C28607257B8943000486A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28606257B8943000486A2 /* AppDelegate.swift */; };
 		71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28608257B8943000486A2 /* SceneDelegate.swift */; };
 		71C28610257B8946000486A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C2860F257B8946000486A2 /* Assets.xcassets */; };
@@ -32,10 +34,12 @@
 		71D2FFB925833FD400015D27 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D2FFB825833FD400015D27 /* Launch Screen.storyboard */; };
 		71F2BCDF2591FBEC003EBE65 /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 71F2BCDE2591FBEC003EBE65 /* location.json */; };
 		71F41E4925A432FA00457867 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F41E4825A432FA00457867 /* MissionViewController.swift */; };
-		71F42E19259787C800114BC0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F42E18259787C800114BC0 /* Location.swift */; };
+		71F42E19259787C800114BC0 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F42E18259787C800114BC0 /* UserLocationManager.swift */; };
+		71F7179325E02AB7002B57E4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71F7179225E02AB7002B57E4 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00C29AB437DCDD2F5100908D /* Pods-awad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awad.release.xcconfig"; path = "Target Support Files/Pods-awad/Pods-awad.release.xcconfig"; sourceTree = "<group>"; };
 		7130613A25C5344A00DF8041 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7130613D25C534B400DF8041 /* StampListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampListViewController.swift; sourceTree = "<group>"; };
 		7130614025C577A700DF8041 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 		7174F13E2588C06F00D55D24 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		71982537259258A90017E39D /* Checkpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		7198253B259332350017E39D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		71C28603257B8943000486A2 /* awad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C28606257B8943000486A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C28608257B8943000486A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +68,10 @@
 		71D2FFB825833FD400015D27 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		71F2BCDE2591FBEC003EBE65 /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
 		71F41E4825A432FA00457867 /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
-		71F42E18259787C800114BC0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		71F42E18259787C800114BC0 /* UserLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
+		71F7179225E02AB7002B57E4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C338C0C2380BE5F5BEB3D1EF /* Pods_awad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_awad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEDF624CA4C8AA50C7473140 /* Pods-awad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-awad.debug.xcconfig"; path = "Target Support Files/Pods-awad/Pods-awad.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,12 +79,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04034F4CE3B11D83298EB43D /* Pods_awad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33C3E7D6AC1A366A3BE316D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CEDF624CA4C8AA50C7473140 /* Pods-awad.debug.xcconfig */,
+				00C29AB437DCDD2F5100908D /* Pods-awad.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		400C3C73BDE99DED83812D0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C338C0C2380BE5F5BEB3D1EF /* Pods_awad.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7130614C25C91DDE00DF8041 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,8 +159,6 @@
 			children = (
 				71D2000F2585266100015D27 /* CompassModel.swift */,
 				7174F13B2588C05E00D55D24 /* MapModel.swift */,
-				71982537259258A90017E39D /* Checkpoint.swift */,
-				71F42E18259787C800114BC0 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +166,7 @@
 		71374C57257F0A94006105A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				71F7179225E02AB7002B57E4 /* GoogleService-Info.plist */,
 				71CDD23625DC121F00540A5E /* randomCircleLocation.json */,
 				71C2860F257B8946000486A2 /* Assets.xcassets */,
 				71F2BCDE2591FBEC003EBE65 /* location.json */,
@@ -165,6 +190,8 @@
 			children = (
 				71C28605257B8943000486A2 /* awad */,
 				71C28604257B8943000486A2 /* Products */,
+				33C3E7D6AC1A366A3BE316D1 /* Pods */,
+				400C3C73BDE99DED83812D0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +206,7 @@
 		71C28605257B8943000486A2 /* awad */ = {
 			isa = PBXGroup;
 			children = (
+				71F7179025E01903002B57E4 /* Module */,
 				7130615025C97F1800DF8041 /* Util */,
 				7130614C25C91DDE00DF8041 /* Fonts */,
 				7198253A259332270017E39D /* Router */,
@@ -191,6 +219,16 @@
 			path = awad;
 			sourceTree = "<group>";
 		};
+		71F7179025E01903002B57E4 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				71982537259258A90017E39D /* Checkpoint.swift */,
+				71F42E18259787C800114BC0 /* UserLocationManager.swift */,
+				71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,10 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71C28617257B8946000486A2 /* Build configuration list for PBXNativeTarget "awad" */;
 			buildPhases = (
+				63D03E7D68FDCBFC21F1B3FE /* [CP] Check Pods Manifest.lock */,
 				71C285FF257B8943000486A2 /* Sources */,
 				71C28600257B8943000486A2 /* Frameworks */,
 				71C28601257B8943000486A2 /* Resources */,
 				71374C4F257F04F6006105A2 /* ShellScript */,
+				B484DD66FE0B52F99F98E131 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,12 +295,35 @@
 				71F2BCDF2591FBEC003EBE65 /* location.json in Resources */,
 				716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */,
 				71CDD23725DC121F00540A5E /* randomCircleLocation.json in Resources */,
+				71F7179325E02AB7002B57E4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		63D03E7D68FDCBFC21F1B3FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-awad-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		71374C4F257F04F6006105A2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,6 +341,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		B484DD66FE0B52F99F98E131 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-awad/Pods-awad-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-awad/Pods-awad-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-awad/Pods-awad-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -288,7 +368,7 @@
 				7130615625C9A1F500DF8041 /* UIView.swift in Sources */,
 				7130614425C6DF0300DF8041 /* Header.swift in Sources */,
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
-				71F42E19259787C800114BC0 /* Location.swift in Sources */,
+				71F42E19259787C800114BC0 /* UserLocationManager.swift in Sources */,
 				7130613E25C534B500DF8041 /* StampListViewController.swift in Sources */,
 				7130614725C6E78200DF8041 /* Background.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
@@ -300,6 +380,7 @@
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
 				7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */,
+				71B2A6B225E18E1B00CD276D /* FireStoreManager.swift in Sources */,
 				71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */,
 				71D200102585266100015D27 /* CompassModel.swift in Sources */,
 				7130613B25C5344A00DF8041 /* HomeViewController.swift in Sources */,
@@ -429,6 +510,7 @@
 		};
 		71C28618257B8946000486A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEDF624CA4C8AA50C7473140 /* Pods-awad.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -448,6 +530,7 @@
 		};
 		71C28619257B8946000486A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00C29AB437DCDD2F5100908D /* Pods-awad.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

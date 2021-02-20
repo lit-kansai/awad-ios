@@ -12,14 +12,13 @@ class MissionViewController: UIViewController {
 	let titleHeader: Header = Header(imageName: "mission")
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "missionBackground")
 	let missionBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "missionContentBackground"))
-	let doneButton: UIImageView = UIImageView(image: #imageLiteral(resourceName: "doneButton"))
-	let cancelButton: UIImageView = UIImageView(image: #imageLiteral(resourceName: "cancelButton"))
+	let doneButton: Button = Button(image: #imageLiteral(resourceName: "doneButton"))
+	let cancelButton: Button = Button(image: #imageLiteral(resourceName: "cancelButton"))
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.setupView()
 		self.addConstraints()
-		
     }
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +33,16 @@ class MissionViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 	 }
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		titleHeader.resetForAnimation()
+	}
 
+	@objc
+	func completeMission() {
+		self.navigationController?.pushViewController(HomeViewController(), animated: true)
+	}
 }
 
 extension MissionViewController {
@@ -49,6 +57,7 @@ extension MissionViewController {
 		doneButton.contentMode = .scaleAspectFill
 		doneButton.frame.size = CGSize(width: 67, height: 67)
 		cancelButton.frame.size = CGSize(width: 67, height: 67)
+		doneButton.addTarget(self, action: #selector(completeMission), for: .touchUpInside)
 	}
 	
 	func addConstraints() {

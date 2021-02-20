@@ -32,10 +32,12 @@ class Header: UIImageView {
 	}
 	
 	func resetForAnimation() {
+		self.layer.opacity = 0
 		self.constraint?.constant = -self.frame.width
 	}
 	
 	func animate() {
+		self.layer.opacity = 1
 		self.constraint?.constant = -15
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.parent!.layoutIfNeeded()

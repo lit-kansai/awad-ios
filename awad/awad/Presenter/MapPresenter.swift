@@ -10,7 +10,7 @@ import MapKit
 
 protocol MapPresenterInput {
 	func viewDidLoad()
-	func transition()
+//	func transition()
 	func setDestination(_ destination: MKAnnotation)
 }
 
@@ -22,13 +22,11 @@ final class MapPresenter: MapPresenterInput {
 	
 	private weak var view: MapPresenterOutput!
 	private var model: MapModelInput
-	private var transitionRouter: TransitionRouter?
 	private(set) var currentDestination: MKAnnotation?
 	
-	init(view: MapPresenterOutput, model: MapModelInput, transitionRouterDelegate: TransitionRouterDelegate) {
+	init(view: MapPresenterOutput, model: MapModelInput) {
 		self.view = view
 		self.model = model
-		self.transitionRouter = TransitionRouter(delegate: transitionRouterDelegate)
 	}
 	
 	func viewDidLoad() {
@@ -36,9 +34,9 @@ final class MapPresenter: MapPresenterInput {
 		view.initMapAddition(mapAddition)
 	}
 	
-	func transition() {
-		transitionRouter?.transition()
-	}
+//	func transition() {
+//		transitionRouter?.transition()
+//	}
 	
 	func setDestination(_ destination: MKAnnotation) {
 		currentDestination = destination

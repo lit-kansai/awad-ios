@@ -14,6 +14,7 @@ protocol TransitionRouterDelegate: class {
 class TransitionRouter {
 	
 	private weak var transitionRouterDelegate: TransitionRouterDelegate?
+//	static let shared = TransitionRouter()
 	
 	init(delegate transitionRouterDelegate: TransitionRouterDelegate) {
 		self.transitionRouterDelegate = transitionRouterDelegate
