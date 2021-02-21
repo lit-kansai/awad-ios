@@ -16,9 +16,9 @@ class MapViewController: UIViewController {
 	let model: MapModel = MapModel()
 	var presenter: MapPresenterInput!
 	
-	var annotations: [MKAnnotation] = []
+	var annotations: [Checkpoint] = []
 	var overlays: [MKOverlay] = []
-	var currentSelectedAnnotationView: MKAnnotationView?
+	var currentSelectedAnnotation: Checkpoint?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,9 +27,6 @@ class MapViewController: UIViewController {
 		self.presenter = MapPresenter(view: self, model: model)
 		presenter?.viewDidLoad()
 		mapView.delegate = self
-		
-		let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
-		UserLocationManager.shared.setDestinationLocation(targetLocation)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -58,62 +55,11 @@ class MapViewController: UIViewController {
 	
 	@objc
 	func setDestination() {
-//		guard let currentSelectedAnnotationView = currentSelectedAnnotationView else {
-//			return
-//		}
-//		presenter?.setDestination(currentSelectedAnnotationView.annotation!)
+		guard let currentSelectedAnnotation = currentSelectedAnnotation else {
+			return
+		}
+		UserLocationManager.shared.setDestination(currentSelectedAnnotation)
 		print("setDestination")
-	}
-}
-
-extension MapViewController {
-	func setupView() {
-		titleHeader.activateConstraint(parent: view)
-		view.addSubview(setDestinationButton)
-//		 NOTE: リジェクトされるかもしれないコード達
-		setDestinationButton.contentMode = .scaleAspectFill
-		setDestinationButton.alpha = 0
-		setDestinationButton.addTarget(self, action: #selector(setDestination), for: .touchUpInside)
-	}
-	
-	func addConstraint() {
-		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			setDestinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
-			setDestinationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
-			setDestinationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-		])
-		
-		mapView.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			mapView.widthAnchor.constraint(equalTo: view.widthAnchor),
-			mapView.heightAnchor.constraint(equalTo: view.heightAnchor)
-		])
-	}
-	
-	func setupMap() {
-		let AWAJISHIMA_CENTER_LATITUDE: Double = 34.325_7
-		let AWAJISHIMA_CENTER_LONGITUDE: Double = 134.813_1
-		let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(AWAJISHIMA_CENTER_LATITUDE, AWAJISHIMA_CENTER_LONGITUDE)
-		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
-		mapView.isRotateEnabled = false
-		mapView.setRegion(region, animated: false)
-		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
-		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
-		mapView.setCameraZoomRange(zoomRange, animated: false)
-		mapView.showsBuildings = false
-		mapView.showsTraffic = false
-		mapView.mapType = .mutedStandard
-		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
-		view.addSubview(mapView)
-	}
-	
-	func removeUnnecessaryContents() {
-		let legalLabel: UIView = mapView.subviews[1]
-		legalLabel.alpha = 0
-		let appleIconLabel: UIView = mapView.subviews[2]
-		appleIconLabel.alpha = 0
 	}
 }
 
@@ -187,7 +133,7 @@ extension MapViewController: MKMapViewDelegate {
 	}
 	
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-		currentSelectedAnnotationView = view
+		currentSelectedAnnotation = view.annotation as? Checkpoint
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
 			mapView.view(for: annotation)?.alpha = 0.7
@@ -200,7 +146,6 @@ extension MapViewController: MKMapViewDelegate {
 		DispatchQueue.main.async {
 			mapView.setRegion(region, animated: true)
 			view.alpha = 1
-			
 		}
 		MenuBar.shared.closeMenuBar()
 		setDestinationButton.alpha = 1
@@ -214,5 +159,56 @@ extension MapViewController: MapPresenterOutput {
 		overlays = addition.circles
 		mapView.addAnnotations(annotations)
 		mapView.addOverlays(overlays)
+	}
+}
+
+extension MapViewController {
+	func setupView() {
+		titleHeader.activateConstraint(parent: view)
+		view.addSubview(setDestinationButton)
+//		 NOTE: リジェクトされるかもしれないコード達
+		setDestinationButton.contentMode = .scaleAspectFill
+		setDestinationButton.alpha = 0
+		setDestinationButton.addTarget(self, action: #selector(setDestination), for: .touchUpInside)
+	}
+	
+	func addConstraint() {
+		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			setDestinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
+			setDestinationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
+			setDestinationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+		])
+		
+		mapView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			mapView.widthAnchor.constraint(equalTo: view.widthAnchor),
+			mapView.heightAnchor.constraint(equalTo: view.heightAnchor)
+		])
+	}
+	
+	func setupMap() {
+		let AWAJISHIMA_CENTER_LATITUDE: Double = 34.325_7
+		let AWAJISHIMA_CENTER_LONGITUDE: Double = 134.813_1
+		let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(AWAJISHIMA_CENTER_LATITUDE, AWAJISHIMA_CENTER_LONGITUDE)
+		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
+		mapView.isRotateEnabled = false
+		mapView.setRegion(region, animated: false)
+		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
+		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
+		mapView.setCameraZoomRange(zoomRange, animated: false)
+		mapView.showsBuildings = false
+		mapView.showsTraffic = false
+		mapView.mapType = .mutedStandard
+		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
+		view.addSubview(mapView)
+	}
+	
+	func removeUnnecessaryContents() {
+		let legalLabel: UIView = mapView.subviews[1]
+		legalLabel.alpha = 0
+		let appleIconLabel: UIView = mapView.subviews[2]
+		appleIconLabel.alpha = 0
 	}
 }

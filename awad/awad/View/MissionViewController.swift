@@ -14,6 +14,7 @@ class MissionViewController: UIViewController {
 	let missionBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "missionContentBackground"))
 	let doneButton: Button = Button(image: #imageLiteral(resourceName: "doneButton"))
 	let cancelButton: Button = Button(image: #imageLiteral(resourceName: "cancelButton"))
+	let missionLabel: UILabel = UILabel()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class MissionViewController: UIViewController {
 	@objc
 	func completeMission() {
 		self.navigationController?.pushViewController(HomeViewController(), animated: true)
+		UserLocationManager.shared.resetDestination()
 	}
 }
 
@@ -52,7 +54,10 @@ extension MissionViewController {
 		view.addSubview(missionBackground)
 		view.addSubview(doneButton)
 		view.addSubview(cancelButton)
-		
+		view.addSubview(missionLabel)
+		missionLabel.text = UserLocationManager.shared.currentDestinationInformation?.mission
+		missionLabel.numberOfLines = 0
+		missionLabel.font = UIFont(name: "Keifont", size: 20)
 		missionBackground.contentMode = .scaleAspectFill
 		doneButton.contentMode = .scaleAspectFill
 		doneButton.frame.size = CGSize(width: 67, height: 67)
@@ -64,10 +69,11 @@ extension MissionViewController {
 		missionBackground.translatesAutoresizingMaskIntoConstraints = false
 		doneButton.translatesAutoresizingMaskIntoConstraints = false
 		cancelButton.translatesAutoresizingMaskIntoConstraints = false
+		missionLabel.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
 			missionBackground.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.85),
-			missionBackground.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+			missionBackground.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
 			missionBackground.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			missionBackground.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.3),
 			
@@ -75,7 +81,12 @@ extension MissionViewController {
 			doneButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 30),
 			
 			cancelButton.topAnchor.constraint(equalTo: missionBackground.bottomAnchor, constant: 40),
-			cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -30)
+			cancelButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -30),
+			
+			missionLabel.centerXAnchor.constraint(equalTo: missionBackground.centerXAnchor),
+			missionLabel.centerYAnchor.constraint(equalTo: missionBackground.centerYAnchor, constant: -50),
+			missionLabel.widthAnchor.constraint(equalTo: missionBackground.widthAnchor, multiplier: 0.8),
+			missionLabel.heightAnchor.constraint(equalTo: missionBackground.heightAnchor, multiplier: 0.7)
 		])
 	}
 }

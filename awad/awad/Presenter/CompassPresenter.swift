@@ -15,7 +15,7 @@ protocol CompassPresenterInput {
 
 protocol CompassPresenterOutput: AnyObject {
 	func changeNeedleDirection(radian: Double)
-	func changeCheckpointDistance(distance: Double)
+	func changeCheckpointDistanceLabel(distance: Int)
 }
 
 final class CompassPresenter: CompassPresenterInput {
@@ -34,8 +34,8 @@ final class CompassPresenter: CompassPresenterInput {
 	}
 	
 	func updateCheckpointDistance() {
-		let distance: Double = UserLocationManager.shared.calcDistanceToDestination()
-		view.changeCheckpointDistance(distance: distance)
+		let distance: Int = UserLocationManager.shared.calcDistanceToDestination()
+		view.changeCheckpointDistanceLabel(distance: distance)
 	}
 	
 }

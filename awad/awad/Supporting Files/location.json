@@ -1,380 +1,464 @@
 [
 {
-	"id": "1",
-	"name": "明石海峡大橋撮影スポット",
-	"category": "展望台",
-	"latitude": "34.58420240007358",
-	"longitude": "135.01701524476042",
-	"description": "",
-	"mission": "一発ギャグひとりひとつやれ"
+    "id": "1",
+    "name": "明石海峡大橋撮影スポット",
+    "category": "展望台",
+	"latitude": "34.58412",
+	"longitude": "135.01757",
+    "mission": "一発ギャグひとりひとつやれ",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "2",
-	"name": "兵庫県立公園あわじ花さじき",
-	"category": "公園",
-	"latitude": "34.55280410311003",
-	"longitude": "134.98149478306215",
-	"description": "",
-	"mission": "家でお花を育てている人を5人探せ！"
+    "id": "2",
+    "name": "兵庫県立公園あわじ花さじき",
+    "category": "公園",
+	"latitude": "34.55355",
+	"longitude": "134.97802",
+    "mission": "家でお花を育てている人を5人探せ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "3",
-	"name": "淡路島 国営明石海峡公園 翼港",
-	"category": "公園",
-	"latitude": "34.56184356599998",
-	"longitude": "135.0219735848709",
-	"description": "",
-	"mission": "夢ピアノで猫ふんじゃったを演奏しろ！"
+    "id": "3",
+    "name": "淡路島 国営明石海峡公園 翼港",
+    "category": "公園",
+	"latitude": "34.55719",
+	"longitude": "135.01242",
+    "mission": "夢ピアノで猫ふんじゃったを演奏しろ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "4",
-	"name": "伊弉諾神宮 大鳥居",
-	"category": "神社仏閣",
-	"latitude": "34.46916484418319",
-	"longitude": "134.8419191616788",
-	"description": "",
-	"mission": "メンターになった理由を全員1分以内に言い切れ！(神の前では嘘つかないよね)"
+    "id": "4",
+    "name": "伊弉諾神宮 大鳥居",
+    "category": "神社仏閣",
+	"latitude": "34.45992",
+	"longitude": "134.85249",
+    "mission": "メンターになった理由を全員1分以内に言い切れ！(神の前では嘘つかないよね)",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "5",
-	"name": "洲本城展望台",
-	"category": "展望台",
-	"latitude": "34.340212287515705",
-	"longitude": "134.90374336326957",
-	"description": "",
-	"mission": "グループ内の秘密を作れ"
+    "id": "5",
+    "name": "洲本城展望台",
+    "category": "展望台",
+	"latitude": "34.33785",
+	"longitude": "134.90325",
+    "mission": "グループ内の秘密を作れ",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "6",
-	"name": "慶野松原海水浴場",
-	"category": "砂浜",
-	"latitude": "34.345372821052074",
-	"longitude": "134.735875740681",
-	"description": "",
-	"mission": "全員のキャッチコピーを作る"
+    "id": "6",
+    "name": "慶野松原海水浴場",
+    "category": "砂浜",
+	"latitude": "34.33909",
+	"longitude": "134.73413",
+    "mission": "全員のキャッチコピーを作る",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "7",
-	"name": "ニジゲンノモリ 水の遊び場",
-	"category": "公園",
-	"latitude": "34.57851678317928",
-	"longitude": "135.00287490888357",
-	"description": "",
-	"mission": "好きな色を聞いてテックのロゴのカラーが揃うまで街角インタビューをしろ！"
+    "id": "7",
+    "name": "ニジゲンノモリ 水の遊び場",
+    "category": "公園",
+	"latitude": "34.57391",
+	"longitude": "135.00154",
+    "mission": "好きな色を聞いてテックのロゴのカラーが揃うまで街角インタビューをしろ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "8",
-	"name": "淡路島公園 展望広場",
-	"category": "公園",
-	"latitude": "34.570135049624064",
-	"longitude": "135.02170919307756",
-	"description": "",
-	"mission": "ひとりひとつ、季語をしっかり入れて俳句を読みなさい"
+    "id": "8",
+    "name": "淡路島公園 展望広場",
+    "category": "公園",
+	"latitude": "34.57368",
+	"longitude": "135.0121",
+    "mission": "ひとりひとつ、季語をしっかり入れて俳句を読みなさい",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "9",
-	"name": "うずの丘 大鳴門橋記念館",
-	"category": "施設",
-	"latitude": "34.25527375648906",
-	"longitude": "134.6804845375549",
-	"description": "",
-	"mission": "たまねぎおのポーズで写真を撮って#おっタマげ淡路島 で投稿せよ！"
+    "id": "9",
+    "name": "うずの丘 大鳴門橋記念館",
+    "category": "施設",
+	"latitude": "34.25475",
+	 "longitude": "134.68468",
+    "mission": "たまねぎおのポーズで写真を撮って#おっタマげ淡路島 で投稿せよ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "10",
-	"name": "道の駅 あわじ",
-	"category": "飲食店",
-	"latitude": "34.59632784886166",
-	"longitude": "134.9994887816117",
-	"description": "",
-	"mission": "全員口いっぱいに何かを詰め込んで自撮りしろ！"
+    "id": "10",
+    "name": "道の駅 あわじ",
+    "category": "飲食店",
+	"latitude": "34.60155",
+	"longitude": "135.00852",
+    "mission": "全員口いっぱいに何かを詰め込んで自撮りしろ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "11",
-	"name": "美湯松帆の郷",
-	"category": "飲食店",
-	"latitude": "34.60569054736421",
-	"longitude": "135.00321789163326",
-	"description": "",
-	"mission": "ここにいないメンターのためにお土産を1個買え"
+    "id": "11",
+    "name": "美湯松帆の郷",
+    "category": "飲食店",
+	"latitude": "34.60166",
+	"longitude": "135.00111",
+    "mission": "ここにいないメンターのためにお土産を1個買え",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "12",
-	"name": "おのころ島神社",
-	"category": "神社仏閣",
-	"latitude": "34.30765091241393",
-	"longitude": "134.7691417459904",
-	"description": "",
-	"mission": "鳥居の前で鳥居のモノマネをしよう"
+    "id": "12",
+    "name": "おのころ島神社",
+    "category": "神社仏閣",
+	"latitude": "34.31237",
+	"longitude": "134.77115",
+    "mission": "鳥居の前で鳥居のモノマネをしよう",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "13",
-	"name": "瀬戸内少年野球団 文学碑",
-	"category": "モニュメント",
-	"latitude": "34.413176086355044",
-	"longitude": "134.7991816485801",
-	"description": "",
-	"mission": "球児と同じポーズで撮った写真をTwitterにアップロードせよ！"
+    "id": "13",
+    "name": "瀬戸内少年野球団 文学碑",
+    "category": "モニュメント",
+	"latitude": "34.41581",
+	"longitude": "134.79186",
+    "mission": "球児と同じポーズで撮った写真をTwitterにアップロードせよ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "14",
-	"name": "灘黒岩水仙郷",
-	"category": "公園",
-	"latitude": "34.2275070145858",
-	"longitude": "134.83017487404945",
-	"description": "",
-	"mission": "最後に水仙が来るようにしりとりを2周続けよう"
+    "id": "14",
+    "name": "灘黒岩水仙郷",
+    "category": "公園",
+	"latitude": "34.22565",
+	 "longitude": "134.83545",
+    "mission": "最後に水仙が来るようにしりとりを2周続けよう",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "15",
-	"name": "生石岬展望台",
-	"category": "展望台",
-	"latitude": "34.273149750965665",
-	"longitude": "134.9571631897774",
-	"description": "",
-	"mission": "推しを7分間語れ"
+    "id": "15",
+    "name": "生石岬展望台",
+    "category": "展望台",
+	"latitude": "34.27165",
+	"longitude": "134.95218",
+    "mission": "推しを7分間語れ",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "16",
-	"name": "北淡震災記念公園 モニュメント",
-	"category": "モニュメント",
-	"latitude": "34.549144322666656",
-	"longitude": "134.9415678836698",
-	"description": "",
-	"mission": "100均で購入した粘土以外の素材だけでモニュメントを再現しろ！"
+    "id": "16",
+    "name": "北淡震災記念公園 モニュメント",
+    "category": "モニュメント",
+	"latitude": "34.5506",
+	"longitude": "134.93805",
+    "mission": "100均で購入した粘土以外の素材だけでモニュメントを再現しろ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "17",
-	"name": "パルシェ香りの館",
-	"category": "施設",
-	"latitude": "34.48700465139384",
-	"longitude": "134.86005963435443",
-	"description": "",
-	"mission": "この場所にふさわしい歌を全員で合唱"
+    "id": "17",
+    "name": "パルシェ香りの館",
+    "category": "施設",
+	"latitude": "34.48203",
+	"longitude": "134.87337",
+    "mission": "この場所にふさわしい歌を全員で合唱",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "18",
-	"name": "住吉神社",
-	"category": "神社仏閣",
-	"latitude": "34.34086978330078",
-	"longitude": "134.91404995495273",
-	"description": "",
-	"mission": "即興で一番左の人から右の人にお手紙を読む"
+    "id": "18",
+    "name": "住吉神社",
+    "category": "神社仏閣",
+	"latitude": "34.33115",
+	"longitude": "134.91278",
+    "mission": "即興で一番左の人から右の人にお手紙を読む",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "19",
-	"name": "大浜海水浴場",
-	"category": "砂浜",
-	"latitude": "34.335693617639656",
-	"longitude": "134.90310259233044",
-	"description": "",
-	"mission": "反復横跳びを全員で500回！"
+    "id": "19",
+    "name": "大浜海水浴場",
+    "category": "砂浜",
+	"latitude": "34.34193",
+	"longitude": "134.90254",
+    "mission": "反復横跳びを全員で500回！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "20",
-	"name": "道の駅 福良",
-	"category": "飲食店",
-	"latitude": "34.25881685584124",
-	"longitude": "134.71692572948496",
-	"description": "",
-	"mission": "足湯にちなんで一発ギャグをどうぞ！"
+    "id": "20",
+    "name": "道の駅 福良",
+    "category": "飲食店",
+	"latitude": "34.25563",
+	"longitude": "134.71925",
+    "mission": "足湯にちなんで一発ギャグをどうぞ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "21",
-	"name": "絵島",
-	"category": "展望台",
-	"latitude": "34.593407351350685",
-	"longitude": "135.02501376121393",
-	"description": "",
-	"mission": "公衆電話を見つけろ！！"
+    "id": "21",
+    "name": "絵島",
+    "category": "展望台",
+	"latitude": "34.58981",
+	"longitude": "135.02155",
+    "mission": "公衆電話を見つけろ！！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "22",
-	"name": "世界平和大観音像",
-	"category": "神社仏閣",
-	"latitude": "34.50062655802374",
-	"longitude": "134.96908876806637",
-	"description": "",
-	"mission": "もうすぐなくなるこの像をメインに一発撮りでMVを撮ろう！"
+    "id": "22",
+    "name": "世界平和大観音像",
+    "category": "神社仏閣",
+	"latitude": "34.50292",
+	"longitude": "134.97687",
+    "mission": "もうすぐなくなるこの像をメインに一発撮りでMVを撮ろう！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "23",
-	"name": "江埼灯台",
-	"category": "モニュメント",
-	"latitude": "34.60694107091537",
-	"longitude": "134.99393252027392",
-	"description": "",
-	"mission": "恋する灯台の前で愛を誓え♡"
+    "id": "23",
+    "name": "江埼灯台",
+    "category": "モニュメント",
+	"latitude": "34.60698",
+	"longitude": "134.99344",
+    "mission": "恋する灯台の前で愛を誓え♡",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "24",
-	"name": "岩屋海水浴場",
-	"category": "砂浜",
-	"latitude": "34.5910315983483",
-	"longitude": "135.03224041325953",
-	"description": "",
-	"mission": "ワンナイト人狼を1回やろう！"
+    "id": "24",
+    "name": "岩屋海水浴場",
+    "category": "砂浜",
+	"latitude": "34.58712",
+	"longitude": "135.02296",
+    "mission": "ワンナイト人狼を1回やろう！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "25",
-	"name": "慶野松原プロポーズ街道",
-	"category": "モニュメント",
-	"latitude": "34.34464053481538",
-	"longitude": "134.73742504883296",
-	"description": "",
-	"mission": "プロポーズとかけてなんと解く？その心は？"
+    "id": "25",
+    "name": "慶野松原プロポーズ街道",
+    "category": "モニュメント",
+	"latitude": "34.33927",
+	"longitude": "134.73569",
+    "mission": "プロポーズとかけてなんと解く？その心は？",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "26",
-	"name": "阿万海岸海水浴場",
-	"category": "砂浜",
-	"latitude": "34.213434423248486",
-	"longitude": "134.7281313484299",
-	"description": "",
-	"mission": "ゴミ拾い10個"
+    "id": "26",
+    "name": "阿万海岸海水浴場",
+    "category": "砂浜",
+	"latitude": "34.20994",
+	"longitude": "134.72631",
+    "mission": "ゴミ拾い10個",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "27",
-	"name": "岩上神社",
-	"category": "神社仏閣",
-	"latitude": "34.4343447707162",
-	"longitude": "134.83224896829637",
-	"description": "",
-	"mission": "社員さんや関西の先輩方の伝説を語り継ごう…"
+    "id": "27",
+    "name": "岩上神社",
+    "category": "神社仏閣",
+	"latitude": "34.44039",
+	"longitude": "134.84173",
+    "mission": "社員さんや関西の先輩方の伝説を語り継ごう…",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "28",
-	"name": "若人の広場公園",
-	"category": "公園",
-	"latitude": "34.23408390618438",
-	"longitude": "134.7079693905726",
-	"description": "",
-	"mission": "クイズに答えよ！「永遠の灯」は、誰によって採火されたでしょうか？ここはメンターの検索力が試される！"
+    "id": "28",
+    "name": "若人の広場公園",
+    "category": "公園",
+	"latitude": "34.2334",
+	"longitude": "134.71206",
+    "mission": "クイズに答えよ！「永遠の灯」は、誰によって採火されたでしょうか？ここはメンターの検索力が試される！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "29",
-	"name": "北富士ダム",
-	"category": "公園",
-	"latitude": "34.274742022579886",
-	"longitude": "134.82552423929278",
-	"description": "",
-	"mission": "ダムを入れた川柳をひとりひとつ作れ！"
+    "id": "29",
+    "name": "北富士ダム",
+    "category": "公園",
+	"latitude": "34.27814",
+	"longitude": "134.81805",
+    "mission": "ダムを入れた川柳をひとりひとつ作れ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "30",
-	"name": "ドラゴンクエスト記念碑",
-	"category": "モニュメント",
-	"latitude": "34.34257184564082",
-	"longitude": "134.89153320067726",
-	"description": "",
-	"mission": "(大喜利)「このスライム育ちよさそうだな〜」どんなスライム？"
+    "id": "30",
+    "name": "ドラゴンクエスト記念碑",
+    "category": "モニュメント",
+	"latitude": "34.34531",
+	"longitude": "134.89473",
+    "mission": "(大喜利)「このスライム育ちよさそうだな〜」どんなスライム？",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "31",
-	"name": "玉葱直売所",
-	"category": "飲食店",
-	"latitude": "34.53341362862972",
-	"longitude": "134.99283590664416",
-	"description": "",
-	"mission": "玉ねぎでモノボケ！"
+    "id": "31",
+    "name": "玉葱直売所",
+    "category": "飲食店",
+	"latitude": "34.5374",
+	"longitude": "134.99082",
+    "mission": "玉ねぎでモノボケ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "32",
-	"name": "新五色浜海水浴場",
-	"category": "砂浜",
-	"latitude": "34.378122744184104",
-	"longitude": "134.74735159249192",
-	"description": "",
-	"mission": "ストップモーション動画を撮影しよう！"
+    "id": "32",
+    "name": "新五色浜海水浴場",
+    "category": "砂浜",
+	"latitude": "34.37866",
+	"longitude": "134.75234",
+    "mission": "ストップモーション動画を撮影しよう！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "33",
-	"name": "常隆寺",
-	"category": "神社仏閣",
-	"latitude": "34.51373215120481",
-	"longitude": "134.91530804184757",
-	"description": "",
-	"mission": "目に見えるものだけでしりとり3周分"
+    "id": "33",
+    "name": "常隆寺",
+    "category": "神社仏閣",
+	"latitude": "34.50868",
+	"longitude": "134.9248",
+    "mission": "目に見えるものだけでしりとり3周分",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "34",
-	"name": "柏原山 南展望台",
-	"category": "展望台",
-	"latitude": "34.27580354680163",
-	"longitude": "134.89291385780194",
-	"description": "",
-	"mission": "今すぐここで計算機をコーディングしなさい！"
+    "id": "34",
+    "name": "柏原山 南展望台",
+    "category": "展望台",
+	"latitude": "34.27957",
+	"longitude": "134.89863",
+    "mission": "今すぐここで計算機をコーディングしなさい！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "35",
-	"name": "おっ玉葱",
-	"category": "モニュメント",
-	"latitude": "34.252929239433236",
-	"longitude": "134.68911234065862",
-	"description": "",
-	"mission": "玉ねぎとグループ内の誰かの顔写真を合成してInstagramストーリーにアップロードせよ！"
+    "id": "35",
+    "name": "おっ玉葱",
+    "category": "モニュメント",
+	"latitude": "34.25478",
+	"longitude": "134.68469",
+    "mission": "玉ねぎとグループ内の誰かの顔写真を合成してInstagramストーリーにアップロードせよ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "36",
-	"name": "百段苑",
-	"category": "公園",
-	"latitude": "34.558623804595",
-	"longitude": "135.0130710464419",
-	"description": "",
-	"mission": "アルプスいちまんじゃく40秒以内にノーミスで"
+    "id": "36",
+    "name": "百段苑",
+    "category": "公園",
+	"latitude": "34.56087",
+	"longitude": "135.00689",
+    "mission": "アルプスいちまんじゃく40秒以内にノーミスで",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "37",
-	"name": "supremeの壁",
-	"category": "モニュメント",
-	"latitude": "34.46824982087222",
-	"longitude": "134.81491144338312",
-	"description": "",
-	"mission": "逆再生動画を撮ろう！"
+    "id": "37",
+    "name": "supremeの壁",
+    "category": "モニュメント",
+	"latitude": "34.46576",
+	"longitude": "134.81808",
+    "mission": "逆再生動画を撮ろう！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "38",
-	"name": "シーアイガ海月",
-	"category": "モニュメント",
-	"latitude": "34.38793220303109",
-	"longitude": "134.8934199012282",
-	"description": "",
-	"mission": "AWAJIの文字と全員の顔だけが見えている写真にポエムを添えてSlackにアップロードせよ！"
+    "id": "38",
+    "name": "シーアイガ海月",
+    "category": "モニュメント",
+	"latitude": "34.39139",
+	"longitude": "134.89478",
+    "mission": "AWAJIの文字と全員の顔だけが見えている写真にポエムを添えてSlackにアップロードせよ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "39",
-	"name": "ハシズメウェーブ",
-	"category": "モニュメント",
-	"latitude": "34.41163149050797",
-	"longitude": "134.78126365830337",
-	"description": "",
-	"mission": "逆再生したら「勝手にいなくならない」になるような音声を録ろう！"
+    "id": "39",
+    "name": "ハシズメウェーブ",
+    "category": "モニュメント",
+	"latitude": "34.421",
+	 "longitude": "134.78582",
+    "mission": "逆再生したら「勝手にいなくならない」になるような音声を録ろう！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "40",
-	"name": "のじまスコーラ",
-	"category": "施設",
-	"latitude": "34.5662367448485",
-	"longitude": "134.94285299787097",
-	"description": "",
-	"mission": "1番売れてる商品を当てろ！どこの売店でもOK！"
+    "id": "40",
+    "name": "のじまスコーラ",
+    "category": "施設",
+	"latitude": "34.56131",
+	"longitude": "134.94985",
+    "mission": "1番売れてる商品を当てろ！どこの売店でもOK！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "41",
-	"name": "淡路島牧場",
-	"category": "施設",
-	"latitude": "34.292423366776916",
-	"longitude": "134.79533413462752",
-	"description": "",
-	"mission": "ソフトクリームを食レポしろ！"
+    "id": "41",
+    "name": "淡路島牧場",
+    "category": "施設",
+	"latitude": "34.29726",
+	"longitude": "134.79532",
+    "mission": "ソフトクリームを食レポしろ！",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ,{
-	"id": "42",
-	"name": "岩戸神社",
-	"category": "神社仏閣",
-	"latitude": "34.36429818579924",
-	"longitude": "134.84239546358074",
-	"description": "",
-	"mission": "誰かひとりが今、お守り買ってきて！みんなはそのお守りをコミュニケーション取らずとも当てられるよね？"
+    "id": "42",
+    "name": "岩戸神社",
+    "category": "神社仏閣",
+	"latitude": "34.3565",
+	"longitude": "134.83875",
+    "mission": "誰かひとりが今、お守り買ってきて！みんなはそのお守りをコミュニケーション取らずとも当てられるよね？",
+    "description": "description",
+    "stampName": "テストスタンプ",
+    "stampImageName": "test"
 }
 ]

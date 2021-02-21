@@ -72,6 +72,7 @@ class StampListViewController: UIViewController {
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
+		stamps = []
 	}
 }
 
@@ -146,7 +147,6 @@ extension StampListViewController: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-		print(stamps.isEmpty)
 		if !stamps.isEmpty {
 			let imageView: UIImageView = UIImageView(image: UIImage(named: stamps[indexPath.row].image))
 			cell.addSubview(imageView)

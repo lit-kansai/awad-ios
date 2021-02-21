@@ -16,9 +16,11 @@ protocol UserLocationManagerDelegate: class {
 class UserLocationManager: NSObject {
 	let locationManager: CLLocationManager = CLLocationManager()
 	// 目的地
-	private(set) var destinationLocation: CLLocation?
+	private(set) var currentDestinationInformation: Checkpoint?
+	private(set) var location: CLLocation?
+	var isArrived: Bool = false
 	// 目的地までの距離
-	private(set) var distance = 0
+	var distance: Int = 0
 	
 	private(set) var originDegree: Double = 0
 	private(set) var currentDegree: Double = 0
@@ -36,8 +38,20 @@ class UserLocationManager: NSObject {
 		return angle * Double.pi / 180
 	}
 	
-	func setDestinationLocation(_ location: CLLocation) {
-		destinationLocation = location
+	func setDestination(_ destination: Checkpoint) {
+		self.currentDestinationInformation = destination
+		let location: CLLocation = CLLocation(latitude: destination.coordinate.latitude, longitude: destination.coordinate.longitude)
+		self.setLocation(location)
+	}
+	
+	func setLocation(_ location: CLLocation) {
+		self.location = location
+	}
+	
+	func resetDestination() {
+		self.currentDestinationInformation = nil
+		self.location = nil
+		self.isArrived = false
 	}
 	
 	// 目的地まで角度を計算
@@ -46,10 +60,10 @@ class UserLocationManager: NSObject {
 		else { return }
 		let currentLatitude: Double = toRadian(userLocation.coordinate.latitude)
 		let currentLongitude: Double = toRadian(userLocation.coordinate.longitude)
-		guard let destinationLocation = destinationLocation
+		guard let destination = location
 		else { return }
-		let targetLatitude: Double = toRadian(destinationLocation.coordinate.latitude)
-		let targetLongitude: Double = toRadian(destinationLocation.coordinate.longitude)
+		let targetLatitude: Double = toRadian(destination.coordinate.latitude)
+		let targetLongitude: Double = toRadian(destination.coordinate.longitude)
 		let difLongitude: Double = targetLongitude - currentLongitude
 		let y: Double = sin(difLongitude)
 		let x: Double = cos(currentLatitude) * tan(targetLatitude) - sin(currentLatitude) * cos(difLongitude)
@@ -66,11 +80,16 @@ class UserLocationManager: NSObject {
 	}
 	
 	// 現在地までの距離を計算
-	func calcDistanceToDestination() -> Double {
-		if let destinationLocation: CLLocation = destinationLocation {
-			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destinationLocation)
-			distance = Int(distanceToDestination!)
-			return distanceToDestination!
+	func calcDistanceToDestination() -> Int {
+		if let destination: CLLocation = location {
+			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destination)
+			if let distanceToDestination = distanceToDestination {
+				distance = Int(distanceToDestination)
+			} else {
+				print("error")
+				distance = 500
+			}
+			return distance
 		}
 		return 0
 	}

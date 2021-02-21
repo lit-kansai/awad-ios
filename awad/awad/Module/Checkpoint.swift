@@ -8,17 +8,25 @@
 import Foundation
 import MapKit
 
-final class CheckpointAnnotation: NSObject, MKAnnotation {
+final class Checkpoint: NSObject, MKAnnotation {
 	let coordinate: CLLocationCoordinate2D
 	let title: String?
 	let subtitle: String?
+	let mission: String
+	let checkpointDescription: String
+	let stampName: String
+	let stampImageName: String
 
-	init(title: String, subtitle: String, latitude: Double, longitude: Double) {
+	init(title: String, subtitle: String, latitude: Double, longitude: Double, mission: String, checkpointDescription: String, stampName: String, stampImageName: String) {
 		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 		self.coordinate = coordinate
 		// NOTE: 書かないと、titleとsubtitleは絶対必要ですと怒られます。(MKAnnotationViewが必須としている)
 		self.title = title
 		self.subtitle = subtitle
+		self.mission = mission
+		self.checkpointDescription = checkpointDescription
+		self.stampName = stampName
+		self.stampImageName = stampImageName
 		super.init()
 	}
 }

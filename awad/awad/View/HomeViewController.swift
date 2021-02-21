@@ -34,7 +34,6 @@ class HomeViewController: UIViewController {
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
 		UserLocationManager.shared.delegate = self
-		print(UserLocationManager.shared.delegate)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +44,10 @@ class HomeViewController: UIViewController {
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: {_ in
-	   })
+		})
+		if UserLocationManager.shared.isArrived {
+			missionButton.isEnabled = true
+		}
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {

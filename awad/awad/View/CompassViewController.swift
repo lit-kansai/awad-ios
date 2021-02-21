@@ -14,6 +14,10 @@ class CompassViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
 	let titleHeader: Header = Header(imageName: "compass")
 	let missionButton: Button = Button(image: #imageLiteral(resourceName: "missionButton"))
+	var distance: Int = 0
+	
+	// 後で消す
+	let debugButton: UIButton = UIButton()
 
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
@@ -29,6 +33,17 @@ class CompassViewController: UIViewController {
 			UserLocationManager.shared.delegate = self
 			UserLocationManager.shared.initOriginDegree()
 		}
+		
+		let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
+		UserLocationManager.shared.setLocation(targetLocation)
+		presenter?.updateCheckpointDistance()
+		
+		// 後で消す
+		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
+		debugButton.setTitle("ボタン", for: .normal)
+		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
+		view.addSubview(debugButton)
+		debugButton.setTitleColor(.black, for: .normal)
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -51,15 +66,28 @@ class CompassViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
 	}
+	
+	func checkIfUserArrived() {
+		if distance <= 50 {
+			UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+				self.missionButton.layer.opacity = 1
+			}, completion: nil)
+			UserLocationManager.shared.isArrived = true
+		}
+	}
+	
+	// 後で消す
+	@objc
+	func debug() {
+		UserLocationManager.shared.distance -= 50
+		self.changeCheckpointDistanceLabel(distance: UserLocationManager.shared.distance)
+		self.checkIfUserArrived()
+	}
 }
 
 extension CompassViewController: UserLocationManagerDelegate {
 	func locationDidUpdateToLocation(location: CLLocation) {
 		presenter?.updateCheckpointDistance()
-		let distance: Double = UserLocationManager.shared.calcDistanceToDestination()
-		if distance < 50 {
-			missionButton.layer.opacity = 1
-		}
 	}
 	
 	func locationDidUpdateHeading(newHeading: CLHeading) {
@@ -68,8 +96,9 @@ extension CompassViewController: UserLocationManagerDelegate {
 }
 
 extension CompassViewController: CompassPresenterOutput {
-	func changeCheckpointDistance(distance: Double) {
-		let formattedDistance: String = String(format: "%.0f", distance)
+	func changeCheckpointDistanceLabel(distance: Int) {
+		self.distance = distance
+		let formattedDistance: String = String(distance)
 		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(formattedDistance)m")
 		attrDistanceText.addAttributes([
 			.font: UIFont(name: "Keifont", size: 36) as Any
@@ -101,7 +130,6 @@ extension CompassViewController {
 		
 		distanceLabelBackground.contentMode = .scaleAspectFill
 		
-		let distance: Int = 1_000
 		distanceTextLabel.font = UIFont(name: "Keifont", size: 30)
 		distanceTextLabel.frame.size = CGSize(width: view.frame.width / 2, height: 100)
 		distanceTextLabel.center = CGPoint(x: view.frame.width / 2, y: 200)
@@ -116,6 +144,8 @@ extension CompassViewController {
 		needleImageView.contentMode = .scaleAspectFit
 		missionButton.imageView?.contentMode = .scaleAspectFill
 		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
+		
+		missionButton.layer.opacity = 0
 
 	}
 	

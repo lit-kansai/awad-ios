@@ -16,7 +16,7 @@ final class MapModel: MapModelInput {
 	
 	// Annotationと緑の○を生成
 	func generateAdditions() -> MapAddition {
-		var annotations: [CheckpointAnnotation] = []
+		var annotations: [Checkpoint] = []
 		var overlays: [MKOverlay] = []
 		
 		guard let checkPointUrl = Bundle.main.url(forResource: "location", withExtension: "json") else {
@@ -28,9 +28,9 @@ final class MapModel: MapModelInput {
 		}
 		
 		do {
-			let locations: [Checkpoint] = try JSONDecoder().decode([Checkpoint].self, from: checkPointData)
+			let locations: [CheckpointCodable] = try JSONDecoder().decode([CheckpointCodable].self, from: checkPointData)
 			for location in locations {
-				let annotation: CheckpointAnnotation = CheckpointAnnotation(title: location.name, subtitle: location.category, latitude: Double(location.latitude)!, longitude: Double(location.longitude)!)
+				let annotation: Checkpoint = Checkpoint(title: location.name, subtitle: location.category, latitude: Double(location.latitude)!, longitude: Double(location.longitude)!, mission: location.mission, checkpointDescription: location.description, stampName: location.stampName, stampImageName: location.stampImageName)
 				annotations.append(annotation)
 			}
 		} catch let error {
@@ -61,11 +61,15 @@ final class MapModel: MapModelInput {
 	}
 }
 
-struct Checkpoint: Codable {
+struct CheckpointCodable: Codable {
 	var name: String
 	var category: String
 	var longitude: String
 	var latitude: String
+	var mission: String
+	var description: String
+	var stampName: String
+	var stampImageName: String
 }
 
 struct RandomCheckpointCircle: Codable {
@@ -74,6 +78,6 @@ struct RandomCheckpointCircle: Codable {
 }
 
 struct MapAddition {
-	var annotations: [CheckpointAnnotation]
+	var annotations: [Checkpoint]
 	var circles: [MKOverlay]
 }

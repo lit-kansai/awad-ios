@@ -10,8 +10,7 @@ import MapKit
 
 protocol MapPresenterInput {
 	func viewDidLoad()
-//	func transition()
-	func setDestination(_ destination: MKAnnotation)
+	func setDestination(_ destination: Checkpoint)
 }
 
 protocol MapPresenterOutput: AnyObject {
@@ -22,7 +21,7 @@ final class MapPresenter: MapPresenterInput {
 	
 	private weak var view: MapPresenterOutput!
 	private var model: MapModelInput
-	private(set) var currentDestination: MKAnnotation?
+	private(set) var currentDestination: Checkpoint?
 	
 	init(view: MapPresenterOutput, model: MapModelInput) {
 		self.view = view
@@ -33,12 +32,8 @@ final class MapPresenter: MapPresenterInput {
 		let mapAddition: MapAddition = model.generateAdditions()
 		view.initMapAddition(mapAddition)
 	}
-	
-//	func transition() {
-//		transitionRouter?.transition()
-//	}
-	
-	func setDestination(_ destination: MKAnnotation) {
+		
+	func setDestination(_ destination: Checkpoint) {
 		currentDestination = destination
 		print("destionation set")
 	}
