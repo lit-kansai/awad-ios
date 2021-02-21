@@ -43,7 +43,19 @@ class MissionViewController: UIViewController {
 	@objc
 	func completeMission() {
 		self.navigationController?.pushViewController(HomeViewController(), animated: true)
-		UserLocationManager.shared.resetDestination()
+		
+		let destination: Checkpoint? = UserLocationManager.shared.currentDestinationInformation
+		FirestoreManager.shared.team?.collection("stamps").addDocument(data: [
+			"name": destination?.stampName as Any,
+			"image": destination?.stampImageName as Any,
+			"description": destination?.checkpointDescription as Any
+		], completion: { err in
+			if let err: Error = err {
+				print("Error adding document: \(err)")
+			} else {
+				UserLocationManager.shared.resetDestination()
+			}
+		})
 	}
 }
 
