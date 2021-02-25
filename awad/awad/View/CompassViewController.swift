@@ -14,10 +14,11 @@ class CompassViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
 	let titleHeader: Header = Header(imageName: "compass")
 	let missionButton: Button = Button(image: #imageLiteral(resourceName: "missionButton"))
+	let errorMessage: UILabel = UILabel()
 	var distance: Int = 0
 	
 	// 後で消す
-	let debugButton: UIButton = UIButton()
+//	let debugButton: UIButton = UIButton()
 
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
@@ -34,22 +35,15 @@ class CompassViewController: UIViewController {
 			UserLocationManager.shared.initOriginDegree()
 		}
 		
-		let targetLocation: CLLocation = CLLocation(latitude: 34.840_158_262_603_68, longitude: 135.512_257_913_778_65)
-		UserLocationManager.shared.setLocation(targetLocation)
-		presenter?.updateCheckpointDistance()
-		
-		// 後で消す
-		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
-		debugButton.setTitle("ボタン", for: .normal)
-		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
-		view.addSubview(debugButton)
-		debugButton.setTitleColor(.black, for: .normal)
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
+		self.revealView()
+		self.navigationController?.removePreviousController()
+		presenter?.updateCheckpointDistance()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +59,7 @@ class CompassViewController: UIViewController {
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
+		self.hideView()
 	}
 	
 	func checkIfUserArrived() {
@@ -74,6 +69,21 @@ class CompassViewController: UIViewController {
 			}, completion: nil)
 			UserLocationManager.shared.isArrived = true
 		}
+	}
+	
+	func revealView() {
+		if UserLocationManager.shared.currentDestinationInformation != nil {
+			needleImageView.layer.opacity = 1
+			distanceTextLabel.layer.opacity = 1
+		} else {
+			errorMessage.layer.opacity = 1
+		}
+	}
+	
+	func hideView() {
+		needleImageView.layer.opacity = 0
+		distanceTextLabel.layer.opacity = 0
+		errorMessage.layer.opacity = 0
 	}
 	
 	// 後で消す
@@ -88,6 +98,7 @@ class CompassViewController: UIViewController {
 extension CompassViewController: UserLocationManagerDelegate {
 	func locationDidUpdateToLocation(location: CLLocation) {
 		presenter?.updateCheckpointDistance()
+		self.checkIfUserArrived()
 	}
 	
 	func locationDidUpdateHeading(newHeading: CLHeading) {
@@ -127,6 +138,7 @@ extension CompassViewController {
 		view.addSubview(distanceTextLabel)
 		view.addSubview(needleImageView)
 		view.addSubview(missionButton)
+		view.addSubview(errorMessage)
 		
 		distanceLabelBackground.contentMode = .scaleAspectFill
 		
@@ -146,7 +158,20 @@ extension CompassViewController {
 		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
 		
 		missionButton.layer.opacity = 0
-
+		// 透明度
+		needleImageView.layer.opacity = 0
+		distanceTextLabel.layer.opacity = 0
+		errorMessage.layer.opacity = 0
+		errorMessage.text = "目的地が設定されていません"
+		errorMessage.frame.size = CGSize(width: view.frame.width / 2, height: 100)
+		errorMessage.textAlignment = NSTextAlignment.center
+		
+//		// 後で消す
+//		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
+//		debugButton.setTitle("ボタン", for: .normal)
+//		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
+//		view.addSubview(debugButton)
+//		debugButton.setTitleColor(.black, for: .normal)
 	}
 	
 	func addConstraints() {
@@ -167,6 +192,12 @@ extension CompassViewController {
 		NSLayoutConstraint.activate([
 			needleImageView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
 			needleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+		])
+		
+		errorMessage.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			errorMessage.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+			errorMessage.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 		])
 		
 		missionButton.translatesAutoresizingMaskIntoConstraints = false

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 enum BorderPosition {
 	case top
 	case left

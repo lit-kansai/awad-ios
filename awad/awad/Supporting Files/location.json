@@ -460,5 +460,29 @@
     "description": "description",
     "stampName": "テストスタンプ",
     "stampImageName": "test"
+},
+{
+	"id": "43",
+	"name": "西院駅",
+	"category": "施設",
+	
+	"latitude": "35.00367943956549",
+	"longitude": "135.73105606655977",
+	"mission": "一旦マクドに入れ！",
+	"description": "description",
+	"stampName": "テストスタンプ",
+	"stampImageName": "restaurant"
+},
+{
+	"id": "44",
+	"name": "北千里駅",
+	"category": "施設",
+	
+	"latitude": "34.820226752942354",
+	"longitude": "135.51081373082107",
+	"mission": "起きていることをみんなに伝えろ！",
+	"description": "description",
+	"stampName": "テストスタンプ",
+	"stampImageName": "monument"
 }
 ]

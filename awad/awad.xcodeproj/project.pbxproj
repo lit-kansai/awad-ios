@@ -25,6 +25,8 @@
 		7198253C259332350017E39D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7198253B259332350017E39D /* Router.swift */; };
 		71B2A6B225E18E1B00CD276D /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */; };
 		71B2A6CA25E26E3D00CD276D /* location.json in Resources */ = {isa = PBXBuildFile; fileRef = 71B2A6C925E26E3D00CD276D /* location.json */; };
+		71B2A6CD25E2BB2500CD276D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B2A6CC25E2BB2500CD276D /* RegisterViewController.swift */; };
+		71B2A6D025E4218200CD276D /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B2A6CF25E4218200CD276D /* NavigationController.swift */; };
 		71C28607257B8943000486A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28606257B8943000486A2 /* AppDelegate.swift */; };
 		71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C28608257B8943000486A2 /* SceneDelegate.swift */; };
 		71C28610257B8946000486A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C2860F257B8946000486A2 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		7198253B259332350017E39D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
 		71B2A6C925E26E3D00CD276D /* location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location.json; sourceTree = "<group>"; };
+		71B2A6CC25E2BB2500CD276D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		71B2A6CF25E4218200CD276D /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		71C28603257B8943000486A2 /* awad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C28606257B8943000486A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C28608257B8943000486A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 			children = (
 				7130615125C97F2700DF8041 /* UIColor.swift */,
 				7130615525C9A1F500DF8041 /* UIView.swift */,
+				71B2A6CF25E4218200CD276D /* NavigationController.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				7130614325C6DF0200DF8041 /* Header.swift */,
 				7130614625C6E78200DF8041 /* Background.swift */,
 				7130614925C6FD7800DF8041 /* Button.swift */,
+				71B2A6CC25E2BB2500CD276D /* RegisterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7130615625C9A1F500DF8041 /* UIView.swift in Sources */,
+				71B2A6CD25E2BB2500CD276D /* RegisterViewController.swift in Sources */,
 				7130614425C6DF0300DF8041 /* Header.swift in Sources */,
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71F42E19259787C800114BC0 /* UserLocationManager.swift in Sources */,
@@ -379,6 +386,7 @@
 				71982538259258A90017E39D /* Checkpoint.swift in Sources */,
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
+				71B2A6D025E4218200CD276D /* NavigationController.swift in Sources */,
 				7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */,
 				71B2A6B225E18E1B00CD276D /* FireStoreManager.swift in Sources */,
 				71C28609257B8943000486A2 /* SceneDelegate.swift in Sources */,

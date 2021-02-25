@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
 		super.viewDidLoad()
 		self.setUpView()
 		self.addConstraints()
+		
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController {
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
 		UserLocationManager.shared.delegate = self
+		self.navigationController?.removePreviousController()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {

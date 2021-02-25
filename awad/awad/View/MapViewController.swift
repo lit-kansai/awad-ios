@@ -24,6 +24,8 @@ class MapViewController: UIViewController {
 		super.viewDidLoad()
 		view.overrideUserInterfaceStyle = .light
 		self.setupMap()
+		self.setupView()
+		self.addConstraint()
 		self.presenter = MapPresenter(view: self, model: model)
 		presenter?.viewDidLoad()
 		mapView.delegate = self
@@ -32,8 +34,9 @@ class MapViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
-		self.setupView()
-		self.addConstraint()
+		MenuBar.shared.resetMenuButtonLocation()
+		self.setButton()
+		self.navigationController?.removePreviousController()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -49,8 +52,9 @@ class MapViewController: UIViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		setDestinationButton.layer.opacity = 0
 		titleHeader.resetForAnimation()
+		setDestinationButton.layer.opacity = 0
+		
 	}
 	
 	@objc
@@ -59,7 +63,8 @@ class MapViewController: UIViewController {
 			return
 		}
 		UserLocationManager.shared.setDestination(currentSelectedAnnotation)
-		print("setDestination")
+		let compassViewController: CompassViewController = CompassViewController()
+		self.navigationController?.pushViewController(compassViewController, animated: true)
 	}
 }
 
@@ -165,21 +170,10 @@ extension MapViewController: MapPresenterOutput {
 extension MapViewController {
 	func setupView() {
 		titleHeader.activateConstraint(parent: view)
-		view.addSubview(setDestinationButton)
-//		 NOTE: リジェクトされるかもしれないコード達
-		setDestinationButton.contentMode = .scaleAspectFill
-		setDestinationButton.alpha = 0
-		setDestinationButton.addTarget(self, action: #selector(setDestination), for: .touchUpInside)
+		
 	}
 	
 	func addConstraint() {
-		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			setDestinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
-			setDestinationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
-			setDestinationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-		])
-		
 		mapView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
 			mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -188,18 +182,32 @@ extension MapViewController {
 		])
 	}
 	
+	func setButton() {
+		view.addSubview(setDestinationButton)
+		setDestinationButton.contentMode = .scaleAspectFill
+		setDestinationButton.alpha = 0
+		setDestinationButton.addTarget(self, action: #selector(setDestination), for: .touchUpInside)
+		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			setDestinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
+			setDestinationButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.45),
+			setDestinationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+		])
+	}
+	
 	func setupMap() {
 		let AWAJISHIMA_CENTER_LATITUDE: Double = 34.325_7
 		let AWAJISHIMA_CENTER_LONGITUDE: Double = 134.813_1
 		let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(AWAJISHIMA_CENTER_LATITUDE, AWAJISHIMA_CENTER_LONGITUDE)
 		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
-		mapView.isRotateEnabled = false
 		mapView.setRegion(region, animated: false)
-		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
+		mapView.isRotateEnabled = false
+//		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
 		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
 		mapView.setCameraZoomRange(zoomRange, animated: false)
 		mapView.showsBuildings = false
 		mapView.showsTraffic = false
+		mapView.showsUserLocation = true
 		mapView.mapType = .mutedStandard
 		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
 		view.addSubview(mapView)

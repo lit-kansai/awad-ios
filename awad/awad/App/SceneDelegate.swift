@@ -21,6 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			navigationController = UINavigationController(rootViewController: view)
 			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 			self.navigationController?.navigationBar.isHidden = true
+			self.navigationController?.navigationBar.tintColor = UIColor.turquoiseColor()
+			self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+			self.navigationController?.navigationBar.shadowImage = UIImage()
+			self.navigationController?.navigationBar.topItem?.title = ""
 			window = UIWindow(frame: UIScreen.main.bounds)
 			window?.rootViewController = navigationController
 			window?.makeKeyAndVisible()

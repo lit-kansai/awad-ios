@@ -20,7 +20,13 @@ class MissionViewController: UIViewController {
         super.viewDidLoad()
 		self.setupView()
 		self.addConstraints()
+		
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationController?.removePreviousController()
+	 }
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
@@ -29,26 +35,24 @@ class MissionViewController: UIViewController {
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
+		self.navigationController?.navigationBar.isHidden = false
+		
 	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-	 }
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
+		self.navigationController?.navigationBar.isHidden = true
 	}
-
 	@objc
 	func completeMission() {
 		self.navigationController?.pushViewController(HomeViewController(), animated: true)
 		
 		let destination: Checkpoint? = UserLocationManager.shared.currentDestinationInformation
 		FirestoreManager.shared.team?.collection("stamps").addDocument(data: [
-			"name": destination?.stampName as Any,
+			"name": destination?.title as Any,
 			"image": destination?.stampImageName as Any,
-			"description": destination?.checkpointDescription as Any
+			"description": "\(destination?.title!)でゲットした" as Any
 		], completion: { err in
 			if let err: Error = err {
 				print("Error adding document: \(err)")

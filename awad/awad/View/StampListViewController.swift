@@ -27,11 +27,6 @@ class StampListViewController: UIViewController {
 	let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 	var stampCollectionView: UICollectionView!
 	var stamps: [Stamp] = []
-	let stampInformation: [[Any]] = [
-		[#imageLiteral(resourceName: "monument"), "公園スタンプ", "公園でゲットした \n お手洗いも合ってちょうど良かったね。" ],
-		[#imageLiteral(resourceName: "slime"), "スライムスタンプ", "スライムでゲットした \n お手洗いも合ってちょうど良かったね。"],
-		[#imageLiteral(resourceName: "shrine"), "神社スタンプ", "神社でゲットした \n お手洗いも合ってちょうど良かったね。"]
-	]
 		
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +34,13 @@ class StampListViewController: UIViewController {
 		self.addConstraints()
 		stampCollectionView.dataSource = self
 		stampCollectionView.delegate = self
-		stampCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+		stampCollectionView.register(CustomTableViewCell.self, forCellWithReuseIdentifier: "Cell")
+		self.navigationController?.navigationBar.isHidden = false
     }
-	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationController?.removePreviousController()
+	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
 		titleHeader.animate()
@@ -49,6 +48,7 @@ class StampListViewController: UIViewController {
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
+		
 		FirestoreManager.shared.team?.collection("stamps").getDocuments { (querySnapshot, err) in
 			if let err: Error = err {
 				print("Error getting documents: \(err)")
@@ -73,7 +73,74 @@ class StampListViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
 		stamps = []
+		self.stampCollectionView.reloadData()
+		self.navigationController?.navigationBar.isHidden = true
 	}
+}
+
+extension StampListViewController: UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return stamps.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+		
+		if !stamps.isEmpty {
+			let imageView: UIImageView = UIImageView(image: UIImage(named: stamps[indexPath.row].image))
+			cell.addSubview(imageView)
+			cell.clipsToBounds = true
+			imageView.contentMode = .scaleAspectFit
+			imageView.translatesAutoresizingMaskIntoConstraints = false
+			NSLayoutConstraint.activate([
+				imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
+				imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+				imageView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 0.9),
+				imageView.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 0.9)
+			])
+			cell.backgroundColor = .white
+			cell.layer.cornerRadius = 9
+		}
+
+		let selectedBGView: UIView = UIView(frame: cell.frame)
+		selectedBGView.layer.borderWidth = 3
+		selectedBGView.layer.borderColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+		selectedBGView.backgroundColor = .white
+		selectedBGView.layer.cornerRadius = 9
+		cell.selectedBackgroundView = selectedBGView
+		
+		return cell
+	}
+	
+}
+
+extension StampListViewController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		stamp.image = UIImage(named: stamps[indexPath.row].image)
+		stampTitleLabel.text = stamps[indexPath.row].name
+		stampDescriptionLabel.text = stamps[indexPath.row].description
+		let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "\(indexPath.row + 1)/\(self.stamps.count)")
+		attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
+		self.achievementRatioLabel.attributedText = attributedString
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+		return true  // 変更
+	}
+
+	func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+		return true  // 変更
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+}
+
+extension StampListViewController: UICollectionViewDelegateFlowLayout {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: collectionView.frame.width * 0.2, height: collectionView.frame.width * 0.2)
+		}
 }
 
 extension StampListViewController {
@@ -140,68 +207,13 @@ extension StampListViewController {
 	}
 }
 
-extension StampListViewController: UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return stamps.count
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-		if !stamps.isEmpty {
-			let imageView: UIImageView = UIImageView(image: UIImage(named: stamps[indexPath.row].image))
-			cell.addSubview(imageView)
-			cell.clipsToBounds = true
-			imageView.contentMode = .scaleAspectFit
-			imageView.translatesAutoresizingMaskIntoConstraints = false
-			NSLayoutConstraint.activate([
-				imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor),
-				imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
-				imageView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 0.9),
-				imageView.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 0.9)
-			])
-			cell.backgroundColor = .white
-			cell.layer.cornerRadius = 9
+class CustomTableViewCell: UICollectionViewCell {
+
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		print("prepareForReuse")
+		for subview in self.subviews {
+			subview.removeFromSuperview()
 		}
-
-		let selectedBGView: UIView = UIView(frame: cell.frame)
-		selectedBGView.layer.borderWidth = 3
-		selectedBGView.layer.borderColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-		selectedBGView.backgroundColor = .white
-		selectedBGView.layer.cornerRadius = 9
-		cell.selectedBackgroundView = selectedBGView
-		if indexPath.row == 0 {
-			
-		}
-		return cell
 	}
-	
-}
-
-extension StampListViewController: UICollectionViewDelegate {
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		stamp.image = UIImage(named: stamps[indexPath.row].image)
-		stampTitleLabel.text = stamps[indexPath.row].name
-		stampDescriptionLabel.text = stamps[indexPath.row].description
-		let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "\(indexPath.row + 1)/\(self.stamps.count)")
-		attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
-		self.achievementRatioLabel.attributedText = attributedString
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-		return true  // 変更
-	}
-
-	func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-		return true  // 変更
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-		return true
-	}
-}
-
-extension StampListViewController: UICollectionViewDelegateFlowLayout {
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: collectionView.frame.width * 0.2, height: collectionView.frame.width * 0.2)
-		}
 }
