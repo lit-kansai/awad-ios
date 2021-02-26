@@ -484,5 +484,17 @@
 	"description": "description",
 	"stampName": "テストスタンプ",
 	"stampImageName": "monument"
+},
+{
+	"id": "45",
+	"name": "セブンイレブン",
+	"category": "飲食店",
+	
+	"latitude": "34.838903297781044",
+	"longitude": "135.5051367854986",
+	"mission": "セブイレ",
+	"description": "セブイレ",
+	"stampName": "テストスタンプ",
+	"stampImageName": "restaurant"
 }
 ]

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		
 		if scene as? UIWindowScene != nil {
 			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
-			let view: UIViewController = HomeViewController()
+			let view: UIViewController = MapViewController()
 			navigationController = UINavigationController(rootViewController: view)
 			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 			self.navigationController?.navigationBar.isHidden = true

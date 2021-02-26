@@ -54,7 +54,6 @@ class MapViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
 		setDestinationButton.layer.opacity = 0
-		
 	}
 	
 	@objc
@@ -65,6 +64,7 @@ class MapViewController: UIViewController {
 		UserLocationManager.shared.setDestination(currentSelectedAnnotation)
 		let compassViewController: CompassViewController = CompassViewController()
 		self.navigationController?.pushViewController(compassViewController, animated: true)
+		print(UserLocationManager.shared.currentDestinationInformation!.title!)
 	}
 }
 
@@ -92,28 +92,22 @@ extension MapViewController: MKMapViewDelegate {
 		let longitudeDelta: CLLocationDegrees = region.span.longitudeDelta
 		if !annotations.isEmpty {
 			if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
+//				if mapView.view(for: annotations.first!)?.image == #imageLiteral(resourceName: "green_circle") {
+//					return
+//				}
 				for annotation in annotations {
 					UIView.animate(withDuration: 0.5, animations: {
-						mapView.view(for: annotation)?.alpha = 0
-						mapView.view(for: annotation)?.isEnabled = false
+						// 画像変える
+						mapView.view(for: annotation)?.image = #imageLiteral(resourceName: "green_circle")
 					})
 				}
-				for overlay in overlays {
-					UIView.animate(withDuration: 0.5, animations: {
-						mapView.renderer(for: overlay)?.alpha = 1
-					})
-				}
-				
-			} else if mapView.view(for: annotations.first!)?.alpha == 0 {
+			} else if mapView.view(for: annotations.first!)?.image == #imageLiteral(resourceName: "green_circle") {
 				for annotation in annotations {
-					UIView.animate(withDuration: 0.5, animations: {
-						mapView.view(for: annotation)?.alpha = 0.7
-						mapView.view(for: annotation)?.isEnabled = true
-					})
-				}
-				for overlay in overlays {
-					UIView.animate(withDuration: 0.5, animations: {
-						mapView.renderer(for: overlay)?.alpha = 0
+					let annotationView: MKAnnotationView? = mapView.view(for: annotation)
+					annotationView?.alpha = 0
+					annotationView?.image = CheckpointIcon(name: annotation.subtitle!)?.image
+					UIView.animate(withDuration: 1, animations: {
+						annotationView?.alpha = 0.5
 					})
 				}
 			}
@@ -121,33 +115,15 @@ extension MapViewController: MKMapViewDelegate {
 		
 	}
 	
-	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-
-		// rendererを生成.
-		let myCircleView: MKCircleRenderer = MKCircleRenderer(overlay: overlay)
-
-		// 円の内部を赤色で塗りつぶす.
-		myCircleView.fillColor = UIColor.systemGreen
-		// 円を透過させる.
-		myCircleView.alpha = 0
-
-		// 円周の線の太さ.
-		myCircleView.lineWidth = 1.5
-
-		return myCircleView
-	}
-	
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 		currentSelectedAnnotation = view.annotation as? Checkpoint
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
-			mapView.view(for: annotation)?.alpha = 0.7
+			mapView.view(for: annotation)?.alpha = 0.5
 		}
 		var region: MKCoordinateRegion = mapView.region
 		region.center.latitude = (view.annotation?.coordinate.latitude)!
 		region.center.longitude = (view.annotation?.coordinate.longitude)!
-		region.span.latitudeDelta = 0.3
-		region.span.longitudeDelta = 0.3
 		DispatchQueue.main.async {
 			mapView.setRegion(region, animated: true)
 			view.alpha = 1
@@ -161,16 +137,13 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController: MapPresenterOutput {
 	func initMapAddition(_ addition: MapAddition) {
 		annotations = addition.annotations
-		overlays = addition.circles
 		mapView.addAnnotations(annotations)
-		mapView.addOverlays(overlays)
 	}
 }
 
 extension MapViewController {
 	func setupView() {
 		titleHeader.activateConstraint(parent: view)
-		
 	}
 	
 	func addConstraint() {
@@ -202,6 +175,7 @@ extension MapViewController {
 		let region: MKCoordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 60_000, longitudinalMeters: 60_000)
 		mapView.setRegion(region, animated: false)
 		mapView.isRotateEnabled = false
+		// カメラの移動範囲を制限
 //		mapView.setCameraBoundary(MKMapView.CameraBoundary(coordinateRegion: region), animated: false)
 		let zoomRange: MKMapView.CameraZoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: 200_000)!
 		mapView.setCameraZoomRange(zoomRange, animated: false)

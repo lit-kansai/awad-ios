@@ -52,7 +52,7 @@ class MissionViewController: UIViewController {
 		FirestoreManager.shared.team?.collection("stamps").addDocument(data: [
 			"name": destination?.title as Any,
 			"image": destination?.stampImageName as Any,
-			"description": "\(destination?.title!)でゲットした" as Any
+			"description": "\(destination!.title!)でゲットした" as Any
 		], completion: { err in
 			if let err: Error = err {
 				print("Error adding document: \(err)")

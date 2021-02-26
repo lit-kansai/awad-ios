@@ -16,9 +16,6 @@ class CompassViewController: UIViewController {
 	let missionButton: Button = Button(image: #imageLiteral(resourceName: "missionButton"))
 	let errorMessage: UILabel = UILabel()
 	var distance: Int = 0
-	
-	// 後で消す
-//	let debugButton: UIButton = UIButton()
 
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
@@ -167,11 +164,12 @@ extension CompassViewController {
 		errorMessage.textAlignment = NSTextAlignment.center
 		
 //		// 後で消す
-//		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
-//		debugButton.setTitle("ボタン", for: .normal)
-//		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
-//		view.addSubview(debugButton)
-//		debugButton.setTitleColor(.black, for: .normal)
+		let debugButton: UIButton = UIButton()
+		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
+		debugButton.setTitle("ボタン", for: .normal)
+		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
+		view.addSubview(debugButton)
+		debugButton.setTitleColor(.black, for: .normal)
 	}
 	
 	func addConstraints() {

@@ -211,7 +211,6 @@ class CustomTableViewCell: UICollectionViewCell {
 
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		print("prepareForReuse")
 		for subview in self.subviews {
 			subview.removeFromSuperview()
 		}
