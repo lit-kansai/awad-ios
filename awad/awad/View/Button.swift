@@ -13,7 +13,7 @@ class Button: UIButton {
 	init(image: UIImage) {
 		super.init(frame: .zero)
 		self.setImage(image, for: .normal)
-		self.imageView?.contentMode = .scaleAspectFill
+		self.imageView?.contentMode = .scaleAspectFit
 		self.translatesAutoresizingMaskIntoConstraints = false
 	}
 	

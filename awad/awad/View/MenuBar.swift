@@ -19,6 +19,8 @@ class MenuBar: UIView {
 	var stampButtonBottomConstraint: NSLayoutConstraint?
 	var compassButtonBottomConstraint: NSLayoutConstraint?
 	var mapButtonBottomConstraint: NSLayoutConstraint?
+	var widthConstraint: NSLayoutConstraint?
+	var heightConstraint: NSLayoutConstraint?
 	private var parent: UIViewController?
 	static let shared: MenuBar = MenuBar()
 	
@@ -33,14 +35,21 @@ class MenuBar: UIView {
 	}
 	
 	func activate(parent: UIViewController) {
+		var menuBarHeight: CGFloat = 0
+		menuBarHeight += mapButton.frame.height
+		menuBarHeight += compassButton.frame.height
+		menuBarHeight += stampButton.frame.height
 		self.parent = parent
 		parent.view.addSubview(self)
 		NSLayoutConstraint.activate([
 			self.trailingAnchor.constraint(equalTo: parent.view.trailingAnchor),
 			self.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor),
-			self.widthAnchor.constraint(equalTo: parent.view.widthAnchor, multiplier: 0.7),
-			self.heightAnchor.constraint(equalTo: parent.view.heightAnchor, multiplier: 0.4)
+			self.widthAnchor.constraint(equalTo: mapButton.widthAnchor, multiplier: 1),
+			self.heightAnchor.constraint(equalTo: mapButton.heightAnchor, multiplier: 3)
 		])
+//		self.layer.borderWidth = 3
+//		self.layer.borderColor = UIColor.systemRed.cgColor
+//		self.layoutIfNeeded()
 	}
 	
 	@objc
@@ -134,9 +143,9 @@ class MenuBar: UIView {
 
 extension MenuBar {
 	private func setupView() {
-		self.frame.size = CGSize(width: 400, height: 400)
+		print("setupView")
+		print(self.frame.size)
 		self.translatesAutoresizingMaskIntoConstraints = false
-		
 		stampButton.activateConstraint(parent: self)
 		stampButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))
 		stampButton.tag = 3
@@ -162,6 +171,5 @@ extension MenuBar {
 		let leftSwipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
 		leftSwipe.direction = .left
 		self.addGestureRecognizer(leftSwipe)
-		
 	}
 }
