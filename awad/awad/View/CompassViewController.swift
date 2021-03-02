@@ -41,6 +41,13 @@ class CompassViewController: UIViewController {
 		self.revealView()
 		self.navigationController?.removePreviousController()
 		presenter?.updateCheckpointDistance()
+		NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification), name: UIApplication.willEnterForegroundNotification, object: nil)
+	}
+	
+	@objc
+	func willEnterForegroundNotification() {
+		print("willEnterForegroundNotification")
+		presenter?.updateCheckpointDistance()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
