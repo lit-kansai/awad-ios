@@ -13,17 +13,21 @@ final class Checkpoint: NSObject, MKAnnotation {
 	let title: String?
 	let subtitle: String?
 	let mission: String
+	let checkpointName: String
+	let checkpointCategory: String
 	let checkpointDescription: String
 	let stampName: String
 	let stampImageName: String
-
-	init(title: String, subtitle: String, latitude: Double, longitude: Double, mission: String, checkpointDescription: String, stampName: String, stampImageName: String) {
+	
+	init(title: String, subtitle: String, latitude: Double, longitude: Double, mission: String, checkpointName: String, checkpointCategory: String, checkpointDescription: String, stampName: String, stampImageName: String) {
 		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 		self.coordinate = coordinate
 		// NOTE: 書かないと、titleとsubtitleは絶対必要ですと怒られます。(MKAnnotationViewが必須としている)
 		self.title = title
 		self.subtitle = subtitle
 		self.mission = mission
+		self.checkpointName = checkpointName
+		self.checkpointCategory = checkpointCategory
 		self.checkpointDescription = checkpointDescription
 		self.stampName = stampName
 		self.stampImageName = stampImageName
@@ -58,7 +62,9 @@ final class CheckpointAnnotationView: MKAnnotationView {
 		let resizedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
 		self.image = resizedImage
 		self.displayPriority = .required
-		self.alpha = 0.5
+		self.alpha = 0.3
+		self.canShowCallout = true
+		self.calloutOffset = CGPoint(x: -5, y: 5)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

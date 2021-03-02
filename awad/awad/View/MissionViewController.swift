@@ -50,9 +50,9 @@ class MissionViewController: UIViewController {
 		
 		let destination: Checkpoint? = UserLocationManager.shared.currentDestinationInformation
 		FirestoreManager.shared.team?.collection("stamps").addDocument(data: [
-			"name": destination?.title as Any,
+			"name": destination?.checkpointName as Any,
 			"image": destination?.stampImageName as Any,
-			"description": "\(destination!.title!)でゲットした" as Any
+			"description": "\(destination!.checkpointName)でゲットした" as Any
 		], completion: { err in
 			if let err: Error = err {
 				print("Error adding document: \(err)")

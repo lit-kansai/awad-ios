@@ -64,7 +64,7 @@ class MapViewController: UIViewController {
 		UserLocationManager.shared.setDestination(currentSelectedAnnotation)
 		let compassViewController: CompassViewController = CompassViewController()
 		self.navigationController?.pushViewController(compassViewController, animated: true)
-		print(UserLocationManager.shared.currentDestinationInformation!.title!)
+		print(UserLocationManager.shared.currentDestinationInformation!.checkpointName)
 	}
 }
 
@@ -79,7 +79,6 @@ extension MapViewController: MKMapViewDelegate {
 		} else {
 			if let subtitle: String? = annotation.subtitle, let category: String = subtitle {
 				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
-				
 				annotationView = annotation
 			}
 		}
@@ -107,7 +106,7 @@ extension MapViewController: MKMapViewDelegate {
 					annotationView?.alpha = 0
 					annotationView?.image = CheckpointIcon(name: annotation.subtitle!)?.image
 					UIView.animate(withDuration: 1, animations: {
-						annotationView?.alpha = 0.5
+						annotationView?.alpha = 0.3
 					})
 				}
 			}
@@ -119,7 +118,7 @@ extension MapViewController: MKMapViewDelegate {
 		currentSelectedAnnotation = view.annotation as? Checkpoint
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
-			mapView.view(for: annotation)?.alpha = 0.5
+			mapView.view(for: annotation)?.alpha = 0.3
 		}
 		var region: MKCoordinateRegion = mapView.region
 		region.center.latitude = (view.annotation?.coordinate.latitude)!
