@@ -35,6 +35,5 @@ final class MapPresenter: MapPresenterInput {
 		
 	func setDestination(_ destination: Checkpoint) {
 		currentDestination = destination
-		print("destionation set")
 	}
 }

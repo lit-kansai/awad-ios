@@ -10,20 +10,24 @@ import UIKit
 class RegisterTeamViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
 	let titleLabel: UILabel = UILabel()
-	let teams: [[String]] = [["A", "B"], ["C", "D"], ["E", "F"]]
+	let teams: [String] = ["A", "B", "C", "D", "E", "F"]
 	let parentStackView: UIStackView = UIStackView()
     override func viewDidLoad() {
+		// NOTE: 後で消す
+		let appDomain = Bundle.main.bundleIdentifier
+		UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+		
         super.viewDidLoad()
 		self.setupView()
 		self.addConstraints()
-		print(parentStackView.arrangedSubviews)
+		self.navigationItem.title = "チームの選択"
+		
     }
 	
 	@objc
 	func didSelectButton(_ sender: UIButton) {
-		let vc = RegisterMemberViewController()
+		let vc: RegisterMemberViewController = RegisterMemberViewController()
 		vc.team = sender.currentTitle!
-		print(sender.currentTitle!)
 		self.navigationController?.pushViewController(vc, animated: true)
 			
 	}
@@ -56,7 +60,8 @@ extension RegisterTeamViewController {
 			parentStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 		])
 		
-		for teamRow in teams {
+		let chunkedTeams: [[String]] = teams.chunked(by: 2)
+		for teamRow in chunkedTeams {
 			let stackView: UIStackView = UIStackView()
 			stackView.axis = .horizontal
 			stackView.distribution = .fillEqually

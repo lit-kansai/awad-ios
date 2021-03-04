@@ -20,11 +20,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			let view: UIViewController = RegisterTeamViewController()
 			navigationController = UINavigationController(rootViewController: view)
 			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-			self.navigationController?.navigationBar.isHidden = true
 			self.navigationController?.navigationBar.tintColor = UIColor.turquoiseColor()
 			self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 			self.navigationController?.navigationBar.shadowImage = UIImage()
-			self.navigationController?.navigationBar.topItem?.title = ""
+			self.navigationController?.navigationBar.titleTextAttributes = [
+				.foregroundColor: UIColor.turquoiseColor(),
+				.font: UIFont(name: "Keifont", size: 24)!
+			]
 			window = UIWindow(frame: UIScreen.main.bounds)
 			window?.rootViewController = navigationController
 			window?.makeKeyAndVisible()

@@ -31,6 +31,7 @@ final class MapModel: MapModelInput {
 			let locations: [CheckpointCodable] = try JSONDecoder().decode([CheckpointCodable].self, from: checkPointData)
 			for location in locations {
 				// NOTE: titleとsubtitleを別のやつに変える
+
 				let annotation: Checkpoint = Checkpoint(title: location.name, subtitle: location.category, latitude: Double(location.latitude)!, longitude: Double(location.longitude)!, mission: location.mission, checkpointName: location.name, checkpointCategory: location.category, checkpointDescription: location.description, stampName: location.stampName, stampImageName: location.stampImageName)
 				annotations.append(annotation)
 			}

@@ -17,8 +17,7 @@ class RegisterViewButton: UIButton {
 		self.backgroundColor = .white
 		self.layer.cornerRadius = 10
 		self.titleLabel?.adjustsFontSizeToFitWidth = true
-		self.titleLabel?.minimumScaleFactor = 24
-		self.contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+		self.contentEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
 		self.clipsToBounds = true
 	}
 	
