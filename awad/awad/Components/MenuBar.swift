@@ -143,8 +143,6 @@ class MenuBar: UIView {
 
 extension MenuBar {
 	private func setupView() {
-		print("setupView")
-		print(self.frame.size)
 		self.translatesAutoresizingMaskIntoConstraints = false
 		stampButton.activateConstraint(parent: self)
 		stampButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(transitionView(_:))))

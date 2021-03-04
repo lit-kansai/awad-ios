@@ -19,7 +19,6 @@ class RegisterMemberViewController: UIViewController {
         super.viewDidLoad()
 		self.setupView()
 		self.addConstraints()
-		self.navigationController?.navigationBar.isHidden = false
 		self.navigationItem.title = self.team!
     }
 	

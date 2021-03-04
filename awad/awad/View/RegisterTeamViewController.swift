@@ -13,15 +13,10 @@ class RegisterTeamViewController: UIViewController {
 	let teams: [String] = ["A", "B", "C", "D", "E", "F"]
 	let parentStackView: UIStackView = UIStackView()
     override func viewDidLoad() {
-		// NOTE: 後で消す
-		let appDomain = Bundle.main.bundleIdentifier
-		UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-		
         super.viewDidLoad()
 		self.setupView()
 		self.addConstraints()
 		self.navigationItem.title = "チームの選択"
-		
     }
 	
 	@objc
@@ -29,7 +24,6 @@ class RegisterTeamViewController: UIViewController {
 		let vc: RegisterMemberViewController = RegisterMemberViewController()
 		vc.team = sender.currentTitle!
 		self.navigationController?.pushViewController(vc, animated: true)
-			
 	}
 
 }

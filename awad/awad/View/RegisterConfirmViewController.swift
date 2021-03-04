@@ -48,6 +48,8 @@ class RegisterConfirmViewController: UIViewController {
 
 extension RegisterConfirmViewController {
 	func setupView() {
+		self.navigationItem.title = "確認"
+		
 		parentStackView.distribution = .fillEqually
 		parentStackView.axis = .vertical
 		parentStackView.spacing = 40
@@ -102,6 +104,5 @@ extension RegisterConfirmViewController {
 			parentStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			parentStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0)
 		])
-		
 	}
 }

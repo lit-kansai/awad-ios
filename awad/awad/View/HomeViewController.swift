@@ -9,16 +9,16 @@ import UIKit
 import MapKit
 
 class HomeViewController: UIViewController {
+	let parentStackView: UIStackView = UIStackView()
+	// team
+	let teamStackView: UIStackView = UIStackView()
+	let teamHeaderLabel: UILabel = UILabel()
+	let teamLabel: UILabel = UILabel()
+	// user
+	let memberStackView: UIStackView = UIStackView()
+	let memberHeaderLabel: UILabel = UILabel()
+	let memberLabel: UILabel = UILabel()
 	
-	var mapButtonConstraint: NSLayoutConstraint?
-	var compassButtonConstraint: NSLayoutConstraint?
-	var stampButtonConstraint: NSLayoutConstraint?
-	let achieveRatioTitleLabel: UILabel = UILabel()
-	let achieveRatioLabel: UILabel = UILabel()
-	let movementDistanceTitleLabel: UILabel = UILabel()
-	let movementDistanceLabel: UILabel = UILabel()
-	let totalPlayTimeTitleLabel: UILabel = UILabel()
-	let totalPlayTimeLabel: UILabel = UILabel()
 	let titleHeader: Header = Header(imageName: "home")
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "homeBackground")
 	let missionButton: UIButton = UIButton()
@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
 		super.viewDidLoad()
 		self.setUpView()
 		self.addConstraints()
-		
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +34,13 @@ class HomeViewController: UIViewController {
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
 		UserLocationManager.shared.delegate = self
-		self.navigationController?.removePreviousController()
+		if !UserDefaults.standard.bool(forKey: "isRegistered") {
+			UserDefaults.standard.set(true, forKey: "isRegistered")
+			self.navigationController?.viewControllers = [self]
+		} else {
+			self.navigationController?.removePreviousController()
+		}
+		
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -56,13 +61,6 @@ class HomeViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
 	}
-	
-	override func viewDidLayoutSubviews() {
-		achieveRatioLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
-		movementDistanceLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
-		totalPlayTimeLabel.addBorder(width: 1, color: UIColor.turquoiseColor(), position: .bottom)
-	}
-	
 }
 
 extension HomeViewController: UserLocationManagerDelegate {
@@ -85,77 +83,57 @@ extension HomeViewController {
 	func setUpView() {
 		background.activateConstraint(parent: view)
 		titleHeader.activateConstraint(parent: view)
-		view.addSubview(achieveRatioTitleLabel)
-		view.addSubview(movementDistanceTitleLabel)
-		view.addSubview(totalPlayTimeTitleLabel)
-		view.addSubview(achieveRatioLabel)
-		view.addSubview(movementDistanceLabel)
-		view.addSubview(totalPlayTimeLabel)
 		view.addSubview(missionButton)
-		
-		achieveRatioTitleLabel.text = "ミッション達成率"
-		movementDistanceTitleLabel.text = "移動距離"
-		totalPlayTimeTitleLabel.text = "プレイ時間"
-		achieveRatioLabel.textAlignment = .center
-		movementDistanceLabel.textAlignment = .center
-		totalPlayTimeLabel.textAlignment = .center
 		
 		missionButton.setImage(#imageLiteral(resourceName: "missionButtonEnable"), for: .normal)
 		missionButton.setImage(#imageLiteral(resourceName: "missionButtonBackground"), for: .disabled)
 		missionButton.imageView?.contentMode = .scaleAspectFit
 		missionButton.isEnabled = false
 		missionButton.addTarget(self, action: #selector(transitionToMissionViewController), for: .touchUpInside)
+		
+		parentStackView.distribution = .fillEqually
+		parentStackView.axis = .vertical
+		parentStackView.spacing = 30
+		
+		teamStackView.spacing = 20
+		teamStackView.distribution = .fillEqually
+		teamHeaderLabel.text = "チーム名："
+		teamHeaderLabel.font = UIFont(name: "Keifont", size: 24)
+		teamHeaderLabel.textAlignment = .right
+		teamLabel.text = UserDefaults.standard.string(forKey: "team")
+		teamStackView.addArrangedSubview(teamHeaderLabel)
+		teamStackView.addArrangedSubview(teamLabel)
+		
+		memberStackView.spacing = 20
+		memberStackView.distribution = .fillEqually
+		memberHeaderLabel.text = "名前："
+		memberHeaderLabel.font = UIFont(name: "Keifont", size: 24)
+		memberHeaderLabel.textAlignment = .right
+		memberLabel.text = UserDefaults.standard.string(forKey: "userName")
+		memberStackView.addArrangedSubview(memberHeaderLabel)
+		memberStackView.addArrangedSubview(memberLabel)
+		
+		parentStackView.addArrangedSubview(teamStackView)
+		parentStackView.addArrangedSubview(memberStackView)
+		
+		view.addSubview(parentStackView)
 	}
 	
 	// 制約
 	func addConstraints() {
-		achieveRatioTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			achieveRatioTitleLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -30),
-			achieveRatioTitleLabel.topAnchor.constraint(equalTo: missionButton.bottomAnchor, constant: 80)
-		])
-		
-		achieveRatioLabel.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			achieveRatioLabel.leadingAnchor.constraint(equalTo: achieveRatioTitleLabel.trailingAnchor, constant: 10),
-			achieveRatioLabel.bottomAnchor.constraint(equalTo: achieveRatioTitleLabel.bottomAnchor, constant: 0),
-			achieveRatioLabel.heightAnchor.constraint(equalTo: achieveRatioTitleLabel.heightAnchor),
-			achieveRatioLabel.widthAnchor.constraint(equalToConstant: 100)
-		])
-		
-		movementDistanceTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			movementDistanceTitleLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -30),
-			movementDistanceTitleLabel.topAnchor.constraint(equalTo: achieveRatioTitleLabel.bottomAnchor, constant: 35)
-		])
-		
-		movementDistanceLabel.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			movementDistanceLabel.leadingAnchor.constraint(equalTo: movementDistanceTitleLabel.trailingAnchor, constant: 10),
-			movementDistanceLabel.bottomAnchor.constraint(equalTo: movementDistanceTitleLabel.bottomAnchor, constant: 0),
-			movementDistanceLabel.heightAnchor.constraint(equalTo: movementDistanceTitleLabel.heightAnchor),
-			movementDistanceLabel.widthAnchor.constraint(equalToConstant: 100)
-		])
-		
-		totalPlayTimeTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			totalPlayTimeTitleLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -30),
-			totalPlayTimeTitleLabel.topAnchor.constraint(equalTo: movementDistanceTitleLabel.bottomAnchor, constant: 35)
-		])
-		
-		totalPlayTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			totalPlayTimeLabel.leadingAnchor.constraint(equalTo: totalPlayTimeTitleLabel.trailingAnchor, constant: 10),
-			totalPlayTimeLabel.bottomAnchor.constraint(equalTo: totalPlayTimeTitleLabel.bottomAnchor, constant: 0),
-			totalPlayTimeLabel.heightAnchor.constraint(equalTo: totalPlayTimeTitleLabel.heightAnchor),
-			totalPlayTimeLabel.widthAnchor.constraint(equalToConstant: 100)
-		])
-		
 		missionButton.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
 			missionButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
 			missionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			missionButton.topAnchor.constraint(equalTo: titleHeader.bottomAnchor, constant: 10)
+		])
+		
+		parentStackView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			parentStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+			parentStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+			parentStackView.topAnchor.constraint(equalTo: missionButton.bottomAnchor, constant: 80)
+			
 		])
 		
 	}

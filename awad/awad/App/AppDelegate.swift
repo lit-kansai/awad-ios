@@ -12,11 +12,16 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
+		// NOTE: 後で消す
+		let appDomain: String? = Bundle.main.bundleIdentifier
+		UserDefaults.standard.removePersistentDomain(forName: appDomain!)
 		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)
 		UILabel.appearance().textColor = UIColor.turquoiseColor()
 		FirebaseApp.configure()
 		FirestoreManager.shared.setTeam(team: "A")
+		if !UserDefaults.standard.bool(forKey: "isRegistered") {
+			UserDefaults.standard.set(false, forKey: "isRegistered")
+		}
 		return true
 	}
 
