@@ -83,7 +83,7 @@ class UserLocationManager: NSObject {
 	func calcDistanceToDestination() -> Int {
 		if let destination: CLLocation = location {
 			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destination)
-			if let distanceToDestination = distanceToDestination {
+			if let distanceToDestination: CLLocationDistance = distanceToDestination {
 				distance = Int(distanceToDestination)
 			} else {
 				print("error")

@@ -10,20 +10,21 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-	var view: UIViewController? = nil
+	var view: UIViewController?
 	
 	var navigationController: UINavigationController?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		if scene as? UIWindowScene != nil {
 			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
+			view = RegisterTeamViewController()
 			if UserDefaults.standard.bool(forKey: "isRegistered") {
 				view = HomeViewController()
 			} else {
 				view = RegisterTeamViewController()
 			}
 			guard let view = view else {
-				return
+				fatalError("アンタ、何者だ...?")
 			}
 			navigationController = UINavigationController(rootViewController: view)
 			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true

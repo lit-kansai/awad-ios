@@ -57,14 +57,16 @@ class StampListViewController: UIViewController {
 					let stamp: Stamp? = try? Firestore.Decoder().decode(Stamp.self, from: document.data())
 					self.stamps.append(stamp!)
 				}
-				self.stampCollectionView.reloadData()
-				self.stampTitleLabel.text = self.stamps[0].name
-				self.stampDescriptionLabel.text = self.stamps[0].description
-				self.stamp.image = UIImage(named: self.stamps[0].image)
-				self.stampCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
-				let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "1/\(self.stamps.count)")
-				attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
-				self.achievementRatioLabel.attributedText = attributedString
+				if !self.stamps.isEmpty {
+					self.stampCollectionView.reloadData()
+					self.stampTitleLabel.text = self.stamps[0].name
+					self.stampDescriptionLabel.text = self.stamps[0].description
+					self.stamp.image = UIImage(named: self.stamps[0].image)
+					self.stampCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+					let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "1/\(self.stamps.count)")
+					attributedString.addAttribute(NSAttributedString.Key.kern, value: 3, range: NSRange(location: 0, length: attributedString.length))
+					self.achievementRatioLabel.attributedText = attributedString
+				}
 			}
 		}
 	}

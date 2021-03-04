@@ -15,10 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// NOTE: 後で消す
 		let appDomain: String? = Bundle.main.bundleIdentifier
 		UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+		
 		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)
 		UILabel.appearance().textColor = UIColor.turquoiseColor()
 		FirebaseApp.configure()
-		FirestoreManager.shared.setTeam(team: "A")
+		if UserDefaults.standard.string(forKey: "team") != nil {
+			print("AppDelegate set team")
+			FirestoreManager.shared.setTeam(team: "A")
+		}
 		if !UserDefaults.standard.bool(forKey: "isRegistered") {
 			UserDefaults.standard.set(false, forKey: "isRegistered")
 		}

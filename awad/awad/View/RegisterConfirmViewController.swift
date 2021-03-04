@@ -40,10 +40,10 @@ class RegisterConfirmViewController: UIViewController {
 	func accept() {
 		UserDefaults.standard.set(team!, forKey: "team")
 		UserDefaults.standard.set(member!, forKey: "userName")
+		FirestoreManager.shared.setTeam(team: team!)
 		let vc: HomeViewController = HomeViewController()
 		self.navigationController?.pushViewController(vc, animated: true)
 	}
-
 }
 
 extension RegisterConfirmViewController {

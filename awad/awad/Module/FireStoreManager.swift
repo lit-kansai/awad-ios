@@ -16,6 +16,7 @@ final class FirestoreManager {
 	
 	// チームを登録
 	func setTeam(team: String) {
+		print("setTeam:", team)
 		self.team = db.collection("teams").document(team)
 	}
 	

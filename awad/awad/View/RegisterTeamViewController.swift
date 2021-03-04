@@ -6,17 +6,23 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class RegisterTeamViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
 	let titleLabel: UILabel = UILabel()
-	let teams: [String] = ["A", "B", "C", "D", "E", "F"]
+	var teams: [String] = [] {
+		didSet {
+			displayTeamButton()
+		}
+	}
 	let parentStackView: UIStackView = UIStackView()
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.setupView()
 		self.addConstraints()
-		self.navigationItem.title = "チームの選択"
+		self.fetchTeams()
     }
 	
 	@objc
@@ -25,16 +31,47 @@ class RegisterTeamViewController: UIViewController {
 		vc.team = sender.currentTitle!
 		self.navigationController?.pushViewController(vc, animated: true)
 	}
-
+	
+	func fetchTeams() {
+		FirestoreManager.shared.db.collection("teams").getDocuments { (querySnapshot, err) in
+			if let err: Error = err {
+				print("Error getting documents: \(err)")
+			} else {
+				var result: [String] = []
+				for document in querySnapshot!.documents {
+					result.append(document.documentID)
+				}
+				self.teams = result
+			}
+		}
+	}
 }
 
 extension RegisterTeamViewController {
 	func setupView() {
+		self.navigationItem.title = "チームの選択"
 		background.activateConstraint(parent: view)
 		titleLabel.text = "チームを選んでください！"
 		parentStackView.distribution = .fillEqually
 		parentStackView.axis = .vertical
 		parentStackView.spacing = 30
+		
+	}
+	
+	func displayTeamButton() {
+		let chunkedTeams: [[String]] = teams.chunked(by: 2)
+		for teamRow in chunkedTeams {
+			let stackView: UIStackView = UIStackView()
+			stackView.axis = .horizontal
+			stackView.distribution = .fillEqually
+			stackView.spacing = 15
+			for team in teamRow {
+				let button: RegisterViewButton = RegisterViewButton(text: team)
+				stackView.addArrangedSubview(button)
+				button.addTarget(self, action: #selector(didSelectButton(_:)), for: .touchUpInside)
+			}
+			parentStackView.addArrangedSubview(stackView)
+		}
 	}
 	
 	func addConstraints() {
@@ -53,21 +90,6 @@ extension RegisterTeamViewController {
 			parentStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			parentStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 		])
-		
-		let chunkedTeams: [[String]] = teams.chunked(by: 2)
-		for teamRow in chunkedTeams {
-			let stackView: UIStackView = UIStackView()
-			stackView.axis = .horizontal
-			stackView.distribution = .fillEqually
-			stackView.spacing = 15
-			for team in teamRow {
-				let button: RegisterViewButton = RegisterViewButton(text: team)
-				stackView.addArrangedSubview(button)
-				button.addTarget(self, action: #selector(didSelectButton(_:)), for: .touchUpInside)
-			}
-			parentStackView.addArrangedSubview(stackView)
-		}
-		view.addSubview(parentStackView)
 		
 	}
 }

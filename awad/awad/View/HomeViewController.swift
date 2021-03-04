@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
 		UserLocationManager.shared.delegate = self
-		if !UserDefaults.standard.bool(forKey: "isRegistered") {
+		if UserDefaults.standard.bool(forKey: "isRegistered") == false {
 			UserDefaults.standard.set(true, forKey: "isRegistered")
 			self.navigationController?.viewControllers = [self]
 		} else {
