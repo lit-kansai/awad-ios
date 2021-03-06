@@ -6,8 +6,8 @@
 	"longitude": "134.97802",
     "mission": "今咲いてる花の名前と写真をSlackに投稿しろ！",
     "businessHours": "9:00~17:00",
-    "stampImageName": "test",
-	"stampDescription": ""
+    "stampImageName": "Awaji-Hanasajiki",
+	"stampDescription": "花の名前と写真を投稿して獲得したスタンプ"
 }
 ,{
     "name": "伊弉諾神宮 大鳥居",
@@ -16,8 +16,8 @@
 	"longitude": "134.85249",
     "mission": "メンターになった理由を全員1分以内に言い切れ！(神の前では嘘つかないよね)",
     "businessHours": "10:00~17:00",
-    "stampImageName": "test",
-	"stampDescription": ""
+    "stampImageName": "Izanagi-Jingu",
+	"stampDescription": "メンターになった理由を言い合って獲得したスタンプ"
 }
 ,{
     "name": "洲本城展望台",
@@ -26,8 +26,8 @@
 	"longitude": "134.90325",
     "mission": "金の観音像を見つけろ",
     "businessHours": "いつでもOK",
-    "stampImageName": "test",
-	"stampDescription": ""
+    "stampImageName": "Sumotojo",
+	"stampDescription": "金の観音像を見つけて獲得したスタンプ"
 }
 ,{
     "name": "慶野松原海水浴場",
@@ -36,8 +36,8 @@
 	"longitude": "134.734272",
     "mission": "全員のキャッチコピーを作る",
     "businessHours": "8:00~17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Keino_matsubara",
+	"stampDescription": "キャッチコピーを作って獲得したスタンプ"
 }
 ,{
     "name": "淡路島公園 展望広場",
@@ -46,8 +46,8 @@
 	"longitude": "135.0121",
     "mission": "季語をしっかり入れてグループでひとつ俳句を読みなさい",
     "businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Awajishima-Park-Tenbo-Hiroba",
+	"stampDescription": "俳句を詠んで獲得したスタンプ"
 }
 ,{
     "name": "うずの丘 大鳴門橋記念館",
@@ -56,8 +56,8 @@
 	"longitude": "134.68468",
     "mission": "たまねぎおのポーズで写真を撮ってSlackに投稿せよ！",
     "businessHours": "10:00~15:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Uzuno-Oka",
+	"stampDescription": "たまねぎおのポーズで写真を撮って獲得したスタンプ"
 }
 ,{
     "name": "道の駅 あわじ",
@@ -66,8 +66,8 @@
 	"longitude": "135.00852",
     "mission": "誰かひとりが最大級にあざとかわいい自撮りをしよう！",
     "businessHours": "9:00-17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Road-of-Station-Awaji",
+	"stampDescription": "あざとかわいい自撮りを撮って獲得したスタンプ"
 }
 ,{
     "name": "美湯松帆の郷",
@@ -76,8 +76,8 @@
 	"longitude": "135.00111",
     "mission": "車内でのトークテーマをひとりひとつ考えろ！",
 	"businessHours": "11:00-22:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Matsuhono-Gou",
+	"stampDescription": "車内でのトークテーマを考えて獲得したスタンプ"
 }
 ,{
     "name": "おのころ島神社",
@@ -86,8 +86,8 @@
 	"longitude": "134.77115",
     "mission": "鳥居の前で鳥居のモノマネをしよう",
 	"businessHours": "9:00~17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Onokorojima-Jinaja",
+	"stampDescription": "鳥居の前で鳥居のモノマネをして獲得したスタンプ"
 }
 ,{
     "name": "瀬戸内少年野球団 文学碑",
@@ -96,7 +96,7 @@
 	"longitude": "134.79186",
     "mission": "球児と同じポーズで集合写真を撮れ！",
 	"businessHours": "9:00~22:00",
-	"stampImageName": "test",
+	"stampImageName": "Setouchi-Syonen-Yakyudan",
 	"stampDescription": ""
 }
 ,{
@@ -106,8 +106,8 @@
 	 "longitude": "134.83545",
     "mission": "最後に水仙が来るようにしりとりを2周続けよう",
 	"businessHours": "9:00~17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Nada-Kuroiwa-Suisenkyou",
+	"stampDescription": "しりとりを2周して獲得したスタンプ"
 }
 ,{
     "name": "生石岬展望台",
@@ -116,8 +116,8 @@
 	"longitude": "134.95218",
     "mission": "グループ内の秘密をここで作ろう",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Oishi-Misaki",
+	"stampDescription": "グループ内の秘密を作って獲得したスタンプ"
 }
 ,{
     "name": "北淡震災記念公園 モニュメント",
@@ -126,8 +126,8 @@
 	"longitude": "134.93805",
     "mission": "ハートの撮影スポットでツーショットを全ペア撮影しろ！",
 	"businessHours": "9:00~17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Hokushin-SaigaiKinen-ParkMonument",
+	"stampDescription": "ハートスポットでツーショ撮影をして獲得したスタンプ"
 }
 ,{
     "name": "パルシェ香りの館",
@@ -136,8 +136,8 @@
 	"longitude": "134.87337",
     "mission": "この場所にふさわしい歌を全員で合唱",
 	"businessHours": "8:00-17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Parfait-Kaorino-Yakata",
+	"stampDescription": "ふさわしい歌を全員で合唱して獲得したスタンプ"
 }
 ,{
     "name": "住吉神社",
@@ -146,8 +146,8 @@
 	"longitude": "134.91278",
     "mission": "即興で一番左の人から右の人にお手紙を読む",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Sumiyoshi-Jinja",
+	"stampDescription": "即興でお手紙を読んで獲得したスタンプ"
 }
 ,{
     "name": "大浜海水浴場",
@@ -156,8 +156,8 @@
 	"longitude": "134.906048",
     "mission": "反復横跳びを全員で500回！",
 	"businessHours": "8:30~17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Ohama_Coast",
+	"stampDescription": "反復横跳びを全員で500回して獲得したスタンプ"
 }
 ,{
     "name": "道の駅 福良",
@@ -166,8 +166,8 @@
 	"longitude": "134.71925",
     "mission": "足湯にちなんで一発ギャグをどうぞ！",
 	"businessHours": "9:00-17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Station-of-Load-Fukura.png",
+	"stampDescription": "足湯ギャグをして獲得したスタンプ"
 }
 ,{
     "name": "絵島",
@@ -176,8 +176,8 @@
 	"longitude": "135.02155",
     "mission": "公衆電話を見つけろ！！",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Eshima",
+	"stampDescription": "公衆電話を見つけて獲得したスタンプ"
 }
 ,{
 
@@ -187,8 +187,8 @@
 	"longitude": "134.9778758",
     "mission": "もうすぐなくなるこの像をメインに一発撮りでMVを撮ろう！",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Sekai-Heiwa-Kannonzou",
+	"stampDescription": "観音像をメインにMVを撮って獲得したスタンプ"
 }
 ,{
     "name": "江埼灯台",
@@ -197,8 +197,8 @@
 	"longitude": "134.99344",
     "mission": "恋する灯台の前で愛を誓え♡",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Ezaki-Todai",
+	"stampDescription": "恋する灯台の前で愛を誓って獲得したスタンプ"
 }
 ,{
     "name": "岩屋海水浴場",
@@ -207,8 +207,8 @@
 	"longitude": "135.02313",
     "mission": "橋の上に乗っているかのような写真を撮ろう！",
 	"businessHours": "9:00~17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Iwaya-Kaisuiyokujo",
+	"stampDescription": "橋の上に乗っているような写真を撮って獲得したスタンプ"
 }
 
 ,{
@@ -218,8 +218,8 @@
 	"longitude": "134.72631",
     "mission": "ゴミ拾い10個",
 	"businessHours": "9:00-17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Aman-Kaisuiyokujo",
+	"stampDescription": "10個ゴミ拾いをして獲得したスタンプ"
 }
 ,{
     "name": "岩上神社",
@@ -228,8 +228,8 @@
 	"longitude": "134.84173",
     "mission": "社員さんや関西の先輩方の伝説を語り継ごう…",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Iwagami-jinjya",
+	"stampDescription": "関西の伝説を語り継いで獲得したスタンプ"
 }
 ,{
     "name": "若人の広場公園",
@@ -238,8 +238,8 @@
 	"longitude": "134.71137",
     "mission": "永遠の灯を静かな気持ちで15秒間見つめよう",
 	"businessHours": "9:00-17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Wakoudo-No-Hiroba",
+	"stampDescription": "永遠の灯を見つめて獲得したスタンプ"
 }
 ,{
     "name": "北富士ダム",
@@ -249,7 +249,7 @@
     "mission": "ダムを入れた川柳をひとりひとつ作れ！",
 	"businessHours": "いつでもOK",
 	"stampImageName": "test",
-	"stampDescription": ""
+	"stampDescription": "ダムを入れた川柳を詠んで獲得したスタンプ"
 }
 ,{
     "name": "ドラゴンクエスト記念碑",
@@ -258,8 +258,8 @@
 	"longitude": "134.89473",
     "mission": "(大喜利)「このスライム育ちよさそうだな〜」どんなスライム？",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Dragon-Quest",
+	"stampDescription": "スライム大喜利をして獲得したスタンプ"
 }
 ,{
     "name": "フローラルアイランド",
@@ -268,8 +268,8 @@
 	"longitude": "134.99157",
     "mission": "ピクニック風の写真を撮れ",
 	"businessHours": "9:00~18:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Floral-Island",
+	"stampDescription": "ピクニック風の写真を撮って獲得したスタンプ"
 }
 ,{
     "name": "柏原山 南展望台",
@@ -278,8 +278,8 @@
 	"longitude": "134.89863",
     "mission": "最近見たYouTubeの動画を紹介しあえ！",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Kashiharayama",
+	"stampDescription": "YouTubeの動画を紹介しあって獲得したスタンプ"
 }
 ,{
     "name": "supremeの壁",
@@ -288,8 +288,8 @@
 	"longitude": "134.81808",
     "mission": "逆再生動画を撮ろう！",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Supreme-Wall",
+	"stampDescription": "逆再生動画を撮影して獲得したスタンプ"
 }
 ,{
     "name": "AWAJIの文字",
@@ -298,8 +298,8 @@
 	"longitude": "134.89477",
     "mission": "AWAJIの文字と全員の顔だけが見えている写真にポエムを添えてSlackにアップロードせよ！",
 	"businessHours": "11:00-20:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Awaji-Moji-Monument",
+	"stampDescription": "AWAJIの文字写真をアップして獲得したスタンプ"
 }
 ,{
     "name": "のじまスコーラ",
@@ -308,18 +308,18 @@
 	"longitude": "134.94985",
     "mission": "1番売れてる商品を当てろ！どこの売店でもOK！",
 	"businessHours": "10:30~21:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Nojima-Sko-ra",
+	"stampDescription": "1番売れてる商品を当てて獲得したスタンプ"
 }
 ,{
     "name": "岩戸神社",
     "category": "神社仏閣",
 	"latitude": "34.3571745",
 	"longitude": "134.8391201",
-    "mission": "誰かひとりが今、お守り買ってきて！みんなはそのお守りをコミュニケーション取らずとも当てられるよね？",
+    "mission": "グリコしろ",
 	"businessHours": "いつでもOK",
 	"stampImageName": "test",
-	"stampDescription": ""
+	"stampDescription": "グリコをして獲得したスタンプ"
 },
 {
 	"name": "幸せのパンケーキ",
@@ -329,19 +329,8 @@
 	"longitude": "134.8695096401427",
 	"mission": "目隠ししたカメラマンにいい感じに映え写真を撮らせろ！",
 	"businessHours": "9:00-19:30",
-	"stampImageName": "test",
-	"stampDescription": ""
-},
-{
-	"name": "西院駅",
-	"category": "施設",
-	
-	"latitude": "35.00367943956549",
-	"longitude": "135.73105606655977",
-	"mission": "一旦マクドに入れ！",
-	"businessHours": "",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Happy-Pancake",
+	"stampDescription": "目隠しをして映え写真を撮り獲得したスタンプ"
 },
 {
 	"name": "農産品直売所",
@@ -351,8 +340,8 @@
 	"longitude": "134.93901",
 	"mission": "目に見えるものだけでしりとり3周",
 	"businessHours": "9:00-17:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Nousanhin-Tyokubaijo",
+	"stampDescription": "目に見えるものしりとりを3周して獲得したスタンプ"
 },
 {
 	"name": "八浄寺",
@@ -362,8 +351,8 @@
 	"longitude": "134.93901",
 	"mission": "7福神全員と写真を撮れ",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Hachijoji",
+	"stampDescription": "七福神全員と写真を撮って獲得したスタンプ"
 },
 {
 	"name": "赤い屋根",
@@ -373,8 +362,8 @@
 	"longitude": "134.87824",
 	"mission": "お土産を売ってる人の話を聞け!",
 	"businessHours": "10:00~16:00",
-	"stampImageName": "test",
-	"stampDescription": ""
+	"stampImageName": "Akaiyane",
+	"stampDescription": "お土産を売ってる人の話を聞いて獲得したスタンプ"
 },
 
 
@@ -383,9 +372,17 @@
 
 
 
-
-
-
+{
+	"name": "西院駅",
+	"category": "施設",
+	
+	"latitude": "35.00367943956549",
+	"longitude": "135.73105606655977",
+	"mission": "一旦マクドに入れ！",
+	"businessHours": "何時でもOK",
+	"stampImageName": "test",
+	"stampDescription": "西院で獲得した"
+},
 {
 	"name": "北千里駅",
 	"category": "施設",
@@ -393,9 +390,9 @@
 	"latitude": "34.820226752942354",
 	"longitude": "135.51081373082107",
 	"mission": "起きていることをみんなに伝えろ！",
-	"businessHours": "",
+	"businessHours": "いつでもOK",
 	"stampImageName": "test",
-	"stampDescription": ""
+	"stampDescription": "北千里で獲得した"
 },
 {
 	"name": "セブンイレブン",
@@ -406,6 +403,6 @@
 	"mission": "セブイレ",
 	"businessHours": "",
 	"stampImageName": "test",
-	"stampDescription": ""
+	"stampDescription": "セブイレで獲得した"
 }
 ]

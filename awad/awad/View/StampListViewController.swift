@@ -116,6 +116,7 @@ extension StampListViewController: UICollectionViewDataSource {
 
 extension StampListViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		print(stamps[indexPath.row].image)
 		stamp.image = UIImage(named: stamps[indexPath.row].image)
 		stampTitleLabel.text = stamps[indexPath.row].name
 		stampDescriptionLabel.text = stamps[indexPath.row].description
