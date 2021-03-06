@@ -35,7 +35,6 @@ class StampListViewController: UIViewController {
 		stampCollectionView.dataSource = self
 		stampCollectionView.delegate = self
 		stampCollectionView.register(CustomTableViewCell.self, forCellWithReuseIdentifier: "Cell")
-		self.navigationController?.navigationBar.isHidden = false
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -76,7 +75,6 @@ class StampListViewController: UIViewController {
 		titleHeader.resetForAnimation()
 		stamps = []
 		self.stampCollectionView.reloadData()
-		self.navigationController?.navigationBar.isHidden = true
 	}
 }
 

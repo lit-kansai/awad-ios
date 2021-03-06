@@ -23,6 +23,8 @@
 		7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13E2588C06F00D55D24 /* MapPresenter.swift */; };
 		717BD4C525F0A41A00CCC2D5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717BD4C425F0A41A00CCC2D5 /* Array.swift */; };
 		717BD4C925F0A82C00CCC2D5 /* RegisterConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717BD4C825F0A82C00CCC2D5 /* RegisterConfirmViewController.swift */; };
+		717BD4CC25F1380100CCC2D5 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717BD4CB25F1380100CCC2D5 /* CountdownViewController.swift */; };
+		717BD4CF25F14D1300CCC2D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717BD4CE25F14D1300CCC2D5 /* Date.swift */; };
 		71982538259258A90017E39D /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71982537259258A90017E39D /* Checkpoint.swift */; };
 		7198253C259332350017E39D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7198253B259332350017E39D /* Router.swift */; };
 		71B2A6B225E18E1B00CD276D /* FireStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */; };
@@ -63,6 +65,8 @@
 		7174F13E2588C06F00D55D24 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		717BD4C425F0A41A00CCC2D5 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		717BD4C825F0A82C00CCC2D5 /* RegisterConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterConfirmViewController.swift; sourceTree = "<group>"; };
+		717BD4CB25F1380100CCC2D5 /* CountdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
+		717BD4CE25F14D1300CCC2D5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		71982537259258A90017E39D /* Checkpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		7198253B259332350017E39D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		71B2A6B125E18E1B00CD276D /* FireStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreManager.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				71B2A6CC25E2BB2500CD276D /* RegisterMemberViewController.swift */,
 				71E66D7A25EE76C700195322 /* RegisterTeamViewController.swift */,
 				717BD4C825F0A82C00CCC2D5 /* RegisterConfirmViewController.swift */,
+				717BD4CB25F1380100CCC2D5 /* CountdownViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 				71B2A6CF25E4218200CD276D /* NavigationController.swift */,
 				71E66D6C25E914C900195322 /* UIImage.swift */,
 				717BD4C425F0A41A00CCC2D5 /* Array.swift */,
+				717BD4CE25F14D1300CCC2D5 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -411,7 +417,9 @@
 				71D200132585267200015D27 /* CompassPresenter.swift in Sources */,
 				71F42E19259787C800114BC0 /* UserLocationManager.swift in Sources */,
 				71E66D7B25EE76C700195322 /* RegisterTeamViewController.swift in Sources */,
+				717BD4CC25F1380100CCC2D5 /* CountdownViewController.swift in Sources */,
 				7130613E25C534B500DF8041 /* StampListViewController.swift in Sources */,
+				717BD4CF25F14D1300CCC2D5 /* Date.swift in Sources */,
 				7130614725C6E78200DF8041 /* Background.swift in Sources */,
 				7174F13F2588C06F00D55D24 /* MapPresenter.swift in Sources */,
 				717BD4C525F0A41A00CCC2D5 /* Array.swift in Sources */,

@@ -20,22 +20,4 @@ final class FirestoreManager {
 		self.team = db.collection("teams").document(team)
 	}
 	
-//	// 目的地を取得
-//	func getCurrentDestination() {
-//		
-//	}
-//	
-//	// 目的地を登録
-//	func setDestination() {
-//		
-//	}
-//	
-//	// ミッション終わり
-//	func completedMission() {
-//		
-//	}
-//	
-//	func startListeningDestination() {
-//		
-//	}
 }

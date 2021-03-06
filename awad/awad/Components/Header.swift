@@ -22,7 +22,7 @@ class Header: UIImageView {
 		parent.addSubview(self)
 		NSLayoutConstraint.activate([
 			self.widthAnchor.constraint(equalTo: parent.widthAnchor, multiplier: 0.6),
-			self.topAnchor.constraint(equalTo: parent.topAnchor, constant: 50)
+			self.topAnchor.constraint(equalTo: parent.topAnchor, constant: 80)
 		])
 		constraint = NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: parent, attribute: .leading, multiplier: 1, constant: -self.frame.width)
 		parent.addConstraint(constraint!)

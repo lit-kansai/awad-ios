@@ -35,14 +35,11 @@ class MissionViewController: UIViewController {
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
-		self.navigationController?.navigationBar.isHidden = false
-		
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
-		self.navigationController?.navigationBar.isHidden = true
 	}
 	@objc
 	func completeMission() {

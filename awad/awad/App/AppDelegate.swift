@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)
 		UILabel.appearance().textColor = UIColor.turquoiseColor()
 		FirebaseApp.configure()
-		if UserDefaults.standard.string(forKey: "team") != nil {
+		let team: String? = UserDefaults.standard.string(forKey: "team")
+		if let team: String = team {
 			print("AppDelegate set team")
-			FirestoreManager.shared.setTeam(team: "A")
+			FirestoreManager.shared.setTeam(team: team)
 		}
-		if !UserDefaults.standard.bool(forKey: "isRegistered") {
+		if UserDefaults.standard.object(forKey: "isRegistered") == nil {
 			UserDefaults.standard.set(false, forKey: "isRegistered")
 		}
 		return true

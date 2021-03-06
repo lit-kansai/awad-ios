@@ -17,12 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		if scene as? UIWindowScene != nil {
 			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
-			view = RegisterTeamViewController()
-			if UserDefaults.standard.bool(forKey: "isRegistered") {
-				view = HomeViewController()
-			} else {
-				view = RegisterTeamViewController()
-			}
+			view = CountdownViewController()
+//			if UserDefaults.standard.bool(forKey: "isRegistered") {
+//				view = HomeViewController()
+//			} else {
+//				view = RegisterTeamViewController()
+//			}
 			guard let view = view else {
 				fatalError("アンタ、何者だ...?")
 			}

@@ -14,12 +14,10 @@ final class Checkpoint: NSObject, MKAnnotation {
 	let subtitle: String?
 	let mission: String
 	let checkpointName: String
-	let checkpointCategory: String
-	let checkpointDescription: String
-	let stampName: String
 	let stampImageName: String
+	let stampDescription: String
 	
-	init(title: String, subtitle: String, latitude: Double, longitude: Double, mission: String, checkpointName: String, checkpointCategory: String, checkpointDescription: String, stampName: String, stampImageName: String) {
+	init(title: String, subtitle: String, latitude: Double, longitude: Double, mission: String, checkpointName: String, stampImageName: String, stampDescription: String) {
 		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 		self.coordinate = coordinate
 		// NOTE: 書かないと、titleとsubtitleは絶対必要ですと怒られます。(MKAnnotationViewが必須としている)
@@ -27,10 +25,8 @@ final class Checkpoint: NSObject, MKAnnotation {
 		self.subtitle = subtitle
 		self.mission = mission
 		self.checkpointName = checkpointName
-		self.checkpointCategory = checkpointCategory
-		self.checkpointDescription = checkpointDescription
-		self.stampName = stampName
 		self.stampImageName = stampImageName
+		self.stampDescription = stampDescription
 		super.init()
 	}
 }
