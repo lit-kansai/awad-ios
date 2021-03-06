@@ -27,6 +27,11 @@ class HomeViewController: UIViewController {
 		super.viewDidLoad()
 		self.setUpView()
 		self.addConstraints()
+//		let countdownViewController = CountdownViewController()
+//		addChild(countdownViewController)
+//		countdownViewController.view.frame = view.bounds
+//		view.addSubview(countdownViewController.view)
+//		countdownViewController.didMove(toParent: self)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +105,7 @@ extension HomeViewController {
 		teamHeaderLabel.text = "チーム名："
 		teamHeaderLabel.font = UIFont(name: "Keifont", size: 24)
 		teamHeaderLabel.textAlignment = .right
-		teamLabel.text = UserDefaults.standard.string(forKey: "team")
+		teamLabel.text = FirestoreManager.shared.currentTeam!
 		teamStackView.addArrangedSubview(teamHeaderLabel)
 		teamStackView.addArrangedSubview(teamLabel)
 		

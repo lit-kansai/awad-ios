@@ -10,7 +10,7 @@ import UIKit
 class CountdownViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
 //	let EVENT_DATE: Date = DateComponents(calendar: .current, year: 2_021, month: 3, day: 11, hour: 10, minute: 30).date!
-	let EVENT_DATE: Date = Date() + 5
+	let EVENT_DATE: Date = Date() + 60
 	let headerLabel: UILabel = UILabel()
 	let countdownStackView: UIStackView = UIStackView()
 	let countdownHeaderLabel: UILabel = UILabel()
@@ -38,7 +38,7 @@ class CountdownViewController: UIViewController {
 	
 	@objc
 	func transitionToHome() {
-		
+		AppDelegate.rootVC.transitionToHome()
 	}
 }
 

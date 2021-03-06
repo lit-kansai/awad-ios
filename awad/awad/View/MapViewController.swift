@@ -77,7 +77,7 @@ extension MapViewController: MKMapViewDelegate {
 		if let dequeuedAnnotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
 			annotationView = dequeuedAnnotationView
 		} else {
-			if let subtitle: String? = annotation.subtitle, let category: String = subtitle {
+			if let subtitle: String? = annotation.subtitle, let category: String = annotation.title! {
 				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
 				annotationView = annotation
 			}
@@ -104,7 +104,7 @@ extension MapViewController: MKMapViewDelegate {
 				for annotation in annotations {
 					let annotationView: MKAnnotationView? = mapView.view(for: annotation)
 					annotationView?.alpha = 0
-					annotationView?.image = CheckpointIcon(name: annotation.subtitle!)?.image
+					annotationView?.image = CheckpointIcon(name: annotation.title!)?.image
 					UIView.animate(withDuration: 1, animations: {
 						annotationView?.alpha = 0.3
 					})

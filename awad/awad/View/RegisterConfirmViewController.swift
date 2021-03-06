@@ -41,8 +41,7 @@ class RegisterConfirmViewController: UIViewController {
 		UserDefaults.standard.set(team!, forKey: "team")
 		UserDefaults.standard.set(member!, forKey: "userName")
 		FirestoreManager.shared.setTeam(team: team!)
-		let vc: HomeViewController = HomeViewController()
-		self.navigationController?.pushViewController(vc, animated: true)
+		AppDelegate.rootVC.transitionToCountdown()
 	}
 }
 

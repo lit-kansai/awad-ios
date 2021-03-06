@@ -15,13 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// NOTE: 後で消す
 		let appDomain: String? = Bundle.main.bundleIdentifier
 		UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-		
+		FirebaseApp.configure()
+		// UI周り
 		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)
 		UILabel.appearance().textColor = UIColor.turquoiseColor()
-		FirebaseApp.configure()
 		let team: String? = UserDefaults.standard.string(forKey: "team")
 		if let team: String = team {
-			print("AppDelegate set team")
 			FirestoreManager.shared.setTeam(team: team)
 		}
 		if UserDefaults.standard.object(forKey: "isRegistered") == nil {
@@ -44,4 +43,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
 
+}
+
+extension AppDelegate {
+	/// AppDelegateのシングルトン
+	static var shared: SceneDelegate {
+		return UIApplication.shared.connectedScenes
+			.first!.delegate as! SceneDelegate
+	}
+	/// rootViewControllerは常にRootVC
+	static var rootVC: RootViewController {
+		AppDelegate.shared.window!.rootViewController as! RootViewController
+	}
 }

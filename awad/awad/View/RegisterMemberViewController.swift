@@ -46,7 +46,6 @@ class RegisterMemberViewController: UIViewController {
 			} else {
 				var result: [String] = []
 				for document in querySnapshot!.documents {
-					print(document.data()["name"])
 					result.append(document.data()["name"] as! String)
 				}
 				self.members = result

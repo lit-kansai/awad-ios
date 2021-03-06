@@ -17,6 +17,7 @@
 		7130614E25C91E0500DF8041 /* keifont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7130614D25C91DF100DF8041 /* keifont.ttf */; };
 		7130615225C97F2700DF8041 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130615125C97F2700DF8041 /* UIColor.swift */; };
 		7130615625C9A1F500DF8041 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7130615525C9A1F500DF8041 /* UIView.swift */; };
+		7141701625F38F0F00A689E3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7141701525F38F0F00A689E3 /* RootViewController.swift */; };
 		716EEDCB25821C080081EFF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716EEDCA25821C080081EFF5 /* Main.storyboard */; };
 		7174F1392588C05500D55D24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F1382588C05500D55D24 /* MapViewController.swift */; };
 		7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7174F13B2588C05E00D55D24 /* MapModel.swift */; };
@@ -59,6 +60,7 @@
 		7130614D25C91DF100DF8041 /* keifont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = keifont.ttf; sourceTree = "<group>"; };
 		7130615125C97F2700DF8041 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		7130615525C9A1F500DF8041 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		7141701525F38F0F00A689E3 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		716EEDCA25821C080081EFF5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7174F1382588C05500D55D24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7174F13B2588C05E00D55D24 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				71E66D7A25EE76C700195322 /* RegisterTeamViewController.swift */,
 				717BD4C825F0A82C00CCC2D5 /* RegisterConfirmViewController.swift */,
 				717BD4CB25F1380100CCC2D5 /* CountdownViewController.swift */,
+				7141701525F38F0F00A689E3 /* RootViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				7174F1392588C05500D55D24 /* MapViewController.swift in Sources */,
 				71C28607257B8943000486A2 /* AppDelegate.swift in Sources */,
 				71B2A6D025E4218200CD276D /* NavigationController.swift in Sources */,
+				7141701625F38F0F00A689E3 /* RootViewController.swift in Sources */,
 				717BD4C925F0A82C00CCC2D5 /* RegisterConfirmViewController.swift in Sources */,
 				7174F13C2588C05E00D55D24 /* MapModel.swift in Sources */,
 				71B2A6B225E18E1B00CD276D /* FireStoreManager.swift in Sources */,

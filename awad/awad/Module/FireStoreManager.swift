@@ -11,12 +11,13 @@ final class FirestoreManager {
 	
 	var team: DocumentReference?
 	let db: Firestore = Firestore.firestore()
+	var currentTeam: String?
 	
 	static let shared: FirestoreManager = FirestoreManager()
 	
 	// チームを登録
 	func setTeam(team: String) {
-		print("setTeam:", team)
+		currentTeam = team
 		self.team = db.collection("teams").document(team)
 	}
 	

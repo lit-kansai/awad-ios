@@ -10,33 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-	var view: UIViewController?
-	
-	var navigationController: UINavigationController?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		if scene as? UIWindowScene != nil {
 			let windowScene: UIWindowScene = (scene as? UIWindowScene)!
-			view = CountdownViewController()
-//			if UserDefaults.standard.bool(forKey: "isRegistered") {
-//				view = HomeViewController()
-//			} else {
-//				view = RegisterTeamViewController()
-//			}
-			guard let view = view else {
-				fatalError("アンタ、何者だ...?")
-			}
-			navigationController = UINavigationController(rootViewController: view)
-			self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-			self.navigationController?.navigationBar.tintColor = UIColor.turquoiseColor()
-			self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-			self.navigationController?.navigationBar.shadowImage = UIImage()
-			self.navigationController?.navigationBar.titleTextAttributes = [
-				.foregroundColor: UIColor.turquoiseColor(),
-				.font: UIFont(name: "Keifont", size: 24)!
-			]
+			let rootVC: RootViewController = RootViewController()
 			window = UIWindow(frame: UIScreen.main.bounds)
-			window?.rootViewController = navigationController
+			window?.rootViewController = rootVC
 			window?.makeKeyAndVisible()
 			window?.windowScene = windowScene
 		} else {
