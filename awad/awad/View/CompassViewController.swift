@@ -9,9 +9,9 @@ import UIKit
 import CoreLocation
 
 class CompassViewController: UIViewController {
-	let needleImageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "needle"))
+	let needleImageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "2Dneedle"))
 	let distanceTextLabel: UILabel = UILabel()
-	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "compassBackground")
+	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "2Dbackground")
 	let titleHeader: Header = Header(imageName: "compass")
 	let missionButton: Button = Button(image: #imageLiteral(resourceName: "missionButton"))
 	let errorMessage: UILabel = UILabel()
@@ -38,7 +38,7 @@ class CompassViewController: UIViewController {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
 		MenuBar.shared.resetMenuButtonLocation()
-		self.revealView()
+		revealView()
 		self.navigationController?.removePreviousController()
 		presenter?.updateCheckpointDistance()
 		NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -79,6 +79,7 @@ class CompassViewController: UIViewController {
 		if UserLocationManager.shared.currentDestinationInformation != nil {
 			needleImageView.layer.opacity = 1
 			distanceTextLabel.layer.opacity = 1
+			checkIfUserArrived()
 		} else {
 			errorMessage.layer.opacity = 1
 		}
@@ -88,6 +89,7 @@ class CompassViewController: UIViewController {
 		needleImageView.layer.opacity = 0
 		distanceTextLabel.layer.opacity = 0
 		errorMessage.layer.opacity = 0
+		missionButton.layer.opacity = 0
 	}
 	
 	// 後で消す

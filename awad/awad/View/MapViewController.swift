@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.overrideUserInterfaceStyle = .light
+		UserLocationManager.shared.requestAlwaysAuthorization()
 		self.setupMap()
 		self.setupView()
 		self.addConstraint()

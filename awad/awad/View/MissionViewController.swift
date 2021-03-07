@@ -41,12 +41,13 @@ class MissionViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		titleHeader.resetForAnimation()
 	}
+	
 	@objc
 	func completeMission() {
-		self.navigationController?.pushViewController(HomeViewController(), animated: true)
+		self.navigationController?.pushViewController(StampListViewController(), animated: true)
 		
 		let destination: Checkpoint? = UserLocationManager.shared.currentDestinationInformation
-		FirestoreManager.shared.team?.collection("stamps").addDocument(data: [
+		FirestoreManager.shared.team?.collection("stamps").document(destination!.checkpointName).setData([
 			"name": destination?.checkpointName as Any,
 			"image": destination?.stampImageName as Any,
 			"description": destination?.stampDescription as Any

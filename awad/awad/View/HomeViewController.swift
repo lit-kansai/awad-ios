@@ -59,6 +59,8 @@ class HomeViewController: UIViewController {
 		})
 		if UserLocationManager.shared.isArrived {
 			missionButton.isEnabled = true
+		} else {
+			missionButton.isEnabled = false
 		}
 	}
 	

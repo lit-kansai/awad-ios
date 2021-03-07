@@ -19,13 +19,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NEW_AWA-D" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-V7-Kwy">
-                                <rect key="frame" x="63" y="304" width="288" height="288"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NEW_AWA-D" translatesAutoresizingMaskIntoConstraints="NO" id="wGO-V7-Kwy">
+                                <rect key="frame" x="62" y="-64" width="290" height="1024"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.96854478119999998" green="0.96083682780000002" blue="0.90185415739999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wGO-V7-Kwy" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.7" id="0PA-fe-E1p"/>
                             <constraint firstItem="wGO-V7-Kwy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6yY-3f-lC1"/>
                             <constraint firstItem="wGO-V7-Kwy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="woq-UZ-gF2"/>
                         </constraints>
