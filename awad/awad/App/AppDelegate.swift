@@ -26,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if UserDefaults.standard.object(forKey: "isRegistered") == nil {
 			UserDefaults.standard.set(false, forKey: "isRegistered")
 		}
+		
+		if UserDefaults.standard.object(forKey: "isPassed") == nil {
+			UserDefaults.standard.set(false, forKey: "isPassed")
+		}
 		return true
 	}
 

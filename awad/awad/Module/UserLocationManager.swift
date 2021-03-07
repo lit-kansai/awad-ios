@@ -120,6 +120,7 @@ extension UserLocationManager: CLLocationManagerDelegate {
 		case .restricted, .denied:
 			break
 		case .authorizedAlways, .authorizedWhenInUse:
+			
 			locationManager.startUpdatingHeading()
 			locationManager.startUpdatingLocation()
 		default:

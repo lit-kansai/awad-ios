@@ -40,6 +40,7 @@ class RegisterConfirmViewController: UIViewController {
 	func accept() {
 		UserDefaults.standard.set(team!, forKey: "team")
 		UserDefaults.standard.set(member!, forKey: "userName")
+		UserDefaults.standard.set(true, forKey: "isRegistered")
 		FirestoreManager.shared.setTeam(team: team!)
 		AppDelegate.rootVC.transitionToCountdown()
 	}

@@ -17,10 +17,12 @@ final class RootViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupView()
-		if UserDefaults.standard.bool(forKey: "isRegistered") {
-			current = homeVC
-		} else {
+		if !UserDefaults.standard.bool(forKey: "isRegistered") {
 			current = registerVC
+		} else if !UserDefaults.standard.bool(forKey: "isPassed") {
+			current = countdownVC
+		} else {
+			current = homeVC
 		}
 		guard let view = view else {
 			fatalError("アンタ、何者だ...?")

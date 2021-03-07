@@ -74,11 +74,13 @@ extension MapViewController: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 		let identifier: String = "pin"
 		var annotationView: MKAnnotationView?
-
+		guard let annotation = annotation as? Checkpoint else {
+			  return nil
+		}
 		if let dequeuedAnnotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
 			annotationView = dequeuedAnnotationView
 		} else {
-			if let subtitle: String? = annotation.subtitle, let category: String = annotation.title! {
+			if let category: String = annotation.title {
 				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
 				annotationView = annotation
 			}
