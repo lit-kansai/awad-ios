@@ -39,7 +39,6 @@ class HomeViewController: UIViewController {
 		} else {
 			self.navigationController?.removePreviousController()
 		}
-		
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -49,8 +48,7 @@ class HomeViewController: UIViewController {
 		
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
-		}, completion: {_ in
-		})
+		}, completion: nil)
 		if UserLocationManager.shared.isArrived {
 			missionButton.isEnabled = true
 		} else {

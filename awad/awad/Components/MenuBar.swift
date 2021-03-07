@@ -33,13 +33,11 @@ class MenuBar: UIStackView {
 		self.parent = parent
 		parent.view.addSubview(self)
 		self.translatesAutoresizingMaskIntoConstraints = false
-		trailingConstraint = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: parent.view, attribute: .trailing, multiplier: 1.0, constant: 40)
+		trailingConstraint = NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: parent.view, attribute: .trailing, multiplier: 1.0, constant: 30)
 		NSLayoutConstraint.activate([
-			self.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor),
+			self.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: -20),
 			trailingConstraint!
 		])
-		self.layer.borderWidth = 3
-		self.layer.borderColor = UIColor.systemRed.cgColor
 	}
 	
 	func resetMenuButtonLocation() {
@@ -48,6 +46,7 @@ class MenuBar: UIStackView {
 	}
 	
 	func animate() {
+		self.spacing = 5
 		self.mapButton.center.x += 300
 		self.compassButton.center.x += 300
 		self.stampButton.center.x += 300
@@ -67,7 +66,7 @@ class MenuBar: UIStackView {
 	func openMenu() {
 		UIView.animate(withDuration: 0.3, delay: 0, options: .preferredFramesPerSecond60, animations: {
 			self.spacing = 5
-			self.trailingConstraint?.constant = 40
+			self.trailingConstraint?.constant = 30
 		}, completion: nil)
 	}
 	

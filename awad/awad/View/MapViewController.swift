@@ -48,6 +48,7 @@ class MapViewController: UIViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
+		MenuBar.shared.layer.opacity = 0
 		titleHeader.resetForAnimation()
 		setDestinationButton.layer.opacity = 0
 	}
@@ -133,14 +134,14 @@ extension MapViewController: MKMapViewDelegate {
 		if view.annotation is MKUserLocation {
 			return
 		}
-		guard let annotation = view.annotation as? Checkpoint else {
-			return
-		}
-		currentSelectedAnnotation = annotation
+//		guard let annotation = view.annotation as? Checkpoint else {
+//			return
+//		}
+		currentSelectedAnnotation = view.annotation as! Checkpoint
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
-			guard let annotation = annotation as? Checkpoint else {
-				  return
+			if annotation is MKUserLocation {
+				continue
 			}
 			mapView.view(for: annotation)?.alpha = 0.3
 		}

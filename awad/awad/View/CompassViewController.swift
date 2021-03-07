@@ -66,7 +66,7 @@ class CompassViewController: UIViewController {
 	}
 	
 	func checkIfUserArrived() {
-		if distance <= 50 {
+		if UserLocationManager.shared.currentDestinationInformation != nil && distance <= 50 {
 			UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 				self.missionButton.layer.opacity = 1
 			}, completion: nil)
@@ -92,12 +92,12 @@ class CompassViewController: UIViewController {
 	}
 	
 	// 後で消す
-	@objc
-	func debug() {
-		UserLocationManager.shared.distance -= 50
-		self.changeCheckpointDistanceLabel(distance: UserLocationManager.shared.distance)
-		self.checkIfUserArrived()
-	}
+//	@objc
+//	func debug() {
+//		UserLocationManager.shared.distance -= 50
+//		self.changeCheckpointDistanceLabel(distance: UserLocationManager.shared.distance)
+//		self.checkIfUserArrived()
+//	}
 }
 
 extension CompassViewController: UserLocationManagerDelegate {
@@ -172,12 +172,12 @@ extension CompassViewController {
 		errorMessage.textAlignment = NSTextAlignment.center
 		
 //		// 後で消す
-		let debugButton: UIButton = UIButton()
-		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
-		debugButton.setTitle("ボタン", for: .normal)
-		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
-		view.addSubview(debugButton)
-		debugButton.setTitleColor(.black, for: .normal)
+//		let debugButton: UIButton = UIButton()
+//		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
+//		debugButton.setTitle("ボタン", for: .normal)
+//		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
+//		view.addSubview(debugButton)
+//		debugButton.setTitleColor(.black, for: .normal)
 	}
 	
 	func addConstraints() {
