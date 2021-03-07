@@ -35,7 +35,6 @@ class MapViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
-		MenuBar.shared.resetMenuButtonLocation()
 		self.setButton()
 		self.navigationController?.removePreviousController()
 	}
@@ -43,12 +42,8 @@ class MapViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
 		titleHeader.animate()
-		MenuBar.shared.openMenu()
+		MenuBar.shared.animate()
 		self.removeUnnecessaryContents()
-		// アニメーション
-		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-			self.view.layoutIfNeeded()
-		}, completion: nil)
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -156,7 +151,7 @@ extension MapViewController: MKMapViewDelegate {
 			mapView.setRegion(region, animated: true)
 			view.alpha = 1
 		}
-		MenuBar.shared.closeMenuBar()
+		MenuBar.shared.closeMenu()
 		setDestinationButton.alpha = 1
 	}
 		

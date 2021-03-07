@@ -37,7 +37,6 @@ class CompassViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
-		MenuBar.shared.resetMenuButtonLocation()
 		revealView()
 		self.navigationController?.removePreviousController()
 		presenter?.updateCheckpointDistance()
@@ -53,7 +52,7 @@ class CompassViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
 		titleHeader.animate()
-		MenuBar.shared.openMenu()
+		MenuBar.shared.animate()
 		// アニメーション
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()

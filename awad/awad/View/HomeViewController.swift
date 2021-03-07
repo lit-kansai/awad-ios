@@ -27,17 +27,11 @@ class HomeViewController: UIViewController {
 		super.viewDidLoad()
 		self.setUpView()
 		self.addConstraints()
-//		let countdownViewController = CountdownViewController()
-//		addChild(countdownViewController)
-//		countdownViewController.view.frame = view.bounds
-//		view.addSubview(countdownViewController.view)
-//		countdownViewController.didMove(toParent: self)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
-		MenuBar.shared.resetMenuButtonLocation()
 		UserLocationManager.shared.delegate = self
 		if UserDefaults.standard.bool(forKey: "isRegistered") == false {
 			UserDefaults.standard.set(true, forKey: "isRegistered")
@@ -51,7 +45,7 @@ class HomeViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(false)
 		titleHeader.animate()
-		MenuBar.shared.openMenu()
+		MenuBar.shared.animate()
 		
 		UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 			self.view.layoutIfNeeded()
