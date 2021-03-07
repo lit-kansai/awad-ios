@@ -72,11 +72,15 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
 	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+		if annotation is MKUserLocation {
+			return nil
+		}
+		guard let annotation = annotation as? Checkpoint else {
+			return nil
+		}
 		let identifier: String = "pin"
 		var annotationView: MKAnnotationView?
-		guard let annotation = annotation as? Checkpoint else {
-			  return nil
-		}
+		
 		if let dequeuedAnnotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
 			annotationView = dequeuedAnnotationView
 		} else {
@@ -105,6 +109,9 @@ extension MapViewController: MKMapViewDelegate {
 				}
 			} else if mapView.view(for: annotations.first!)?.image == #imageLiteral(resourceName: "green_circle") {
 				for annotation in annotations {
+					guard let annotation = annotation as? Checkpoint else {
+						  return
+					}
 					let annotationView: MKAnnotationView? = mapView.view(for: annotation)
 					annotationView?.alpha = 0
 					annotationView?.image = CheckpointIcon(name: annotation.title!)?.image
@@ -114,13 +121,32 @@ extension MapViewController: MKMapViewDelegate {
 				}
 			}
 		}
-		
+	}
+	
+	func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+//	   if let userLocation = mapView.view(for: mapView.userLocation) {
+//		userLocation.canShowCallout = false
+//	   }
+	}
+	
+	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+//		print("updated")
+//		mapView.view(for: userLocation)?.canShowCallout = false
 	}
 	
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-		currentSelectedAnnotation = view.annotation as? Checkpoint
+		if view.annotation is MKUserLocation {
+			return
+		}
+		guard let annotation = view.annotation as? Checkpoint else {
+			return
+		}
+		currentSelectedAnnotation = annotation
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
+			guard let annotation = annotation as? Checkpoint else {
+				  return
+			}
 			mapView.view(for: annotation)?.alpha = 0.3
 		}
 		var region: MKCoordinateRegion = mapView.region
