@@ -364,45 +364,5 @@
 	"businessHours": "10:00~16:00",
 	"stampImageName": "Akaiyane",
 	"stampDescription": "お土産を売ってる人の話を聞いて獲得したスタンプ"
-},
-
-
-
-
-
-
-
-{
-	"name": "西院駅",
-	"category": "施設",
-	
-	"latitude": "35.00367943956549",
-	"longitude": "135.73105606655977",
-	"mission": "一旦マクドに入れ！",
-	"businessHours": "何時でもOK",
-	"stampImageName": "test",
-	"stampDescription": "西院で獲得した"
-},
-{
-	"name": "北千里駅",
-	"category": "施設",
-	
-	"latitude": "34.820226752942354",
-	"longitude": "135.51081373082107",
-	"mission": "起きていることをみんなに伝えろ！",
-	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": "北千里で獲得した"
-},
-{
-	"name": "セブンイレブン",
-	"category": "飲食店",
-	
-	"latitude": "34.838903297781044",
-	"longitude": "135.5051367854986",
-	"mission": "セブイレ",
-	"businessHours": "",
-	"stampImageName": "test",
-	"stampDescription": "セブイレで獲得した"
 }
 ]

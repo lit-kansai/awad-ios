@@ -12,6 +12,7 @@ import FirebaseFirestore
 class RegisterTeamViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
 	let titleLabel: UILabel = UILabel()
+	let debugButton: Button = Button(image: #imageLiteral(resourceName: "informationButton"))
 	var teams: [String] = [] {
 		didSet {
 			displayTeamButton()
@@ -45,6 +46,47 @@ class RegisterTeamViewController: UIViewController {
 			}
 		}
 	}
+	
+	@objc
+	func openModal() {
+		var alertTextField: UITextField?
+
+		let alert: UIAlertController = UIAlertController(
+			title: "パスコードを入力してください",
+			message: "デバッグ用のパスワードを入力してください",
+			preferredStyle: UIAlertController.Style.alert)
+		alert.addTextField(
+			configurationHandler: {(textField: UITextField!) in
+				alertTextField = textField
+				 textField.placeholder = "パスワードをここに入力"
+				 textField.isSecureTextEntry = true
+			})
+		alert.addAction(
+			UIAlertAction(
+				title: "Cancel",
+				style: UIAlertAction.Style.cancel,
+				handler: nil))
+		alert.addAction(
+			UIAlertAction(
+				title: "OK",
+				style: UIAlertAction.Style.default) { _ in
+				if let text: String = alertTextField?.text {
+					if text == "Awad2020311" {
+						UserDefaults.standard.set("debug", forKey: "team")
+						UserDefaults.standard.set("テスト", forKey: "userName")
+						UserDefaults.standard.set(true, forKey: "isRegistered")
+						UserDefaults.standard.set(true, forKey: "isPassed")
+						FirestoreManager.shared.setTeam(team: "debug")
+						AppDelegate.rootVC.transitionToHome()
+						
+					}
+				}
+			}
+		)
+
+		self.present(alert, animated: true, completion: nil)
+	}
+	
 }
 
 extension RegisterTeamViewController {
@@ -56,6 +98,7 @@ extension RegisterTeamViewController {
 		parentStackView.axis = .vertical
 		parentStackView.spacing = 30
 		
+		debugButton.addTarget(self, action: #selector(openModal), for: .touchUpInside)
 	}
 	
 	func displayTeamButton() {
@@ -89,6 +132,15 @@ extension RegisterTeamViewController {
 //			parentStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.45),
 			parentStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			parentStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+		])
+		
+		view.addSubview(debugButton)
+		debugButton.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			debugButton.widthAnchor.constraint(equalToConstant: 30),
+			debugButton.heightAnchor.constraint(equalToConstant: 30),
+			debugButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+			debugButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
 		])
 		
 	}

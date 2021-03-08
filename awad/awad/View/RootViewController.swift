@@ -98,3 +98,16 @@ final class RootViewController: UIViewController {
 		]
 	}
 }
+
+extension UINavigationController {
+	override open var childForStatusBarStyle: UIViewController? {
+		 return self.visibleViewController
+	 }
+	open override var preferredStatusBarStyle: UIStatusBarStyle {
+		.darkContent
+	}
+
+	open override var childForStatusBarHidden: UIViewController? {
+		return self.visibleViewController
+	}
+}

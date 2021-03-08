@@ -58,7 +58,7 @@ final class CheckpointAnnotationView: MKAnnotationView {
 		let resizedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
 		self.image = resizedImage
 		self.displayPriority = .required
-		self.alpha = 0.3
+		self.alpha = 0.7
 		self.canShowCallout = true
 		self.calloutOffset = CGPoint(x: -5, y: 5)
 	}

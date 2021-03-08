@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MenuBarDelegate: class {
+	func didMenuBarClosed()
+}
+
 class MenuBar: UIStackView {
 	let stampButton: Button = Button(image: #imageLiteral(resourceName: "stampButton"))
 	let compassButton: Button = Button(image: #imageLiteral(resourceName: "compassButton"))
@@ -19,6 +23,7 @@ class MenuBar: UIStackView {
 	private var parent: UIViewController?
 	var trailingConstraint: NSLayoutConstraint?
 	static let shared: MenuBar = MenuBar()
+	weak var delegate: MenuBarDelegate?
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupView()
@@ -38,11 +43,6 @@ class MenuBar: UIStackView {
 			self.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor, constant: -20),
 			trailingConstraint!
 		])
-	}
-	
-	func resetMenuButtonLocation() {
-		print("reset")
-
 	}
 	
 	func animate() {
@@ -68,6 +68,9 @@ class MenuBar: UIStackView {
 			self.spacing = 5
 			self.trailingConstraint?.constant = 30
 		}, completion: nil)
+		if let delegate = delegate {
+			delegate.didMenuBarClosed()
+		}
 	}
 	
 	func closeMenu() {

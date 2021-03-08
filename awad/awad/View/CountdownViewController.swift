@@ -9,8 +9,7 @@ import UIKit
 
 class CountdownViewController: UIViewController {
 	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
-//	let EVENT_DATE: Date = DateComponents(calendar: .current, year: 2_021, month: 3, day: 11, hour: 10, minute: 30).date!
-	let EVENT_DATE: Date = Date() + 60
+	let EVENT_DATE: Date = DateComponents(calendar: .current, year: 2_021, month: 3, day: 11, hour: 10, minute: 30).date!
 	let headerLabel: UILabel = UILabel()
 	let countdownStackView: UIStackView = UIStackView()
 	let countdownHeaderLabel: UILabel = UILabel()
@@ -77,6 +76,7 @@ extension CountdownViewController {
 		}
 		startEventButton.layer.opacity = 0
 		startEventButton.addTarget(self, action: #selector(transitionToHome), for: .touchUpInside)
+		
 	}
 	
 	func addConstraint() {

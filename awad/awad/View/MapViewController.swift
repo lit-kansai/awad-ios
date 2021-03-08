@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		MenuBar.shared.activate(parent: self)
+		MenuBar.shared.delegate = self
 		self.setButton()
 		self.navigationController?.removePreviousController()
 	}
@@ -62,6 +63,13 @@ class MapViewController: UIViewController {
 		let compassViewController: CompassViewController = CompassViewController()
 		self.navigationController?.pushViewController(compassViewController, animated: true)
 		print(UserLocationManager.shared.currentDestinationInformation!.checkpointName)
+	}
+}
+
+extension MapViewController: MenuBarDelegate {
+	func didMenuBarClosed() {
+		setDestinationButton.isEnabled = false
+		setDestinationButton.alpha = 0
 	}
 }
 
@@ -112,7 +120,7 @@ extension MapViewController: MKMapViewDelegate {
 					annotationView?.alpha = 0
 					annotationView?.image = CheckpointIcon(name: annotation.title!)?.image
 					UIView.animate(withDuration: 1, animations: {
-						annotationView?.alpha = 0.3
+						annotationView?.alpha = 0.7
 					})
 				}
 			}
@@ -134,16 +142,14 @@ extension MapViewController: MKMapViewDelegate {
 		if view.annotation is MKUserLocation {
 			return
 		}
-//		guard let annotation = view.annotation as? Checkpoint else {
-//			return
-//		}
+
 		currentSelectedAnnotation = view.annotation as! Checkpoint
 		let annotations: [MKAnnotation] = mapView.annotations
 		for annotation in annotations {
 			if annotation is MKUserLocation {
 				continue
 			}
-			mapView.view(for: annotation)?.alpha = 0.3
+			mapView.view(for: annotation)?.alpha = 0.7
 		}
 		var region: MKCoordinateRegion = mapView.region
 		region.center.latitude = (view.annotation?.coordinate.latitude)!
@@ -153,6 +159,7 @@ extension MapViewController: MKMapViewDelegate {
 			view.alpha = 1
 		}
 		MenuBar.shared.closeMenu()
+		setDestinationButton.isEnabled = true
 		setDestinationButton.alpha = 1
 	}
 		
@@ -182,6 +189,7 @@ extension MapViewController {
 	func setButton() {
 		view.addSubview(setDestinationButton)
 		setDestinationButton.contentMode = .scaleAspectFill
+		setDestinationButton.isEnabled = false
 		setDestinationButton.alpha = 0
 		setDestinationButton.addTarget(self, action: #selector(setDestination), for: .touchUpInside)
 		setDestinationButton.translatesAutoresizingMaskIntoConstraints = false
