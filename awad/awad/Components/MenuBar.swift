@@ -99,18 +99,21 @@ class MenuBar: UIStackView {
 				return
 			}
 			self.layer.opacity = 0
+			parent?.navigationItem.title = "Map"
 			parent?.navigationController?.pushViewController(mapViewController, animated: true)
 		case 2:
 			guard parent?.navigationController?.topViewController != compassViewController else {
 				return
 			}
 			self.layer.opacity = 0
+			parent?.navigationItem.title = "Compass"
 			parent?.navigationController?.pushViewController(compassViewController, animated: true)
 		case 3:
 			guard parent?.navigationController?.topViewController != stampViewController else {
 				return
 			}
 			self.layer.opacity = 0
+			parent?.navigationItem.title = "Stamp"
 			parent?.navigationController?.pushViewController(stampViewController, animated: true)
 		default:
 			print("え？")

@@ -15,7 +15,7 @@ class CompassViewController: UIViewController {
 	let titleHeader: Header = Header(imageName: "compass")
 	let missionButton: Button = Button(image: #imageLiteral(resourceName: "missionButton"))
 	let errorMessage: UILabel = UILabel()
-	var distance: Int = 0
+	var distance: Int?
 
 	let distanceLabelBackground: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tag"))
 	
@@ -66,6 +66,9 @@ class CompassViewController: UIViewController {
 	}
 	
 	func checkIfUserArrived() {
+		guard let distance = distance else {
+			return
+		}
 		if UserLocationManager.shared.currentDestinationInformation != nil && distance <= 50 {
 			UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
 				self.missionButton.layer.opacity = 1
@@ -90,14 +93,6 @@ class CompassViewController: UIViewController {
 		errorMessage.layer.opacity = 0
 		missionButton.layer.opacity = 0
 	}
-	
-	// 後で消す
-//	@objc
-//	func debug() {
-//		UserLocationManager.shared.distance -= 50
-//		self.changeCheckpointDistanceLabel(distance: UserLocationManager.shared.distance)
-//		self.checkIfUserArrived()
-//	}
 }
 
 extension CompassViewController: UserLocationManagerDelegate {
@@ -130,6 +125,7 @@ extension CompassViewController: CompassPresenterOutput {
 extension CompassViewController {
 	@objc
 	func transitionToMissionViewController() {
+		self.navigationItem.title = "Mission"
 		let missionViewController: MissionViewController = MissionViewController()
 		self.navigationController?.pushViewController(missionViewController, animated: true)
 	}
@@ -152,11 +148,13 @@ extension CompassViewController {
 		distanceTextLabel.center = CGPoint(x: view.frame.width / 2, y: 200)
 		distanceTextLabel.textAlignment = NSTextAlignment.center
 		distanceTextLabel.textColor = UIColor.distanceLabelColor()
-		let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(distance)m")
-		attrDistanceText.addAttributes([
-			.font: UIFont(name: "Keifont", size: 36) as Any
-		], range: _NSRange(location: 2, length: String(distance).count))
-		distanceTextLabel.attributedText = attrDistanceText
+		if let distance = distance {
+			let attrDistanceText: NSMutableAttributedString = NSMutableAttributedString(string: "あと\(distance)m")
+			attrDistanceText.addAttributes([
+				.font: UIFont(name: "Keifont", size: 36) as Any
+			], range: _NSRange(location: 2, length: String(distance).count))
+			distanceTextLabel.attributedText = attrDistanceText
+		}
 		
 		needleImageView.contentMode = .scaleAspectFit
 		missionButton.imageView?.contentMode = .scaleAspectFill
@@ -170,14 +168,6 @@ extension CompassViewController {
 		errorMessage.text = "目的地が設定されていません"
 		errorMessage.frame.size = CGSize(width: view.frame.width / 2, height: 100)
 		errorMessage.textAlignment = NSTextAlignment.center
-		
-//		// 後で消す
-//		let debugButton: UIButton = UIButton()
-//		debugButton.frame = CGRect(x: 200, y: 100, width: 100, height: 50)
-//		debugButton.setTitle("ボタン", for: .normal)
-//		debugButton.addTarget(self, action: #selector(debug), for: .touchUpInside)
-//		view.addSubview(debugButton)
-//		debugButton.setTitleColor(.black, for: .normal)
 	}
 	
 	func addConstraints() {

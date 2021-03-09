@@ -32,6 +32,10 @@ final class Checkpoint: NSObject, MKAnnotation {
 }
 
 final class CheckpointAnnotationView: MKAnnotationView {
+	override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+		displayPriority = .required
+	}
 	
 	init(annotation: MKAnnotation, reuseIdentifier: String, category: Category) {
 		super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -65,6 +69,17 @@ final class CheckpointAnnotationView: MKAnnotationView {
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		self.image = nil
+	}
+	
+	override var annotation: MKAnnotation? {
+		didSet {
+			displayPriority = .required
+		}
 	}
 	
 }

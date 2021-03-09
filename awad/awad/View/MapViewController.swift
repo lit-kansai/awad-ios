@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
 	var annotations: [Checkpoint] = []
 	var overlays: [MKOverlay] = []
 	var currentSelectedAnnotation: Checkpoint?
+	var hoge: Bool = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -44,7 +45,7 @@ class MapViewController: UIViewController {
 		super.viewDidAppear(false)
 		titleHeader.animate()
 		MenuBar.shared.animate()
-		self.removeUnnecessaryContents()
+//		self.removeUnnecessaryContents()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -86,13 +87,17 @@ extension MapViewController: MKMapViewDelegate {
 		var annotationView: MKAnnotationView?
 		
 		if let dequeuedAnnotationView: MKAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
-			annotationView = dequeuedAnnotationView
-		} else {
 			if let category: String = annotation.title {
 				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
 				annotationView = annotation
 			}
 		}
+//		else {
+//			if let category: String = annotation.title {
+//				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
+//				annotationView = annotation
+//			}
+//		}
 		return annotationView
 	}
 	
@@ -102,20 +107,16 @@ extension MapViewController: MKMapViewDelegate {
 		let longitudeDelta: CLLocationDegrees = region.span.longitudeDelta
 		if !annotations.isEmpty {
 			if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
-//				if mapView.view(for: annotations.first!)?.image == #imageLiteral(resourceName: "green_circle") {
-//					return
-//				}
+				hoge = true
 				for annotation in annotations {
 					UIView.animate(withDuration: 0.5, animations: {
 						// 画像変える
 						mapView.view(for: annotation)?.image = #imageLiteral(resourceName: "green_circle")
 					})
 				}
-			} else if mapView.view(for: annotations.first!)?.image == #imageLiteral(resourceName: "green_circle") {
+			} else if hoge {
+				hoge = false
 				for annotation in annotations {
-					guard let annotation = annotation as? Checkpoint else {
-						  return
-					}
 					let annotationView: MKAnnotationView? = mapView.view(for: annotation)
 					annotationView?.alpha = 0
 					annotationView?.image = CheckpointIcon(name: annotation.title!)?.image
@@ -216,6 +217,7 @@ extension MapViewController {
 		mapView.showsUserLocation = true
 		mapView.mapType = .mutedStandard
 		mapView.pointOfInterestFilter = MKPointOfInterestFilter.excludingAll
+		mapView.register(CheckpointAnnotationView.self, forAnnotationViewWithReuseIdentifier: "pin")
 		view.addSubview(mapView)
 	}
 	

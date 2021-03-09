@@ -84,7 +84,7 @@ final class RootViewController: UIViewController {
 		homeVC.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		homeVC.navigationBar.shadowImage = UIImage()
 		homeVC.navigationBar.titleTextAttributes = [
-			.foregroundColor: UIColor.turquoiseColor(),
+			.foregroundColor: UIColor.clear,
 			.font: UIFont(name: "Keifont", size: 24)!
 		]
 		
