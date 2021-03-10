@@ -40,7 +40,9 @@ class RegisterTeamViewController: UIViewController {
 			} else {
 				var result: [String] = []
 				for document in querySnapshot!.documents {
-					result.append(document.documentID)
+					if document.documentID != "debug" {
+						result.append(document.documentID)
+					}
 				}
 				self.teams = result
 			}

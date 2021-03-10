@@ -17,7 +17,7 @@ class MenuBar: UIStackView {
 	let mapButton: Button = Button(image: #imageLiteral(resourceName: "mapButton"))
 	private var mapViewController: MapViewController = MapViewController()
 	private var stampViewController: StampListViewController = StampListViewController()
-	private var compassViewController: CompassViewController = CompassViewController()
+	var compassViewController: CompassViewController = CompassViewController()
 	private var missionViewController: MissionViewController = MissionViewController()
 	var originCenterX: CGFloat?
 	private var parent: UIViewController?
@@ -28,7 +28,7 @@ class MenuBar: UIStackView {
 		super.init(frame: frame)
 		setupView()
 	}
-
+	
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setupView()
@@ -61,6 +61,14 @@ class MenuBar: UIStackView {
 		UIView.animate(withDuration: 0.7, delay: 0, options: .preferredFramesPerSecond60, animations: {
 			self.stampButton.center.x -= 300
 		}, completion: nil)
+		
+		if ((parent as? HomeViewController) != nil) {
+			return
+		} else {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+				self.closeMenu()
+			}
+		}
 	}
 	
 	func openMenu() {
@@ -94,29 +102,29 @@ class MenuBar: UIStackView {
 	@objc
 	func transitionView(_ sender: UITapGestureRecognizer) {
 		switch sender.view?.tag {
-		case 1:
-			guard parent?.navigationController?.topViewController != mapViewController else {
-				return
-			}
-			self.layer.opacity = 0
-			parent?.navigationItem.title = "Map"
-			parent?.navigationController?.pushViewController(mapViewController, animated: true)
-		case 2:
-			guard parent?.navigationController?.topViewController != compassViewController else {
-				return
-			}
-			self.layer.opacity = 0
-			parent?.navigationItem.title = "Compass"
-			parent?.navigationController?.pushViewController(compassViewController, animated: true)
-		case 3:
-			guard parent?.navigationController?.topViewController != stampViewController else {
-				return
-			}
-			self.layer.opacity = 0
-			parent?.navigationItem.title = "Stamp"
-			parent?.navigationController?.pushViewController(stampViewController, animated: true)
-		default:
-			print("え？")
+			case 1:
+				guard parent?.navigationController?.topViewController != mapViewController else {
+					return
+				}
+				self.layer.opacity = 0
+				parent?.navigationItem.title = "Map"
+				parent?.navigationController?.pushViewController(mapViewController, animated: true)
+			case 2:
+				guard parent?.navigationController?.topViewController != compassViewController else {
+					return
+				}
+				self.layer.opacity = 0
+				parent?.navigationItem.title = "Compass"
+				parent?.navigationController?.pushViewController(compassViewController, animated: true)
+			case 3:
+				guard parent?.navigationController?.topViewController != stampViewController else {
+					return
+				}
+				self.layer.opacity = 0
+				parent?.navigationItem.title = "Stamp"
+				parent?.navigationController?.pushViewController(stampViewController, animated: true)
+			default:
+				print("え？")
 		}
 	}
 }

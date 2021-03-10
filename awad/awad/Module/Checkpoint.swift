@@ -9,7 +9,15 @@ import Foundation
 import MapKit
 
 final class Checkpoint: NSObject, MKAnnotation {
-	let coordinate: CLLocationCoordinate2D
+	var coordinate: CLLocationCoordinate2D {
+		willSet {
+			willChangeValue(for: \.coordinate)
+		}
+		didSet {
+			didChangeValue(for: \.coordinate)
+		}
+	}
+	var originCoordinate: CLLocationCoordinate2D?
 	let title: String?
 	let subtitle: String?
 	let mission: String
@@ -20,6 +28,7 @@ final class Checkpoint: NSObject, MKAnnotation {
 	init(title: String, subtitle: String, latitude: Double, longitude: Double, mission: String, checkpointName: String, stampImageName: String, stampDescription: String) {
 		let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 		self.coordinate = coordinate
+		self.originCoordinate = coordinate
 		// NOTE: 書かないと、titleとsubtitleは絶対必要ですと怒られます。(MKAnnotationViewが必須としている)
 		self.title = title
 		self.subtitle = subtitle
@@ -28,6 +37,13 @@ final class Checkpoint: NSObject, MKAnnotation {
 		self.stampImageName = stampImageName
 		self.stampDescription = stampDescription
 		super.init()
+	}
+	
+	func changeCoordinate(_ coordinate: CLLocationCoordinate2D) {
+		self.coordinate = coordinate
+	}
+	func resetAnnotationCoordinate() {
+		self.coordinate = originCoordinate!
 	}
 }
 

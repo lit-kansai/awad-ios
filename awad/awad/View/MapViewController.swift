@@ -15,7 +15,8 @@ class MapViewController: UIViewController {
 	let setDestinationButton: Button = Button(image: #imageLiteral(resourceName: "setDestinationButton"))
 	let model: MapModel = MapModel()
 	var presenter: MapPresenterInput!
-	
+	let LATITUDE_DIFFERENCE: CLLocationDegrees = 0.009_013_372 / 10
+	let LONGITUDE_DIFFERENCE: CLLocationDegrees = 0.010_966_404 / 10
 	var annotations: [Checkpoint] = []
 	var overlays: [MKOverlay] = []
 	var currentSelectedAnnotation: Checkpoint?
@@ -45,7 +46,6 @@ class MapViewController: UIViewController {
 		super.viewDidAppear(false)
 		titleHeader.animate()
 		MenuBar.shared.animate()
-//		self.removeUnnecessaryContents()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -61,9 +61,7 @@ class MapViewController: UIViewController {
 			return
 		}
 		UserLocationManager.shared.setDestination(currentSelectedAnnotation)
-		let compassViewController: CompassViewController = CompassViewController()
-		self.navigationController?.pushViewController(compassViewController, animated: true)
-		print(UserLocationManager.shared.currentDestinationInformation!.checkpointName)
+		self.navigationController?.pushViewController(MenuBar.shared.compassViewController, animated: true)
 	}
 }
 
@@ -92,12 +90,6 @@ extension MapViewController: MKMapViewDelegate {
 				annotationView = annotation
 			}
 		}
-//		else {
-//			if let category: String = annotation.title {
-//				let annotation: CheckpointAnnotationView = CheckpointAnnotationView(annotation: annotation, reuseIdentifier: identifier, category: Category(rawValue: category) ?? .monument)
-//				annotationView = annotation
-//			}
-//		}
 		return annotationView
 	}
 	
@@ -106,17 +98,20 @@ extension MapViewController: MKMapViewDelegate {
 		let latitudeDelta: CLLocationDegrees = region.span.latitudeDelta
 		let longitudeDelta: CLLocationDegrees = region.span.longitudeDelta
 		if !annotations.isEmpty {
-			if latitudeDelta < 0.25 && longitudeDelta < 0.15 {
+			if latitudeDelta < 0.25 && longitudeDelta < 0.15 && hoge == false {
 				hoge = true
 				for annotation in annotations {
+					let latitude: CLLocationDegrees = annotation.coordinate.latitude - CLLocationDegrees.random(in: -self.LATITUDE_DIFFERENCE ... self.LATITUDE_DIFFERENCE)
+					let longitude: CLLocationDegrees = annotation.coordinate.longitude - CLLocationDegrees.random(in: -self.LONGITUDE_DIFFERENCE ... self.LONGITUDE_DIFFERENCE)
+					annotation.changeCoordinate(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
 					UIView.animate(withDuration: 0.5, animations: {
-						// 画像変える
-						mapView.view(for: annotation)?.image = #imageLiteral(resourceName: "green_circle")
+						mapView.view(for: annotation)?.image = #imageLiteral(resourceName: "navyCircle").resizeImageForAnnotationView()
 					})
 				}
-			} else if hoge {
+			} else if latitudeDelta > 0.25 && longitudeDelta > 0.15 && hoge {
 				hoge = false
 				for annotation in annotations {
+					annotation.resetAnnotationCoordinate()
 					let annotationView: MKAnnotationView? = mapView.view(for: annotation)
 					annotationView?.alpha = 0
 					annotationView?.image = CheckpointIcon(name: annotation.title!)?.image

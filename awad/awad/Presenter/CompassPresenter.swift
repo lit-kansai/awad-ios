@@ -34,8 +34,9 @@ final class CompassPresenter: CompassPresenterInput {
 	}
 	
 	func updateCheckpointDistance() {
-		let distance: Int = UserLocationManager.shared.calcDistanceToDestination()
-		view.changeCheckpointDistanceLabel(distance: distance)
+		if let distance = UserLocationManager.shared.calcDistanceToDestination() {
+			view.changeCheckpointDistanceLabel(distance: distance)
+		}
 	}
 	
 }

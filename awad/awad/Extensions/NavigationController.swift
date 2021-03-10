@@ -14,7 +14,6 @@ extension UINavigationController {
 			var navigationArray: [UIViewController] = self.viewControllers // To get all UIViewController stack as Array
 			navigationArray.remove(at: navigationArray.count - 2) // To remove previous UIViewController
 			self.viewControllers = navigationArray
-			print(self.viewControllers)
 		}
 	}
 }

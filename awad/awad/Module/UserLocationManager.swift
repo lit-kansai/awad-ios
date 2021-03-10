@@ -80,7 +80,7 @@ class UserLocationManager: NSObject {
 	}
 	
 	// 現在地までの距離を計算
-	func calcDistanceToDestination() -> Int {
+	func calcDistanceToDestination() -> Int? {
 		if let destination: CLLocation = location {
 			let distanceToDestination: CLLocationDistance? = locationManager.location?.distance(from: destination)
 			if let distanceToDestination: CLLocationDistance = distanceToDestination {
@@ -91,7 +91,7 @@ class UserLocationManager: NSObject {
 			}
 			return distance
 		}
-		return 0
+		return nil
 	}
 	
 	func calcCheckpointDirection(direction: Double) -> Double {

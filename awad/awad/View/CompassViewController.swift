@@ -27,10 +27,6 @@ class CompassViewController: UIViewController {
 		self.setupView()
 		self.addConstraints()
 		self.presenter = CompassPresenter(view: self, model: model)
-		if CLLocationManager.locationServicesEnabled() {
-			UserLocationManager.shared.delegate = self
-			UserLocationManager.shared.initOriginDegree()
-		}
 		
 	}
 
@@ -41,6 +37,10 @@ class CompassViewController: UIViewController {
 		self.navigationController?.removePreviousController()
 		presenter?.updateCheckpointDistance()
 		NotificationCenter.default.addObserver(self, selector: #selector(willEnterForegroundNotification), name: UIApplication.willEnterForegroundNotification, object: nil)
+		if CLLocationManager.locationServicesEnabled() {
+			UserLocationManager.shared.delegate = self
+			UserLocationManager.shared.initOriginDegree()
+		}
 	}
 	
 	@objc
@@ -61,6 +61,7 @@ class CompassViewController: UIViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
+		MenuBar.shared.layer.opacity = 0
 		titleHeader.resetForAnimation()
 		self.hideView()
 	}
@@ -133,7 +134,6 @@ extension CompassViewController {
 	func setupView() {
 		background.activateConstraint(parent: view)
 		titleHeader.activateConstraint(parent: view)
-		MenuBar.shared.activate(parent: self)
 		
 		view.addSubview(distanceLabelBackground)
 		view.addSubview(distanceTextLabel)
@@ -186,8 +186,10 @@ extension CompassViewController {
 		
 		needleImageView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
-			needleImageView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
-			needleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+			needleImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			needleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			needleImageView.widthAnchor.constraint(equalToConstant: 150),
+			needleImageView.heightAnchor.constraint(equalToConstant: 150)
 		])
 		
 		errorMessage.translatesAutoresizingMaskIntoConstraints = false
