@@ -105,7 +105,7 @@ extension MapViewController: MKMapViewDelegate {
 					let longitude: CLLocationDegrees = annotation.coordinate.longitude - CLLocationDegrees.random(in: -self.LONGITUDE_DIFFERENCE ... self.LONGITUDE_DIFFERENCE)
 					annotation.changeCoordinate(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
 					UIView.animate(withDuration: 0.5, animations: {
-						mapView.view(for: annotation)?.image = #imageLiteral(resourceName: "navyCircle").resizeImageForAnnotationView()
+						mapView.view(for: annotation)?.image = #imageLiteral(resourceName: "navyCircle").resizeImageForCircle()
 					})
 				}
 			} else if latitudeDelta > 0.25 && longitudeDelta > 0.15 && hoge {

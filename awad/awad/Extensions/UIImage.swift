@@ -15,4 +15,12 @@ extension UIImage {
 		let resizedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
 		return resizedImage!
 	}
+	
+	func resizeImageForCircle() -> UIImage {
+		let size: CGSize = CGSize(width: 50, height: 50)
+		UIGraphicsBeginImageContext(size)
+		self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+		let resizedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+		return resizedImage!
+	}
 }

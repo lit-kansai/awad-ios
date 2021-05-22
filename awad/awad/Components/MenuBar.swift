@@ -62,7 +62,7 @@ class MenuBar: UIStackView {
 			self.stampButton.center.x -= 300
 		}, completion: nil)
 		
-		if ((parent as? HomeViewController) != nil) {
+		if (parent as? HomeViewController) != nil {
 			return
 		} else {
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -91,9 +91,13 @@ class MenuBar: UIStackView {
 	@objc
 	func handleSwipe(_ sender: UISwipeGestureRecognizer) {
 		if sender.direction == .right {
+			if (parent as? HomeViewController) != nil {
+				return
+			}
 			print("right")
 			closeMenu()
 		} else if sender.direction == .left {
+
 			print("left")
 			openMenu()
 		}

@@ -73,6 +73,7 @@ class RegisterTeamViewController: UIViewController {
 				title: "OK",
 				style: UIAlertAction.Style.default) { _ in
 				if let text: String = alertTextField?.text {
+					print("success")
 					if text == "Awad2020311" {
 						UserDefaults.standard.set("debug", forKey: "team")
 						UserDefaults.standard.set("テスト", forKey: "userName")
@@ -80,7 +81,8 @@ class RegisterTeamViewController: UIViewController {
 						UserDefaults.standard.set(true, forKey: "isPassed")
 						FirestoreManager.shared.setTeam(team: "debug")
 						AppDelegate.rootVC.transitionToHome()
-						
+					} else {
+						print("error")
 					}
 				}
 			}

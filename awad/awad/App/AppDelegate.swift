@@ -12,9 +12,6 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		// NOTE: 後で消す
-//		let appDomain: String? = Bundle.main.bundleIdentifier
-//		UserDefaults.standard.removePersistentDomain(forName: appDomain!)
 		FirebaseApp.configure()
 		// UI周り
 		UILabel.appearance().font = UIFont(name: "Keifont", size: 20)

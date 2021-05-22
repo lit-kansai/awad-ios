@@ -366,25 +366,14 @@
 	"stampDescription": "お土産を売ってる人の話を聞いて獲得したスタンプ"
 },
 {
-	"name": "セブンイレブン",
-	"category": "飲食店",
+	"name": "明石海峡大橋撮影スポット",
+	"category": "展望台",
 	
-	"latitude": "34.838903297781044",
-	"longitude": "135.5051367854986",
-	"mission": "セブイレ",
-	"businessHours": "",
-	"stampImageName": "test",
-	"stampDescription": "セブイレで獲得した"
-},
-{
-	"name": "たこやき",
-	"category": "飲食店",
-	
-	"latitude": "34.83369945109379",
-	"longitude": "135.51539479593146",
-	"mission": "たこやき",
+	"latitude": "34.584115890140254",
+	"longitude": "135.01759643628984",
+	"mission": "明石海峡大橋の写真を取れ！",
 	"businessHours": "いつでもOK",
-	"stampImageName": "test",
-	"stampDescription": "たこやき屋で獲得した"
+	"stampImageName": "awad",
+	"stampDescription": "明石海峡大橋を撮影して獲得したスタンプ"
 }
 ]
