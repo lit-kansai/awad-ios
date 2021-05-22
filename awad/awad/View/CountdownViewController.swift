@@ -8,7 +8,7 @@
 import UIKit
 
 class CountdownViewController: UIViewController {
-	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
+	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "RegisterBackground")
 	let EVENT_DATE: Date = DateComponents(calendar: .current, year: 2_021, month: 3, day: 11, hour: 10, minute: 30).date!
 	let headerLabel: UILabel = UILabel()
 	let countdownStackView: UIStackView = UIStackView()

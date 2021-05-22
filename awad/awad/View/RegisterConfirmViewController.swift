@@ -10,7 +10,7 @@ import UIKit
 class RegisterConfirmViewController: UIViewController {
 	var team: String? = ""
 	var member: String? = ""
-	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
+	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "RegisterBackground")
 	let parentStackView: UIStackView = UIStackView()
 	let confirmLabel: UILabel = UILabel()
 	// team

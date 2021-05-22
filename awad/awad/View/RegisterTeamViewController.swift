@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 
 class RegisterTeamViewController: UIViewController {
-	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
+	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "RegisterBackground")
 	let titleLabel: UILabel = UILabel()
 	let debugButton: Button = Button(image: #imageLiteral(resourceName: "informationButton"))
 	var teams: [String] = [] {

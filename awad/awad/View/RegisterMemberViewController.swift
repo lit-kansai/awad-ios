@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterMemberViewController: UIViewController {
 	
-	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "registerBackground")
+	let background: BackgroundUIImageView = BackgroundUIImageView(imageName: "RegisterBackground")
 	let titleLabel: UILabel = UILabel()
 	var team: String?
 	var members: [String] = [] {
